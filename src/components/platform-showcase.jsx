@@ -46,7 +46,7 @@ const screenshotTabs = [
     id: "achievements",
     label: "Thành tích",
     icon: Trophy,
-    image: "/screenshots/ss-achievements.png",
+    image: "/screenshots/ss-achievement.png",
     title: "Hệ thống huy hiệu & XP",
     description: "Gamification giúp học sinh có động lực học tập — tích lũy XP, lên cấp và mở khóa huy hiệu.",
   },
