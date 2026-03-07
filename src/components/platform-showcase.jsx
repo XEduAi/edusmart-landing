@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import {
@@ -9,16 +10,51 @@ import {
   Zap,
   ArrowRight,
   CheckCircle2,
-  Laptop,
-  Smartphone,
   BookOpenCheck,
   ClipboardList,
-  TrendingUp,
   Users,
-  GraduationCap,
+  Star,
+  Trophy,
 } from "lucide-react"
 
+const screenshotTabs = [
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: Monitor,
+    image: "/screenshots/ss-dashboard.png",
+    title: "Tổng quan học tập",
+    description: "Xem toàn bộ lớp học, bài tập sắp tới và hoạt động gần đây ngay trên một màn hình.",
+  },
+  {
+    id: "quiz",
+    label: "Làm bài kiểm tra",
+    icon: FileQuestion,
+    image: "/screenshots/ss-quiz.png",
+    title: "Bài kiểm tra trực tuyến",
+    description: "Giao diện làm bài hiện đại với hỗ trợ công thức Toán LaTeX, đếm ngược thời gian và điều hướng câu hỏi nhanh.",
+  },
+  {
+    id: "result",
+    label: "Kết quả",
+    icon: Star,
+    image: "/screenshots/ss-result.png",
+    title: "Xem kết quả chi tiết",
+    description: "Sau khi nộp bài, học sinh thấy ngay tỷ lệ đúng, đáp án và giải thích từng câu hỏi.",
+  },
+  {
+    id: "achievements",
+    label: "Thành tích",
+    icon: Trophy,
+    image: "/screenshots/ss-achievements.png",
+    title: "Hệ thống huy hiệu & XP",
+    description: "Gamification giúp học sinh có động lực học tập — tích lũy XP, lên cấp và mở khóa huy hiệu.",
+  },
+]
+
 export function PlatformShowcase() {
+  const [activeTab, setActiveTab] = useState("dashboard")
+  const active = screenshotTabs.find((t) => t.id === activeTab)
   const features = [
     {
       icon: FileQuestion,
@@ -94,119 +130,84 @@ export function PlatformShowcase() {
           </p>
         </div>
 
-        {/* Platform mockup */}
+        {/* Screenshot gallery */}
         <div className="mx-auto mt-16 max-w-5xl">
-          <div className="relative rounded-3xl border border-border/50 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-2 shadow-2xl shadow-blue-900/20">
-            {/* Browser chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10">
+          {/* Tab buttons */}
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {screenshotTabs.map((tab) => {
+              const Icon = tab.icon
+              const isActive = activeTab === tab.id
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105"
+                      : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {tab.label}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Description bar */}
+          <div className="mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 px-1">
+            <h3 className="font-semibold text-foreground">{active.title}</h3>
+            <span className="hidden sm:block text-muted-foreground">—</span>
+            <p className="text-sm text-muted-foreground">{active.description}</p>
+          </div>
+
+          {/* Browser chrome wrapper */}
+          <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-slate-900 to-slate-800 p-2 shadow-2xl shadow-blue-900/20">
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/10 mb-2">
               <div className="flex gap-1.5">
-                <div className="h-3 w-3 rounded-full bg-red-400" />
-                <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                <div className="h-3 w-3 rounded-full bg-green-400" />
+                <div className="h-3 w-3 rounded-full bg-red-400/80" />
+                <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                <div className="h-3 w-3 rounded-full bg-green-400/80" />
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-1.5 text-xs text-white/60">
-                  <Shield className="h-3 w-3" />
-                  <span>daytoanthaylong.vn/dashboard</span>
+                <div className="flex items-center gap-2 rounded-md bg-white/10 px-3 py-1 text-xs text-white/50 w-48 justify-center">
+                  edusmart.vn
                 </div>
               </div>
             </div>
 
-            {/* Dashboard mockup */}
-            <div className="rounded-b-2xl bg-gradient-to-br from-slate-50 to-blue-50 p-6 sm:p-8">
-              <div className="grid gap-4 sm:grid-cols-3">
-                {/* Sidebar mockup */}
-                <div className="hidden sm:block rounded-xl bg-white border border-border/50 p-4 shadow-sm">
-                  <div className="flex items-center gap-2 mb-6">
-                    <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                      <GraduationCap className="h-4 w-4 text-white" />
-                    </div>
-                    <span className="font-bold text-sm text-foreground">EduSmart</span>
-                  </div>
-                  {[
-                    { icon: Monitor, label: "Dashboard", active: true },
-                    { icon: FileQuestion, label: "Bài kiểm tra", active: false },
-                    { icon: BarChart3, label: "Kết quả", active: false },
-                    { icon: Bell, label: "Thông báo", active: false },
-                  ].map((item, i) => {
-                    const ItemIcon = item.icon
-                    return (
-                      <div key={i} className={`flex items-center gap-2 rounded-lg px-3 py-2 mb-1 text-xs ${item.active ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-muted-foreground'}`}>
-                        <ItemIcon className="h-4 w-4" />
-                        <span>{item.label}</span>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                {/* Main content mockup */}
-                <div className="sm:col-span-2 space-y-4">
-                  {/* Stats row */}
-                  <div className="grid grid-cols-3 gap-3">
-                    {[
-                      { label: "Bài đã làm", value: "24", icon: ClipboardList, color: "text-blue-600" },
-                      { label: "Điểm TB", value: "8.5", icon: TrendingUp, color: "text-emerald-600" },
-                      { label: "Xếp hạng", value: "#3", icon: Users, color: "text-purple-600" },
-                    ].map((stat, i) => {
-                      const StatIcon = stat.icon
-                      return (
-                        <div key={i} className="rounded-xl bg-white border border-border/50 p-3 shadow-sm">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-[10px] sm:text-xs text-muted-foreground">{stat.label}</span>
-                            <StatIcon className={`h-3.5 w-3.5 ${stat.color}`} />
-                          </div>
-                          <div className="text-lg sm:text-xl font-bold">{stat.value}</div>
-                        </div>
-                      )
-                    })}
-                  </div>
-
-                  {/* Chart mockup */}
-                  <div className="rounded-xl bg-white border border-border/50 p-4 shadow-sm">
-                    <div className="text-xs font-semibold mb-3">Tiến độ học tập</div>
-                    <div className="flex items-end gap-1.5 h-24">
-                      {[40, 55, 45, 65, 70, 60, 80, 75, 85, 90, 82, 95].map((h, i) => (
-                        <div key={i} className="flex-1 rounded-t-sm bg-gradient-to-t from-blue-600 to-blue-400 transition-all duration-300" style={{ height: `${h}%` }} />
-                      ))}
-                    </div>
-                    <div className="flex justify-between mt-2">
-                      <span className="text-[9px] text-muted-foreground">T1</span>
-                      <span className="text-[9px] text-muted-foreground">T12</span>
-                    </div>
-                  </div>
-
-                  {/* Recent quizzes */}
-                  <div className="rounded-xl bg-white border border-border/50 p-4 shadow-sm">
-                    <div className="text-xs font-semibold mb-3">Bài kiểm tra gần đây</div>
-                    {[
-                      { name: "Hình học không gian - Chương 3", score: "9.0", status: "Xuất sắc" },
-                      { name: "Đại số - Phương trình bậc 2", score: "8.5", status: "Giỏi" },
-                    ].map((quiz, i) => (
-                      <div key={i} className="flex items-center justify-between py-2 border-b last:border-0 border-border/30">
-                        <div>
-                          <div className="text-xs font-medium">{quiz.name}</div>
-                          <div className="text-[10px] text-muted-foreground">{quiz.status}</div>
-                        </div>
-                        <div className="text-sm font-bold text-emerald-600">{quiz.score}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            {/* Screenshot images */}
+            <div className="relative overflow-hidden rounded-b-xl rounded-t-sm">
+              {screenshotTabs.map((tab) => (
+                <img
+                  key={tab.id}
+                  src={tab.image}
+                  alt={tab.title}
+                  className={`w-full object-cover object-top transition-all duration-500 ${
+                    activeTab === tab.id
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 absolute inset-0 translate-y-2 pointer-events-none"
+                  }`}
+                  style={{ maxHeight: "520px" }}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Device indicators */}
-          <div className="flex items-center justify-center gap-6 mt-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <Laptop className="h-4 w-4" />
-              <span>Desktop</span>
-            </div>
-            <div className="h-4 w-px bg-border" />
-            <div className="flex items-center gap-2">
-              <Smartphone className="h-4 w-4" />
-              <span>Mobile</span>
-            </div>
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-5">
+            {screenshotTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`rounded-full transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? "w-6 h-2 bg-primary"
+                    : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                }`}
+                aria-label={tab.label}
+              />
+            ))}
           </div>
         </div>
 

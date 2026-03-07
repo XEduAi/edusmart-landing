@@ -4,7 +4,6 @@ import { ValueProposition } from "@/components/value-proposition"
 import { Results } from "@/components/results"
 import { Curriculum } from "@/components/curriculum"
 import { PlatformShowcase } from "@/components/platform-showcase"
-import { ScreenshotGallery } from "@/components/screenshot-gallery"
 import { TeacherProfile } from "@/components/teacher-profile"
 import { Testimonials } from "@/components/testimonials"
 import { ContactForm } from "@/components/contact-form"
@@ -20,7 +19,6 @@ function App() {
       <Results />
       <Curriculum />
       <PlatformShowcase />
-      <ScreenshotGallery />
       <TeacherProfile />
       <Testimonials />
       <ContactForm />
