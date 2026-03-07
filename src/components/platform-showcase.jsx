@@ -87,7 +87,7 @@ export function PlatformShowcase() {
             <span>Nền tảng học tập trực tuyến</span>
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Nền tảng <span className="gradient-text">EduSmart LMS</span>
+            Nền tảng <span className="gradient-text">Thầy Long LMS</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">
             Hệ thống quản lý học tập hiện đại, giúp học sinh và giáo viên kết nối hiệu quả mọi lúc, mọi nơi
@@ -107,7 +107,7 @@ export function PlatformShowcase() {
               <div className="flex-1 flex justify-center">
                 <div className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-1.5 text-xs text-white/60">
                   <Shield className="h-3 w-3" />
-                  <span>edusmart.vn/dashboard</span>
+                  <span>daytoanthaylong.vn/dashboard</span>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ export function PlatformShowcase() {
                     <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
                       <GraduationCap className="h-4 w-4 text-white" />
                     </div>
-                    <span className="font-bold text-sm text-foreground">EduSmart</span>
+                    <span className="font-bold text-sm text-foreground">Thầy Long</span>
                   </div>
                   {[
                     { icon: Monitor, label: "Dashboard", active: true },
@@ -238,7 +238,7 @@ export function PlatformShowcase() {
           <div className="grid gap-8 lg:grid-cols-2 items-center">
             <div>
               <h3 className="text-2xl font-bold sm:text-3xl">
-                Tại sao nên sử dụng <span className="gradient-text">EduSmart LMS</span>?
+                Tại sao nên sử dụng <span className="gradient-text">Thầy Long LMS</span>?
               </h3>
               <p className="mt-3 text-muted-foreground">
                 Nền tảng được thiết kế riêng cho học sinh Việt Nam, tối ưu cho việc học Toán từ lớp 6 đến 12.

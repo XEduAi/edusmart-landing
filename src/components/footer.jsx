@@ -38,7 +38,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#platform" className="text-sm text-muted-foreground transition-colors hover:text-primary">
-                  Nền tảng EduSmart LMS
+                  Nền tảng Thầy Long LMS
                 </a>
               </li>
             </ul>
@@ -88,7 +88,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/50 pt-8 sm:flex-row">
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            © {new Date().getFullYear()} EduSmart. Made with <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" /> in Vietnam
+            © {new Date().getFullYear()} Dạy Toán Thầy Long. Made with <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" /> in Vietnam
           </p>
           <div className="flex items-center gap-3">
             {[

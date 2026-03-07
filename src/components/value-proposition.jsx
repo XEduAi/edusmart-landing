@@ -50,7 +50,7 @@ export function ValueProposition() {
             Tại sao chọn chúng tôi
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Tại sao chọn <span className="gradient-text">EduSmart</span>?
+            Tại sao chọn <span className="gradient-text">Thầy Long</span>?
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
             Phương pháp giảng dạy khác biệt giúp học sinh yêu thích Toán và đạt kết quả cao

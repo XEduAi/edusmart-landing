@@ -117,7 +117,7 @@ export function Hero() {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
               <img
                 src="/room1.jpeg"
-                alt="Không gian lớp học EduSmart"
+                alt="Không gian lớp học Thầy Long"
                 className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -128,7 +128,7 @@ export function Hero() {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
               <img
                 src="/room2.jpeg"
-                alt="Lớp học Toán EduSmart"
+                alt="Lớp học Toán Thầy Long"
                 className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
