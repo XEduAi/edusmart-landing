@@ -38,7 +38,7 @@ export function Footer() {
               </li>
               <li>
                 <a href="#platform" className="text-sm text-muted-foreground transition-colors hover:text-primary">
-                  Nền tảng Thầy Long LMS
+                  Nền tảng EduSmart LMS
                 </a>
               </li>
             </ul>
