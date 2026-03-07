@@ -44,8 +44,8 @@ export function Location() {
                 <div>
                   <p className="font-semibold">Giờ học</p>
                   <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                    Thứ 2 - Thứ 7: 17:00 - 21:00<br />
-                    Chủ nhật: 8:00 - 11:00
+                    Thứ 2 - Thứ 7: 13:00 - 21:00<br />
+                    Chủ nhật: 8:00 - 21:00
                   </p>
                 </div>
               </div>
