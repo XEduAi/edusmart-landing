@@ -58,14 +58,11 @@ export function TeacherProfile() {
                   onMouseLeave={() => setImageHovered(false)}
                 >
                   <img
-                    src="/images/teacher.jpg"
-                    alt="Thầy Nguyễn Văn Long"
+                    src="/potrait.jpeg"
+                    alt="Thầy Nguyễn Hữu Long"
                     className={`h-full w-full object-cover transition-all duration-500 ${
                       imageHovered ? "scale-110 brightness-110" : "scale-100"
                     }`}
-                    onError={(e) => {
-                      e.target.style.display = 'none'
-                    }}
                   />
                   {imageHovered && (
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent animate-in" />

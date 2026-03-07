@@ -109,6 +109,34 @@ export function Hero() {
               <span className="ml-1"><strong className="text-foreground">4.9/5</strong> đánh giá</span>
             </div>
           </div>
+
+          {/* Classroom showcase */}
+          <div className={`mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto transition-all duration-1000 delay-700 ${
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}>
+            <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
+              <img
+                src="/room1.jpeg"
+                alt="Không gian lớp học EduSmart"
+                className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 text-white">
+                <p className="text-sm font-semibold">Không gian học tập hiện đại</p>
+              </div>
+            </div>
+            <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
+              <img
+                src="/room2.jpeg"
+                alt="Lớp học Toán EduSmart"
+                className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 text-white">
+                <p className="text-sm font-semibold">Lớp học thân thiện, gần gũi</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
