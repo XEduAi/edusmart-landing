@@ -311,6 +311,27 @@ export function ContactForm() {
                 </p>
               </div>
             </Card>
+
+            {/* Google Maps */}
+            <Card className="overflow-hidden border-border/50 shadow-xl shadow-blue-900/5">
+              <div className="p-4 pb-2">
+                <h3 className="text-sm font-bold flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  Vị trí lớp học
+                </h3>
+              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1000!2d105.08156!3d10.02217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDAxJzE5LjgiTiAxMDXCsDA0JzUzLjYiRQ!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn"
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Vị trí lớp học Toán Thầy Long"
+                className="rounded-b-xl"
+              />
+            </Card>
           </div>
         </div>
       </div>
