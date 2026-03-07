@@ -41,8 +41,11 @@ export function ContactForm() {
     return Object.keys(newErrors).length === 0
   }
 
+  const [submitError, setSubmitError] = useState("")
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmitError("")
 
     if (!validateForm()) {
       return
@@ -50,18 +53,32 @@ export function ContactForm() {
 
     setIsLoading(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || "https://smartedu-backend.io.vn/api"
+      const response = await fetch(`${API_URL}/leads/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
 
-    setIsSubmitted(true)
+      const result = await response.json()
 
-    // Reset form
-    setTimeout(() => {
-      setFormData({ name: "", grade: "", phone: "", goal: "" })
-      setIsSubmitted(false)
-    }, 2000)
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Có lỗi xảy ra, vui lòng thử lại")
+      }
 
-    setIsLoading(false)
+      setIsSubmitted(true)
+
+      // Reset form after showing success
+      setTimeout(() => {
+        setFormData({ name: "", grade: "", phone: "", goal: "" })
+        setIsSubmitted(false)
+      }, 3000)
+    } catch (error) {
+      setSubmitError(error.message || "Không thể kết nối đến server. Vui lòng thử lại sau.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const contactInfo = [
@@ -243,6 +260,13 @@ export function ContactForm() {
                     </>
                   )}
                 </Button>
+
+                {submitError && (
+                  <div className="flex items-center gap-2 text-sm text-red-500 p-3 rounded-lg bg-red-50 border border-red-200 animate-in">
+                    <AlertCircle className="h-4 w-4 shrink-0" />
+                    {submitError}
+                  </div>
+                )}
 
                 <p className="text-center text-xs text-muted-foreground">
                   Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ
