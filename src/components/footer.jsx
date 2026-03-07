@@ -1,4 +1,4 @@
-import { Facebook, MessageCircle, Phone, GraduationCap, Heart } from "lucide-react"
+import { Facebook, MessageCircle, Phone, Heart } from "lucide-react"
 
 export function Footer() {
   return (
@@ -6,11 +6,12 @@ export function Footer() {
       <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-blue-500/25">
-                <GraduationCap className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold gradient-text">EduSmart</span>
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt="Dạy Toán Thầy Long"
+                className="h-16 w-auto object-contain"
+              />
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Trung tâm dạy Toán uy tín với phương pháp hiểu bản chất, giúp học sinh yêu thích Toán và đạt kết quả cao.
