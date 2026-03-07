@@ -7,6 +7,7 @@ import { PlatformShowcase } from "@/components/platform-showcase"
 import { TeacherProfile } from "@/components/teacher-profile"
 import { Testimonials } from "@/components/testimonials"
 import { ContactForm } from "@/components/contact-form"
+import { Location } from "@/components/location"
 import { Footer } from "@/components/footer"
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <TeacherProfile />
       <Testimonials />
       <ContactForm />
+      <Location />
       <Footer />
     </main>
   )
