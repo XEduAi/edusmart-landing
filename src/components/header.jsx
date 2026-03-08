@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, LogIn } from "lucide-react"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -21,6 +21,8 @@ export function Header() {
     { href: "#platform", label: "Nền tảng LMS" },
     { href: "#teacher", label: "Giáo viên" },
     { href: "#testimonials", label: "Học viên" },
+    { href: "#documents", label: "Tài liệu" },
+    { href: "#faq", label: "FAQ" },
   ]
 
   return (
@@ -66,6 +68,12 @@ export function Header() {
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
 
+            <Button size="sm" variant="outline" className="hidden sm:inline-flex bg-transparent rounded-lg gap-1.5" asChild>
+              <a href="https://app.edusmart.vn/login" target="_blank" rel="noopener noreferrer">
+                <LogIn className="h-4 w-4" />
+                Đăng nhập
+              </a>
+            </Button>
             <Button size="sm" variant="outline" className="hidden sm:inline-flex bg-transparent rounded-lg" asChild>
               <a href="#platform">Xem nền tảng</a>
             </Button>
@@ -96,7 +104,13 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
-              <Button asChild className="w-full mt-2 rounded-lg">
+              <Button variant="outline" asChild className="w-full mt-2 rounded-lg gap-1.5">
+                <a href="https://app.edusmart.vn/login" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
+                  <LogIn className="h-4 w-4" />
+                  Đăng nhập
+                </a>
+              </Button>
+              <Button asChild className="w-full rounded-lg">
                 <a href="#contact" onClick={() => setIsOpen(false)}>
                   Đăng ký ngay
                 </a>
