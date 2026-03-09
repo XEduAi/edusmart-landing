@@ -32,7 +32,7 @@ export function Location() {
                 <div>
                   <p className="font-semibold">Địa chỉ</p>
                   <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
-                    Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh An Giang
+                    Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh Kiên Giang
                   </p>
                 </div>
               </div>

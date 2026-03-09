@@ -103,7 +103,7 @@ export function ContactForm() {
     {
       icon: MapPin,
       label: "Địa chỉ",
-      value: "Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh An Giang",
+      value: "Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh Kiên Giang",
       color: "from-amber-500 to-amber-600",
     },
   ]

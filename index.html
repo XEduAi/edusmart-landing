@@ -32,23 +32,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Schema.org — EducationalOrganization -->
+    <!-- Schema.org — EducationalOrganization + LocalBusiness -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
+      "@type": ["EducationalOrganization", "LocalBusiness"],
       "name": "Dạy Toán Thầy Long",
       "alternateName": "Trung tâm Toán Thầy Long",
       "description": "Trung tâm dạy Toán uy tín với phương pháp hiểu bản chất từ lớp 6 đến 12. Học theo năng lực từng học sinh, bứt phá điểm số chỉ sau 4 buổi.",
       "url": "https://daytoanthaylong.com",
-      "logo": "https://daytoanthaylong.com/logo.png",
-      "image": "https://daytoanthaylong.com/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://daytoanthaylong.com/logo.png",
+        "width": 2816,
+        "height": 1536
+      },
+      "image": "https://daytoanthaylong.com/room1.jpeg",
       "telephone": ["+84919414006", "+84918877407"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Hẻm 1, Đường Nguyễn Tuân",
         "addressLocality": "Rạch Giá",
-        "addressRegion": "An Giang",
+        "addressRegion": "Kiên Giang",
         "addressCountry": "VN"
       },
       "geo": {
@@ -73,14 +78,21 @@
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+84919414006",
-        "contactType": "customer service",
+        "contactType": "customer support",
         "availableLanguage": "Vietnamese"
       },
       "areaServed": {
         "@type": "City",
         "name": "Rạch Giá"
       },
-      "priceRange": "$$"
+      "priceRange": "$$",
+      "sameAs": [
+        "https://zalo.me/0918877407"
+      ],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://daytoanthaylong.com/#teacher"
+      }
     }
     </script>
   </head>

@@ -15,6 +15,7 @@ import {
   Users,
   Star,
   Trophy,
+  Bot,
 } from "lucide-react"
 
 const screenshotTabs = [
@@ -57,6 +58,16 @@ const screenshotTabs = [
     alt: "Trang thành tích học sinh với huy hiệu, điểm XP và bảng xếp hạng trên EduSmart",
     width: 1357, height: 1046,
     description: "Gamification giúp học sinh có động lực học tập — tích lũy XP, lên cấp và mở khóa huy hiệu.",
+  },
+  {
+    id: "chatbot",
+    label: "Trợ lý AI",
+    icon: Bot,
+    image: "/screenshots/ss-chatbot.png",
+    title: "EduBot — Trợ lý học tập AI",
+    alt: "Giao diện EduBot trợ lý AI hỗ trợ học sinh giải Toán và ôn tập trực tiếp trên EduSmart",
+    width: 2453, height: 1214,
+    description: "Trợ lý AI 24/7 giải đáp thắc mắc Toán học, giải thích từng bước và gợi ý bài tập phù hợp.",
   },
 ]
 
