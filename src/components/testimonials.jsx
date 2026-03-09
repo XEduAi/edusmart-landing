@@ -119,14 +119,16 @@ export function Testimonials() {
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
-                  className="h-2 w-2 rounded-full bg-muted hover:bg-primary transition-all duration-300"
-                  aria-label={`Go to testimonial ${index + 1}`}
-                />
+                  className="p-3 group"
+                  aria-label={`Xem nhận xét ${index + 1}`}
+                >
+                  <span className="block h-2 w-2 rounded-full bg-muted group-hover:bg-primary transition-all duration-300" />
+                </button>
               ))}
             </div>
             <button
