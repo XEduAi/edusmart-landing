@@ -22,36 +22,40 @@ const screenshotTabs = [
     id: "dashboard",
     label: "Dashboard",
     icon: Monitor,
-    image: "/screenshots/ss-dashboard.png",
+    image: "/screenshots/ss-dashboard.webp",
     title: "Tổng quan học tập",
     alt: "Dashboard EduSmart LMS hiển thị lớp học, bài tập và tiến độ học Toán",
+    width: 2172, height: 1181,
     description: "Xem toàn bộ lớp học, bài tập sắp tới và hoạt động gần đây ngay trên một màn hình.",
   },
   {
     id: "quiz",
     label: "Làm bài kiểm tra",
     icon: FileQuestion,
-    image: "/screenshots/ss-quiz.png",
+    image: "/screenshots/ss-quiz.webp",
     title: "Bài kiểm tra trực tuyến",
     alt: "Giao diện làm bài kiểm tra Toán trực tuyến trên EduSmart với hỗ trợ công thức LaTeX",
+    width: 1619, height: 1091,
     description: "Giao diện làm bài hiện đại với hỗ trợ công thức Toán LaTeX, đếm ngược thời gian và điều hướng câu hỏi nhanh.",
   },
   {
     id: "result",
     label: "Kết quả",
     icon: Star,
-    image: "/screenshots/ss-result.png",
+    image: "/screenshots/ss-result.webp",
     title: "Xem kết quả chi tiết",
     alt: "Màn hình kết quả bài kiểm tra Toán với đáp án và giải thích chi tiết từng câu",
+    width: 1330, height: 1190,
     description: "Sau khi nộp bài, học sinh thấy ngay tỷ lệ đúng, đáp án và giải thích từng câu hỏi.",
   },
   {
     id: "achievements",
     label: "Thành tích",
     icon: Trophy,
-    image: "/screenshots/ss-achievement.png",
+    image: "/screenshots/ss-achievement.webp",
     title: "Hệ thống huy hiệu & XP",
     alt: "Trang thành tích học sinh với huy hiệu, điểm XP và bảng xếp hạng trên EduSmart",
+    width: 1357, height: 1046,
     description: "Gamification giúp học sinh có động lực học tập — tích lũy XP, lên cấp và mở khóa huy hiệu.",
   },
 ]
@@ -187,6 +191,8 @@ export function PlatformShowcase() {
                   key={tab.id}
                   src={tab.image}
                   alt={tab.alt}
+                  width={tab.width}
+                  height={tab.height}
                   className={`w-full object-cover object-top transition-all duration-500 ${
                     activeTab === tab.id
                       ? "opacity-100 translate-y-0"
@@ -199,18 +205,23 @@ export function PlatformShowcase() {
           </div>
 
           {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-5">
+          <div className="flex justify-center gap-1 mt-5">
             {screenshotTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`rounded-full transition-all duration-300 ${
-                  activeTab === tab.id
-                    ? "w-6 h-2 bg-primary"
-                    : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/60"
-                }`}
-                aria-label={tab.label}
-              />
+                className="p-3 group"
+                aria-label={`Xem ${tab.label}`}
+              >
+                <span
+                  className={`block rounded-full transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? "w-6 h-2 bg-primary"
+                      : "w-2 h-2 bg-muted-foreground/30 group-hover:bg-muted-foreground/60"
+                  }`}
+                />
+              </button>
+            ))}
             ))}
           </div>
         </div>
@@ -252,7 +263,7 @@ export function PlatformShowcase() {
                 {platformBenefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500 mt-0.5" />
-                    <p className="text-sm leading-relaxed">{benefit}</p>
+                    <p className="text-sm leading-relaxed text-foreground/80">{benefit}</p>
                   </div>
                 ))}
               </div>

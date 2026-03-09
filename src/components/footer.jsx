@@ -8,9 +8,11 @@ export function Footer() {
           <div>
             <div className="flex items-center">
               <img
-                src="/logo.png"
-                alt="Dạy Toán Thầy Long"
+                src="/logo.webp"
+                alt="Dạy Toán Thầy Long - Logo trung tâm dạy Toán tại Rạch Giá"
                 className="h-16 w-auto object-contain"
+                width="234"
+                height="128"
               />
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

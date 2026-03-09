@@ -35,9 +35,11 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <a href="/" className="flex items-center hover:opacity-90 transition-opacity">
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="Dạy Toán Thầy Long"
               className="h-12 w-auto object-contain"
+              width="176"
+              height="96"
             />
           </a>
 

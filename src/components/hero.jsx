@@ -119,6 +119,8 @@ export function Hero() {
                 src="/room1.jpeg"
                 alt="Không gian lớp học Toán Thầy Long - phòng học hiện đại tại Rạch Giá, An Giang"
                 className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                width="963"
+                height="1280"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3 text-white">
@@ -130,6 +132,8 @@ export function Hero() {
                 src="/room2.jpeg"
                 alt="Lớp học Toán Thầy Long - nhóm nhỏ 5-10 học sinh, giáo viên hướng dẫn tận tình"
                 className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                width="960"
+                height="1280"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <div className="absolute bottom-3 left-3 text-white">
