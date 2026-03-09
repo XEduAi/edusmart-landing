@@ -73,7 +73,7 @@ export function Header() {
             </button>
 
             <Button size="sm" variant="outline" className="hidden sm:inline-flex bg-transparent rounded-lg gap-1.5" asChild>
-              <a href="https://app.edusmart.vn/login" target="_blank" rel="noopener noreferrer">
+              <a href="https://lms.daytoanthaylong.com" target="_blank" rel="noopener noreferrer">
                 <LogIn className="h-4 w-4" />
                 Đăng nhập
               </a>
@@ -109,7 +109,7 @@ export function Header() {
                 </a>
               ))}
               <Button variant="outline" asChild className="w-full mt-2 rounded-lg gap-1.5">
-                <a href="https://app.edusmart.vn/login" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
+                <a href="https://lms.daytoanthaylong.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
                   <LogIn className="h-4 w-4" />
                   Đăng nhập
                 </a>

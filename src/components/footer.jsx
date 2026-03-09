@@ -39,7 +39,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#platform" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                <a href="https://lms.daytoanthaylong.com" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground transition-colors hover:text-primary">
                   Nền tảng EduSmart LMS
                 </a>
               </li>

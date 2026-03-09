@@ -179,7 +179,7 @@ export function PlatformShowcase() {
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="flex items-center gap-2 rounded-md bg-white/10 px-3 py-1 text-xs text-white/50 w-48 justify-center">
-                  edusmart.vn
+                  lms.daytoanthaylong.com
                 </div>
               </div>
             </div>
@@ -268,8 +268,8 @@ export function PlatformShowcase() {
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Button size="lg" className="rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105" asChild>
-                  <a href="#contact">
-                    Dùng thử miễn phí
+                  <a href="https://lms.daytoanthaylong.com" target="_blank" rel="noopener noreferrer">
+                    Vào nền tảng ngay
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
