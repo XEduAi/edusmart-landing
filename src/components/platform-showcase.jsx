@@ -222,7 +222,6 @@ export function PlatformShowcase() {
                 />
               </button>
             ))}
-            ))}
           </div>
         </div>
 
@@ -242,7 +241,7 @@ export function PlatformShowcase() {
                     <Icon className={`h-6 w-6 ${feature.iconColor}`} />
                   </div>
                   <h4 className="mt-4 text-base font-semibold">{feature.title}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">{feature.description}</p>
                 </Card>
               )
             })}
@@ -297,7 +296,7 @@ export function PlatformShowcase() {
                         <StatIcon className="h-5 w-5 text-white" />
                       </div>
                       <div className="text-2xl font-bold">{stat.number}</div>
-                      <div className="mt-1 text-xs text-muted-foreground">{stat.label}</div>
+                      <div className="mt-1 text-xs text-foreground/60">{stat.label}</div>
                     </div>
                   )
                 })}
