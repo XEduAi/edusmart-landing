@@ -74,12 +74,12 @@ export function Footer() {
             <h3 className="font-semibold">Liên hệ</h3>
             <ul className="mt-4 space-y-2.5">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>0918 877 407</span>
+                <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
+                <a href="tel:0918877407" className="hover:text-primary transition-colors">0918 877 407</a>
               </li>
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                <MessageCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                <span>Zalo: 0918 877 407</span>
+                <MessageCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                <a href="https://zalo.me/0918877407" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Zalo: 0918 877 407</a>
               </li>
               <li className="text-sm text-muted-foreground">Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh An Giang</li>
             </ul>

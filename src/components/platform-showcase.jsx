@@ -24,6 +24,7 @@ const screenshotTabs = [
     icon: Monitor,
     image: "/screenshots/ss-dashboard.png",
     title: "Tổng quan học tập",
+    alt: "Dashboard EduSmart LMS hiển thị lớp học, bài tập và tiến độ học Toán",
     description: "Xem toàn bộ lớp học, bài tập sắp tới và hoạt động gần đây ngay trên một màn hình.",
   },
   {
@@ -32,6 +33,7 @@ const screenshotTabs = [
     icon: FileQuestion,
     image: "/screenshots/ss-quiz.png",
     title: "Bài kiểm tra trực tuyến",
+    alt: "Giao diện làm bài kiểm tra Toán trực tuyến trên EduSmart với hỗ trợ công thức LaTeX",
     description: "Giao diện làm bài hiện đại với hỗ trợ công thức Toán LaTeX, đếm ngược thời gian và điều hướng câu hỏi nhanh.",
   },
   {
@@ -40,6 +42,7 @@ const screenshotTabs = [
     icon: Star,
     image: "/screenshots/ss-result.png",
     title: "Xem kết quả chi tiết",
+    alt: "Màn hình kết quả bài kiểm tra Toán với đáp án và giải thích chi tiết từng câu",
     description: "Sau khi nộp bài, học sinh thấy ngay tỷ lệ đúng, đáp án và giải thích từng câu hỏi.",
   },
   {
@@ -48,6 +51,7 @@ const screenshotTabs = [
     icon: Trophy,
     image: "/screenshots/ss-achievement.png",
     title: "Hệ thống huy hiệu & XP",
+    alt: "Trang thành tích học sinh với huy hiệu, điểm XP và bảng xếp hạng trên EduSmart",
     description: "Gamification giúp học sinh có động lực học tập — tích lũy XP, lên cấp và mở khóa huy hiệu.",
   },
 ]
@@ -182,7 +186,7 @@ export function PlatformShowcase() {
                 <img
                   key={tab.id}
                   src={tab.image}
-                  alt={tab.title}
+                  alt={tab.alt}
                   className={`w-full object-cover object-top transition-all duration-500 ${
                     activeTab === tab.id
                       ? "opacity-100 translate-y-0"

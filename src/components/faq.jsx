@@ -82,6 +82,29 @@ export function FAQ() {
 
   useEffect(() => {
     setIsLoaded(true)
+
+    // Inject FAQPage structured data for SEO rich results
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqData.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+        },
+      })),
+    }
+    const script = document.createElement("script")
+    script.type = "application/ld+json"
+    script.textContent = JSON.stringify(faqSchema)
+    script.id = "faq-schema"
+    document.head.appendChild(script)
+    return () => {
+      const el = document.getElementById("faq-schema")
+      if (el) el.remove()
+    }
   }, [])
 
   return (
