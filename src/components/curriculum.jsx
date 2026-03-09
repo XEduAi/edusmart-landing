@@ -96,7 +96,7 @@ export function Curriculum() {
                     <Icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="mt-6 text-xl font-bold">{course.level}</h3>
-                  <p className="mt-2 text-sm text-foreground/65">{course.description}</p>
+                  <p className="mt-2 text-sm text-foreground/75">{course.description}</p>
 
                   <div className={`mt-6 space-y-3 overflow-hidden transition-all duration-300 ${
                     expandedIndex === index ? "max-h-96 opacity-100" : "max-h-32 opacity-75"
@@ -104,7 +104,7 @@ export function Curriculum() {
                     {course.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2.5">
                         <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" />
-                        <p className="text-sm text-foreground/65">{feature}</p>
+                        <p className="text-sm text-foreground/75">{feature}</p>
                       </div>
                     ))}
                   </div>
@@ -112,7 +112,7 @@ export function Curriculum() {
                   {expandedIndex === index && (
                     <div className="mt-4 pt-4 border-t border-border animate-in">
                       <p className="text-sm font-medium text-primary mb-2">Thích hợp cho:</p>
-                      <p className="text-sm text-foreground/65">{course.expandedInfo}</p>
+                      <p className="text-sm text-foreground/75">{course.expandedInfo}</p>
                     </div>
                   )}
 

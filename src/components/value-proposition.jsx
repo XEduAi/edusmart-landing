@@ -72,7 +72,7 @@ export function ValueProposition() {
                   <Icon className={`h-8 w-8 ${value.iconColor} transition-transform group-hover:rotate-12`} />
                 </div>
                 <h3 className="mt-6 text-lg font-semibold group-hover:text-primary transition-colors">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground/65 group-hover:text-foreground transition-colors">{value.description}</p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors">{value.description}</p>
               </div>
             )
           })}
