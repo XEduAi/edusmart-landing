@@ -3,34 +3,44 @@ import { ChevronDown } from "lucide-react"
 
 const faqData = [
   {
-    question: "Phương pháp giảng dạy có gì đặc biệt?",
+    question: "Dạy toán Rạch Giá — phương pháp giảng dạy có gì đặc biệt?",
     answer:
-      "Chúng tôi áp dụng phương pháp \"Hiểu sâu bản chất\" — không học vẹt, không nhồi nhét công thức. Học sinh được hướng dẫn tư duy logic từ gốc, hiểu rõ tại sao phải giải theo cách đó, từ đó tự tin vận dụng linh hoạt vào mọi dạng bài. Mỗi bài học được thiết kế theo lộ trình từ dễ đến khó, phù hợp với năng lực từng em.",
+      "Tại lớp dạy toán Thầy Long ở Rạch Giá, chúng tôi áp dụng phương pháp \"Hiểu sâu bản chất\" — không học vẹt, không nhồi nhét công thức. Học sinh được hướng dẫn tư duy logic từ gốc, hiểu rõ tại sao phải giải theo cách đó, từ đó tự tin vận dụng linh hoạt vào mọi dạng bài. Mỗi bài học được thiết kế theo lộ trình từ dễ đến khó, phù hợp với năng lực từng em.",
   },
   {
-    question: "Học phí là bao nhiêu?",
+    question: "Học phí dạy thêm toán ở Rạch Giá là bao nhiêu?",
     answer:
-      "Học phí được thiết kế cạnh tranh và phù hợp với nhiều gia đình. Mức phí thay đổi theo khối lớp và hình thức học (nhóm nhỏ hoặc 1-1). Đặc biệt, buổi học thử đầu tiên hoàn toàn miễn phí để phụ huynh và học sinh trải nghiệm trước khi quyết định. Vui lòng liên hệ trực tiếp để nhận bảng giá chi tiết.",
+      "Học phí dạy thêm toán tại Rạch Giá được thiết kế cạnh tranh và phù hợp với nhiều gia đình ở Kiên Giang. Mức phí thay đổi theo khối lớp và hình thức học (nhóm nhỏ hoặc 1-1). Đặc biệt, buổi học thử đầu tiên hoàn toàn miễn phí để phụ huynh và học sinh trải nghiệm trước khi quyết định. Vui lòng liên hệ trực tiếp để nhận bảng giá chi tiết.",
   },
   {
-    question: "Có thể học thử trước không?",
+    question: "Lớp ôn thi THPT Quốc gia ở Rạch Giá có gì nổi bật?",
     answer:
-      "Có! Chúng tôi cung cấp 1 buổi học thử hoàn toàn miễn phí. Trong buổi học thử, học sinh sẽ được trải nghiệm phương pháp giảng dạy, làm quen với môi trường học tập và được đánh giá năng lực ban đầu. Phụ huynh có thể đăng ký học thử ngay qua form liên hệ trên website.",
+      "Lớp ôn thi THPT Quốc gia môn Toán tại Rạch Giá của Thầy Long tập trung vào luyện đề theo cấu trúc đề thi mới nhất, phương pháp giải nhanh trắc nghiệm, và bổ trợ kiến thức nền tảng cho học sinh yếu. Với 40+ năm kinh nghiệm, Thầy Long nắm rõ xu hướng đề thi và hướng dẫn học sinh đạt điểm cao nhất có thể.",
   },
   {
-    question: "Nền tảng EduSmart hoạt động như thế nào?",
+    question: "Luyện thi vào 10 tại Rạch Giá như thế nào?",
     answer:
-      "EduSmart là nền tảng học tập trực tuyến hỗ trợ song song với lớp học. Học sinh có thể làm bài kiểm tra online, ôn tập bằng flashcard thông minh, theo dõi tiến độ học tập chi tiết và tham gia hệ thống gamification (tích điểm, huy hiệu, bảng xếp hạng) để tăng động lực học. Tất cả đều truy cập miễn phí khi đăng ký lớp học.",
+      "Chương trình luyện thi vào 10 tại Rạch Giá được thiết kế riêng cho học sinh lớp 8, 9 tại Kiên Giang, bao gồm: ôn tập toàn bộ kiến thức THCS, luyện đề theo cấu trúc đề thi tuyển sinh vào THPT Kiên Giang, bồi dưỡng học sinh giỏi thi vào trường chuyên Huỳnh Mẫn Đạt. Cam kết tiến bộ rõ rệt chỉ sau 1 tháng.",
   },
   {
-    question: "Lớp học có bao nhiêu học viên?",
+    question: "Có thể học thử trước khi đăng ký không?",
     answer:
-      "Lớp học được tổ chức theo nhóm nhỏ từ 5-10 học viên để đảm bảo giáo viên có thể quan tâm đến từng em. Với sĩ số ít, mỗi học sinh đều được giải đáp thắc mắc, được chữa bài chi tiết và nhận lộ trình học cá nhân hóa phù hợp với năng lực và mục tiêu riêng.",
+      "Có! Chúng tôi cung cấp 1 buổi học thử hoàn toàn miễn phí tại lớp dạy toán ở Rạch Giá. Trong buổi học thử, học sinh sẽ được trải nghiệm phương pháp giảng dạy, làm quen với môi trường học tập và được đánh giá năng lực ban đầu. Phụ huynh có thể đăng ký học thử ngay qua form liên hệ trên website.",
   },
   {
-    question: "Tài liệu học tập có được cung cấp không?",
+    question: "Lớp dạy toán ở Rạch Giá có bao nhiêu học viên?",
     answer:
-      "Có! Chúng tôi có kho tài liệu phong phú bao gồm đề thi các cấp, tài liệu ôn tập tổng hợp, bài giảng chi tiết và sách tham khảo chuyên đề. Nhiều tài liệu được cung cấp miễn phí, bên cạnh các tài liệu chuyên sâu dành cho học viên đăng ký khóa học. Tất cả đều được biên soạn và cập nhật bởi giáo viên giàu kinh nghiệm.",
+      "Lớp dạy thêm toán tại Rạch Giá được tổ chức theo nhóm nhỏ từ 5-10 học viên để đảm bảo giáo viên có thể quan tâm đến từng em. Với sĩ số ít, mỗi học sinh đều được giải đáp thắc mắc, được chữa bài chi tiết và nhận lộ trình học cá nhân hóa phù hợp với năng lực và mục tiêu riêng.",
+  },
+  {
+    question: "Nền tảng EduSmart hỗ trợ học toán online tại Rạch Giá như thế nào?",
+    answer:
+      "EduSmart là nền tảng học tập trực tuyến hỗ trợ song song với lớp dạy toán tại Rạch Giá. Học sinh có thể làm bài kiểm tra online, ôn tập bằng flashcard thông minh, theo dõi tiến độ học tập chi tiết và tham gia hệ thống gamification (tích điểm, huy hiệu, bảng xếp hạng) để tăng động lực học. Tất cả đều truy cập miễn phí khi đăng ký lớp học.",
+  },
+  {
+    question: "Tìm gia sư toán ở Rạch Giá Kiên Giang ở đâu?",
+    answer:
+      "Nếu bạn đang tìm gia sư toán ở Rạch Giá, Kiên Giang, lớp dạy toán Thầy Long là lựa chọn hàng đầu. Với 40+ năm kinh nghiệm, hơn 1000 học sinh đã tin tưởng, lớp nhóm nhỏ 5-10 em để đảm bảo chất lượng. Địa chỉ: Hẻm 1, Đường Nguyễn Tuân, Rạch Giá. Liên hệ 0918 877 407 để đăng ký học thử miễn phí.",
   },
 ]
 

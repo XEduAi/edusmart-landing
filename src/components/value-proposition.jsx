@@ -33,7 +33,7 @@ export function ValueProposition() {
     {
       icon: Award,
       title: "Đội ngũ giáo viên giỏi",
-      description: "40+ năm kinh nghiệm, từng đào tạo hàng ngàn học sinh đạt giải cấp tỉnh.",
+      description: "40+ năm kinh nghiệm dạy toán tại Rạch Giá, Kiên Giang. Đào tạo hàng ngàn học sinh đạt giải cấp tỉnh.",
       bgColor: "bg-amber-50",
       iconColor: "text-amber-600",
     },
@@ -53,7 +53,7 @@ export function ValueProposition() {
             Tại sao chọn <span className="gradient-text">Thầy Long</span>?
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Phương pháp giảng dạy khác biệt giúp học sinh yêu thích Toán và đạt kết quả cao
+            Phương pháp dạy toán khác biệt tại Rạch Giá giúp học sinh yêu thích Toán và đạt kết quả cao
           </p>
         </div>
 

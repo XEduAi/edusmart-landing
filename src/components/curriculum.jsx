@@ -24,19 +24,19 @@ export function Curriculum() {
     },
     {
       icon: Target,
-      level: "Toán thi vào 10",
-      description: "Luyện thi chuyên và thi vào trường THPT",
-      features: ["Chuyên đề nâng cao", "Bồi dưỡng học sinh giỏi", "Luyện đề thi vào 10"],
+      level: "Luyện thi vào 10 tại Rạch Giá",
+      description: "Luyện thi chuyên và thi vào trường THPT tại Rạch Giá, Kiên Giang",
+      features: ["Chuyên đề nâng cao", "Bồi dưỡng học sinh giỏi Rạch Giá", "Luyện đề thi vào 10 THPT Kiên Giang"],
       color: "from-purple-500 to-violet-500",
       bgColor: "bg-purple-50",
       borderHoverColor: "hover:border-purple-300",
       popular: true,
-      expandedInfo: "Học sinh lớp 8, 9 chuẩn bị thi vào 10 và trường chuyên",
+      expandedInfo: "Học sinh lớp 8, 9 tại Rạch Giá chuẩn bị thi vào 10 và trường chuyên Huỳnh Mẫn Đạt",
     },
     {
       icon: Trophy,
-      level: "Toán 10-12 & THPT Quốc gia",
-      description: "Chinh phục kỳ thi THPT và đại học",
+      level: "Ôn thi THPTQG tại Rạch Giá",
+      description: "Ôn thi THPT Quốc gia và chinh phục đại học tại Rạch Giá",
       features: [
         "Giải tích, Hình học không gian",
         "Đại số và Giải tích",
@@ -46,7 +46,7 @@ export function Curriculum() {
       color: "from-amber-500 to-orange-500",
       bgColor: "bg-amber-50",
       borderHoverColor: "hover:border-amber-300",
-      expandedInfo: "Học sinh lớp 10, 11, 12 chuẩn bị thi THPT Quốc gia",
+      expandedInfo: "Học sinh lớp 10, 11, 12 tại Rạch Giá, Kiên Giang chuẩn bị ôn thi THPT Quốc gia",
     },
   ]
 
@@ -64,7 +64,7 @@ export function Curriculum() {
             <span className="gradient-text">Chương trình học</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Lộ trình học tập rõ ràng, phù hợp với từng cấp học
+            Lộ trình dạy thêm toán tại Rạch Giá rõ ràng, phù hợp với từng cấp học
           </p>
         </div>
 

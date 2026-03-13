@@ -14,10 +14,10 @@ export function Location() {
             Vị trí lớp học
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Đến với <span className="gradient-text">lớp học</span> của chúng tôi
+            Lớp dạy toán tại <span className="gradient-text">Rạch Giá</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Lớp học nằm ở vị trí thuận tiện, dễ dàng di chuyển
+            Lớp dạy thêm toán nằm ở vị trí thuận tiện tại trung tâm Rạch Giá, Kiên Giang — dễ dàng di chuyển
           </p>
         </div>
 

@@ -16,7 +16,7 @@ export function Footer() {
               />
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Trung tâm dạy Toán uy tín với phương pháp hiểu bản chất, giúp học sinh yêu thích Toán và đạt kết quả cao.
+              Trung tâm dạy toán uy tín tại Rạch Giá, Kiên Giang. Dạy thêm toán lớp 6-12, ôn thi THPT Quốc gia, luyện thi vào 10 với phương pháp hiểu bản chất.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export function Footer() {
                 <MessageCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" aria-hidden="true" />
                 <a href="https://zalo.me/0918877407" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Zalo: 0918 877 407</a>
               </li>
-              <li className="text-sm text-muted-foreground">Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh Kiên Giang</li>
+              <li className="text-sm text-muted-foreground">Hẻm 1, Đường Nguyễn Tuân, TP. Rạch Giá, Tỉnh Kiên Giang</li>
             </ul>
           </div>
         </div>

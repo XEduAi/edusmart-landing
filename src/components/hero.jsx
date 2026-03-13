@@ -48,19 +48,19 @@ export function Hero() {
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
           }`}>
             <Sparkles className="h-4 w-4" />
-            <span>Phương pháp giảng dạy đột phá #1 Việt Nam</span>
+            <span>Trung tâm dạy Toán uy tín #1 tại Rạch Giá, Kiên Giang</span>
           </div>
 
           <h1 className={`text-balance text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.1] transition-all duration-1000 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}>
-            Học Toán Dễ Như Chơi – <br className="hidden sm:block" />
+            Dạy Toán Tại Rạch Giá – <br className="hidden sm:block" />
             <span className="gradient-text">Giỏi Toán</span> Từ Lớp 6 Đến 12
           </h1>
           <p className={`mt-6 text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl max-w-2xl mx-auto transition-all duration-1000 delay-200 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}>
-            Học theo năng lực từng học sinh – bứt phá điểm số chỉ sau 4 buổi với phương pháp hiểu bản chất!
+            Dạy thêm Toán, ôn thi THPT Quốc gia, luyện thi vào 10 tại Rạch Giá, Kiên Giang. Bứt phá điểm số chỉ sau 4 buổi với phương pháp hiểu bản chất!
           </p>
           <div className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row transition-all duration-1000 delay-300 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -117,7 +117,7 @@ export function Hero() {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
               <img
                 src="/room1.jpeg"
-                alt="Không gian lớp học Toán Thầy Long - phòng học hiện đại tại Rạch Giá, An Giang"
+                alt="Không gian lớp học dạy toán Thầy Long - phòng học hiện đại tại Rạch Giá, Kiên Giang"
                 className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
                 width="963"
                 height="1280"
@@ -130,7 +130,7 @@ export function Hero() {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
               <img
                 src="/room2.jpeg"
-                alt="Lớp học Toán Thầy Long - nhóm nhỏ 5-10 học sinh, giáo viên hướng dẫn tận tình"
+                alt="Dạy thêm toán Rạch Giá - lớp nhóm nhỏ 5-10 học sinh, giáo viên hướng dẫn tận tình tại Kiên Giang"
                 className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
                 width="960"
                 height="1280"

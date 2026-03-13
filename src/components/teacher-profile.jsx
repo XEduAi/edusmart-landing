@@ -42,7 +42,7 @@ export function TeacherProfile() {
             Giới thiệu <span className="gradient-text">giáo viên</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Đội ngũ giáo viên giàu kinh nghiệm và tâm huyết
+            Giáo viên dạy toán giàu kinh nghiệm và tâm huyết tại Rạch Giá, Kiên Giang
           </p>
         </div>
 

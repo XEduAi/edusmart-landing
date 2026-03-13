@@ -91,7 +91,7 @@ export function Results() {
             Kết quả & <span className="gradient-text">Cam kết</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Những con số và cam kết chứng minh chất lượng giảng dạy
+            Những con số chứng minh chất lượng dạy toán tại Rạch Giá, Kiên Giang
           </p>
         </div>
 
