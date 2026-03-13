@@ -145,7 +145,7 @@ export function PlatformShowcase() {
             Nền tảng <span className="gradient-text">EduSmart LMS</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hệ thống quản lý học tập hiện đại, giúp học sinh và giáo viên kết nối hiệu quả mọi lúc, mọi nơi
+            Hệ thống quản lý học tập hiện đại hỗ trợ học sinh học toán tại Rạch Giá kết nối hiệu quả mọi lúc, mọi nơi
           </p>
         </div>
 

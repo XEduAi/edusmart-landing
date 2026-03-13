@@ -94,9 +94,9 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-3">
             {[
-              { href: "#", icon: Facebook, label: "Facebook" },
-              { href: "#", icon: MessageCircle, label: "Zalo" },
-              { href: "#", icon: Phone, label: "Phone" },
+              { href: "https://www.facebook.com/daytoanthaylong", icon: Facebook, label: "Facebook Dạy Toán Thầy Long Rạch Giá" },
+              { href: "https://zalo.me/0918877407", icon: MessageCircle, label: "Zalo Dạy Toán Thầy Long" },
+              { href: "tel:0918877407", icon: Phone, label: "Gọi điện Dạy Toán Thầy Long Rạch Giá" },
             ].map((social) => {
               const Icon = social.icon
               return (

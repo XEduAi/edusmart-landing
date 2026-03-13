@@ -15,23 +15,23 @@ const testimonials = [
   },
   {
     quote:
-      "Thầy dạy rất dễ hiểu, không áp lực. Em đã đỗ vào lớp chuyên Toán trường THPT Chuyên với điểm 9.5. Cảm ơn thầy!",
+      "Thầy dạy rất dễ hiểu, không áp lực. Em đã đỗ vào lớp chuyên Toán trường THPT Chuyên Huỳnh Mẫn Đạt với điểm 9.5. Cảm ơn thầy!",
     author: "Em Trần Minh Khoa",
-    role: "Học sinh lớp 10 Chuyên Toán",
+    role: "Học sinh lớp 10 Chuyên Toán, Rạch Giá",
     initials: "MK",
     gradient: "from-purple-500 to-violet-500",
   },
   {
-    quote: "Lớp học chất lượng, giáo viên tận tâm. Con em tiến bộ rõ rệt chỉ sau 1 tháng. Rất đáng để đầu tư!",
+    quote: "Lớp dạy toán ở Rạch Giá chất lượng, giáo viên tận tâm. Con em tiến bộ rõ rệt chỉ sau 1 tháng. Rất đáng để đầu tư!",
     author: "Anh Lê Văn Tùng",
-    role: "Phụ huynh học sinh lớp 11",
+    role: "Phụ huynh học sinh lớp 11, Kiên Giang",
     initials: "VT",
     gradient: "from-emerald-500 to-teal-500",
   },
   {
-    quote: "Em từng học nhiều nơi nhưng chỉ ở đây em mới thực sự hiểu Toán. Giờ em tự tin làm bài thi THPT Quốc gia!",
+    quote: "Em từng học nhiều nơi ở Rạch Giá nhưng chỉ ở lớp Thầy Long em mới thực sự hiểu Toán. Giờ em tự tin ôn thi THPT Quốc gia!",
     author: "Em Phạm Thu Hà",
-    role: "Học sinh lớp 12",
+    role: "Học sinh lớp 12, Rạch Giá",
     initials: "TH",
     gradient: "from-amber-500 to-orange-500",
   },
@@ -71,10 +71,10 @@ export function Testimonials() {
             Học viên nói gì
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Cảm nhận của <span className="gradient-text">học viên & phụ huynh</span>
+            Cảm nhận của <span className="gradient-text">học viên & phụ huynh</span> tại Rạch Giá
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Những chia sẻ chân thực từ học sinh và phụ huynh
+            Những chia sẻ chân thực từ học sinh và phụ huynh đang học toán tại Rạch Giá, Kiên Giang
           </p>
         </div>
 

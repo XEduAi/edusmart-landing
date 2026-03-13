@@ -58,7 +58,7 @@ export function DocumentShowcase() {
             Kho Tài Liệu <span className="gradient-text">Toán Học</span>
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Hàng trăm tài liệu chất lượng cao, được biên soạn bởi giáo viên giàu kinh nghiệm
+            Hàng trăm tài liệu chất lượng cao phục vụ học sinh tại Rạch Giá, Kiên Giang — biên soạn bởi giáo viên 40+ năm kinh nghiệm
           </p>
         </div>
 

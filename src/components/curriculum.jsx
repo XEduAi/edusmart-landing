@@ -14,13 +14,13 @@ export function Curriculum() {
   const courses = [
     {
       icon: BookOpen,
-      level: "Toán cơ bản lớp 6-8",
-      description: "Nền tảng vững chắc cho học sinh THCS",
+      level: "Dạy thêm Toán lớp 6-8 tại Rạch Giá",
+      description: "Nền tảng vững chắc cho học sinh THCS tại Rạch Giá, Kiên Giang",
       features: ["Số học, Đại số cơ bản", "Hình học phẳng", "Phương trình, Bất phương trình"],
       color: "from-blue-500 to-cyan-500",
       bgColor: "bg-blue-50",
       borderHoverColor: "hover:border-blue-300",
-      expandedInfo: "Học sinh lớp 6, 7, 8 muốn xây dựng nền tảng vững chắc",
+      expandedInfo: "Học sinh lớp 6, 7, 8 tại Rạch Giá muốn xây dựng nền tảng Toán vững chắc",
     },
     {
       icon: Target,

@@ -36,7 +36,7 @@ export function Header() {
           <a href="/" className="flex items-center hover:opacity-90 transition-opacity">
             <img
               src="/logo.webp"
-              alt="Dạy Toán Thầy Long"
+              alt="Dạy Toán Thầy Long - Trung tâm dạy toán tại Rạch Giá, Kiên Giang"
               className="h-12 w-auto object-contain"
               width="176"
               height="96"

@@ -103,7 +103,7 @@ export function ContactForm() {
     {
       icon: MapPin,
       label: "Địa chỉ",
-      value: "Hẻm 1, Đường Nguyễn Tuân, Phường Rạch Giá, Tỉnh Kiên Giang",
+      value: "Hẻm 1, Đường Nguyễn Tuân, TP. Rạch Giá, Tỉnh Kiên Giang",
       color: "from-amber-500 to-amber-600",
     },
   ]
@@ -121,10 +121,10 @@ export function ContactForm() {
             Đăng ký miễn phí
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Đăng ký <span className="gradient-text">học thử</span>
+            Đăng ký <span className="gradient-text">học thử</span> tại Rạch Giá
           </h2>
           <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Điền thông tin để nhận tư vấn và đăng ký học thử miễn phí
+            Điền thông tin để nhận tư vấn và đăng ký học thử miễn phí lớp dạy toán tại Rạch Giá, Kiên Giang
           </p>
         </div>
 
