@@ -9,9 +9,11 @@ export function Location() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            <MapPin className="h-4 w-4" />
-            Vị trí lớp học
+          <div className="mb-4 inline-flex">
+            <span className="tape-label">
+              <MapPin className="mr-2 h-4 w-4" />
+              Vị trí lớp học
+            </span>
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Lớp dạy toán tại <span className="gradient-text">Rạch Giá</span>
@@ -25,7 +27,7 @@ export function Location() {
           <div className="grid gap-8 lg:grid-cols-3">
             {/* Info cards */}
             <div className="space-y-4">
-              <div className="flex gap-4 p-5 rounded-2xl border border-border/50 bg-card shadow-sm card-hover group cursor-pointer">
+              <div className="dossier-panel card-hover group flex cursor-pointer gap-4 rounded-[1.6rem] p-5 shadow-sm">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 transition-all group-hover:scale-110">
                   <MapPin className="h-6 w-6 text-white" />
                 </div>
@@ -37,7 +39,7 @@ export function Location() {
                 </div>
               </div>
 
-              <div className="flex gap-4 p-5 rounded-2xl border border-border/50 bg-card shadow-sm card-hover group cursor-pointer">
+              <div className="dossier-panel card-hover group flex cursor-pointer gap-4 rounded-[1.6rem] p-5 shadow-sm">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 transition-all group-hover:scale-110">
                   <Clock className="h-6 w-6 text-white" />
                 </div>
@@ -50,7 +52,7 @@ export function Location() {
                 </div>
               </div>
 
-              <div className="flex gap-4 p-5 rounded-2xl border border-border/50 bg-card shadow-sm card-hover group cursor-pointer">
+              <div className="dossier-panel card-hover group flex cursor-pointer gap-4 rounded-[1.6rem] p-5 shadow-sm">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 transition-all group-hover:scale-110">
                   <Phone className="h-6 w-6 text-white" />
                 </div>

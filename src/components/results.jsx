@@ -34,9 +34,7 @@ export function Results() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
-            Thành tích nổi bật
-          </div>
+          <span className="tape-label mb-4">Thành tích nổi bật</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Kết quả học tập được xây từ <span className="gradient-text">quy trình rõ ràng</span>
           </h2>
@@ -49,7 +47,7 @@ export function Results() {
           {stats.map((stat) => {
             const Icon = stat.icon
             return (
-              <Card key={stat.label} className="card-hover relative overflow-hidden border-border/50 p-8 text-center">
+              <Card key={stat.label} className="dossier-panel card-hover relative overflow-hidden p-8 text-center">
                 <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-[0.06]`} />
                 <div className={`relative inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${stat.color}`}>
                   <Icon className="h-7 w-7 text-white" />
@@ -65,7 +63,7 @@ export function Results() {
           <h3 className="text-center text-2xl font-bold">Điều phụ huynh thường đánh giá cao</h3>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {commitments.map((commitment) => (
-              <div key={commitment} className="card-hover flex gap-3 rounded-xl border border-border/50 bg-card p-4">
+              <div key={commitment} className="dossier-panel card-hover flex gap-3 rounded-[1.4rem] p-4">
                 <CheckCircle2 className="h-6 w-6 shrink-0 text-emerald-500" />
                 <p className="text-sm leading-relaxed text-muted-foreground">{commitment}</p>
               </div>

@@ -116,9 +116,11 @@ export function ContactForm() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            <Sparkles className="h-4 w-4" />
-            Đăng ký miễn phí
+          <div className="mb-4 inline-flex">
+            <span className="tape-label">
+              <Sparkles className="mr-2 h-4 w-4" />
+              Đăng ký miễn phí
+            </span>
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Đăng ký <span className="gradient-text">học thử</span> tại Rạch Giá
@@ -129,7 +131,7 @@ export function ContactForm() {
         </div>
 
         <div className="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-2">
-          <Card className={`p-8 border-border/50 shadow-xl shadow-blue-900/5 transition-all duration-300 ${isSubmitted ? "ring-2 ring-green-500" : ""}`}>
+          <Card className={`dossier-panel p-8 transition-all duration-300 ${isSubmitted ? "ring-2 ring-green-500" : ""}`}>
             {isSubmitted ? (
               <div className="flex flex-col items-center justify-center py-12 space-y-4 animate-in">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
@@ -276,7 +278,8 @@ export function ContactForm() {
           </Card>
 
           <div className="space-y-6">
-            <Card className="p-8 border-border/50 shadow-xl shadow-blue-900/5">
+            <Card className="dossier-panel p-8">
+              <span className="tape-label mb-4">Thông tin liên hệ</span>
               <h3 className="text-xl font-bold">Thông tin liên hệ</h3>
               <div className="mt-6 space-y-4">
                 {contactInfo.map((info, index) => {
@@ -284,7 +287,7 @@ export function ContactForm() {
                   return (
                     <div
                       key={index}
-                      className="flex gap-4 p-3 rounded-lg hover:bg-muted transition-all duration-300 cursor-pointer group"
+                      className="group flex cursor-pointer gap-4 rounded-[1.2rem] p-3 transition-all duration-300 hover:bg-muted"
                     >
                       <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${info.color} transition-all group-hover:scale-110`}>
                         <Icon className="h-5 w-5 text-white" />
@@ -300,9 +303,10 @@ export function ContactForm() {
             </Card>
 
             {/* Special offer card */}
-            <Card className="p-6 border-border/50 bg-gradient-to-br from-blue-50 to-purple-50 border-blue-100/50">
+            <Card className="dossier-panel p-6">
               <div className="text-center">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-purple-600 mb-3">
+                <span className="tape-label mb-3">Ưu đãi đặc biệt</span>
+                <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-emerald-500">
                   <Sparkles className="h-6 w-6 text-white" />
                 </div>
                 <h4 className="font-bold text-lg">Ưu đãi đặc biệt</h4>

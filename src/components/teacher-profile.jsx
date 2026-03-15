@@ -30,9 +30,7 @@ export function TeacherProfile() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            Đội ngũ giáo viên
-          </div>
+          <span className="tape-label mb-4">Đội ngũ giáo viên</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Giới thiệu <span className="gradient-text">giáo viên</span>
           </h2>
@@ -42,7 +40,7 @@ export function TeacherProfile() {
         </div>
 
         <div className="mx-auto mt-16 max-w-4xl">
-          <Card className="overflow-hidden border-border/50 shadow-xl shadow-slate-950/5">
+          <Card className="dossier-panel overflow-hidden shadow-xl shadow-slate-950/5">
             <div className="grid gap-0 md:grid-cols-5">
               <div className="md:col-span-2 relative overflow-hidden">
                 <div

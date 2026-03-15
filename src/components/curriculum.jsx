@@ -49,9 +49,7 @@ export function Curriculum() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            Lộ trình học tập
-          </div>
+          <span className="tape-label mb-4">Lộ trình học tập</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             <span className="gradient-text">Chương trình học</span>
           </h2>
@@ -66,13 +64,13 @@ export function Curriculum() {
             return (
               <div key={index}>
                 <Card
-                  className={`card-hover relative flex flex-col p-8 h-full cursor-pointer border-border/50 ${course.borderHoverColor} transition-all duration-300 ${
+                  className={`dossier-panel card-hover relative flex h-full cursor-pointer flex-col p-8 ${course.borderHoverColor} transition-all duration-300 ${
                     expandedIndex === index ? "ring-2 ring-primary" : ""
                   }`}
                   onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                 >
                   {course.popular && (
-                    <div className="absolute -top-3 right-6 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 px-4 py-1 text-xs font-semibold text-white shadow-lg">
+                    <div className="absolute -top-3 right-6 tape-label">
                       Phổ biến nhất
                     </div>
                   )}
@@ -104,7 +102,7 @@ export function Curriculum() {
 
                   <div className="mt-auto pt-8">
                     <Button
-                      className={`w-full rounded-xl ${course.popular ? 'bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg shadow-purple-500/25' : 'bg-transparent'}`}
+                      className={`w-full rounded-full ${course.popular ? 'bg-slate-950 text-white shadow-lg shadow-slate-950/15 hover:bg-slate-900' : 'bg-transparent'}`}
                       variant={course.popular ? "default" : "outline"}
                       asChild
                     >

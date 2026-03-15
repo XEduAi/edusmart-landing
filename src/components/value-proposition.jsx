@@ -39,9 +39,7 @@ export function ValueProposition() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            Tại sao chọn chúng tôi
-          </div>
+          <span className="tape-label mb-4">Tại sao chọn chúng tôi</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Tại sao chọn <span className="gradient-text">Thầy Long</span>?
           </h2>
@@ -54,7 +52,7 @@ export function ValueProposition() {
           {values.map((value, index) => {
             const Icon = value.icon
             return (
-              <div key={index} className="card-hover group flex flex-col items-center rounded-2xl border border-border/50 bg-card p-8 text-center">
+              <div key={index} className="dossier-panel card-hover group flex flex-col items-center rounded-[1.7rem] p-8 text-center">
                 <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${value.bgColor} transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12`}>
                   <Icon className={`h-8 w-8 ${value.iconColor} transition-transform group-hover:rotate-12`} />
                 </div>
@@ -65,8 +63,9 @@ export function ValueProposition() {
           })}
         </div>
 
-        <div className="mx-auto mt-20 max-w-3xl rounded-3xl border border-border/50 bg-gradient-to-br from-card via-card to-emerald-50/60 p-8 shadow-xl shadow-slate-950/5 transition-all hover:border-primary/30 hover:shadow-2xl sm:p-12">
+        <div className="dossier-panel mx-auto mt-20 max-w-3xl rounded-[2rem] p-8 transition-all hover:border-primary/30 hover:shadow-2xl sm:p-12">
           <div className="text-center">
+            <span className="tape-label mb-4">Phương pháp giảng dạy</span>
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-emerald-500">
               <BookOpen className="h-6 w-6 text-white" />
             </div>

@@ -5,10 +5,10 @@ import { faqData } from "@/content/faqs"
 function FAQItem({ question, answer, isOpen, onToggle }) {
   return (
     <div
-      className={`group rounded-2xl border transition-all duration-300 ${
+      className={`group rounded-[1.6rem] transition-all duration-300 ${
         isOpen
-          ? "border-primary/30 bg-primary/5 shadow-lg shadow-primary/5"
-          : "border-border/50 bg-card hover:border-primary/20 hover:shadow-md"
+          ? "dossier-panel ring-1 ring-primary/25 bg-primary/5 shadow-lg shadow-primary/5"
+          : "dossier-panel hover:border-primary/20 hover:shadow-md"
       }`}
     >
       <button
@@ -54,9 +54,7 @@ export function FAQ() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            Câu hỏi thường gặp
-          </div>
+          <span className="tape-label mb-4">Câu hỏi thường gặp</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Giải đáp <span className="gradient-text">thắc mắc</span>
           </h2>

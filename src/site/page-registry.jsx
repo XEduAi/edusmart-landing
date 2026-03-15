@@ -234,7 +234,7 @@ function SurfaceCards({ items }) {
           {items.map((item) => {
             const Icon = item.icon
             return (
-              <Card key={item.title} className="card-hover border-border/60 p-7">
+              <Card key={item.title} className="dossier-panel card-hover p-7">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
                   <Icon className="h-5 w-5" />
                 </div>
@@ -257,9 +257,9 @@ function BlogGrid({ currentSlug }) {
           {blogPosts
             .filter((post) => post.slug !== currentSlug)
             .map((post) => (
-              <article key={post.slug} className="card-hover rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm">
+              <article key={post.slug} className="dossier-panel card-hover rounded-[1.85rem] p-7">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{post.category}</p>
+                  <span className="tape-label">{post.category}</span>
                   <div className="inline-flex items-center gap-1 text-xs text-slate-500">
                     <Clock3 className="h-3.5 w-3.5" />
                     {post.readingTime}

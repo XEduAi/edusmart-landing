@@ -67,9 +67,7 @@ export function Testimonials() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            Học viên nói gì
-          </div>
+          <span className="tape-label mb-4">Học viên nói gì</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Cảm nhận của <span className="gradient-text">học viên & phụ huynh</span> tại Rạch Giá
           </h2>
@@ -83,9 +81,9 @@ export function Testimonials() {
             <div className="flex gap-8 -mx-4">
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="flex-[0_0_100%] min-w-0 px-4 sm:flex-[0_0_50%] lg:flex-[0_0_50%]">
-                  <Card className="card-hover group relative overflow-hidden border-border/50 h-full transition-all duration-300">
-                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${testimonial.gradient}`} />
+                  <Card className="dossier-panel card-hover group relative h-full overflow-hidden transition-all duration-300">
                     <CardContent className="p-6 sm:p-8">
+                      <span className="tape-label mb-5">{testimonial.role}</span>
                       <Quote className="h-8 w-8 text-primary/10 mb-4" />
                       <div className="flex gap-1 mb-4">
                         {[...Array(5)].map((_, i) => (
@@ -99,7 +97,7 @@ export function Testimonials() {
                         </div>
                         <div>
                           <p className="text-sm font-semibold">{testimonial.author}</p>
-                          <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+                          <p className="text-xs text-muted-foreground">Học viên và phụ huynh tại Rạch Giá</p>
                         </div>
                       </div>
                     </CardContent>
@@ -114,7 +112,7 @@ export function Testimonials() {
             <button
               onClick={scrollPrev}
               disabled={prevButtonDisabled}
-              className="p-2 rounded-full border border-border hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110"
+              className="dossier-panel rounded-full p-2 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300 hover:scale-110"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -134,7 +132,7 @@ export function Testimonials() {
             <button
               onClick={scrollNext}
               disabled={nextButtonDisabled}
-              className="p-2 rounded-full border border-border hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-110"
+              className="dossier-panel rounded-full p-2 hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300 hover:scale-110"
               aria-label="Next testimonial"
             >
               <ChevronRight className="h-5 w-5" />

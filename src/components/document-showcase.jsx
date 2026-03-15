@@ -40,9 +40,7 @@ export function DocumentShowcase() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-            Kho tài liệu
-          </div>
+          <span className="tape-label mb-4">Kho tài liệu</span>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Kho Tài Liệu <span className="gradient-text">Toán Học</span>
           </h2>
@@ -55,7 +53,7 @@ export function DocumentShowcase() {
           {categories.map((category, index) => {
             const Icon = category.icon
             return (
-              <div key={index} className="card-hover group flex cursor-pointer flex-col items-center rounded-2xl border border-border/50 bg-card p-8 text-center">
+              <div key={index} className="dossier-panel card-hover group flex cursor-pointer flex-col items-center rounded-[1.7rem] p-8 text-center">
                 <div
                   className={`flex h-16 w-16 items-center justify-center rounded-2xl ${category.bgColor} transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12`}
                 >
@@ -74,7 +72,7 @@ export function DocumentShowcase() {
           })}
         </div>
 
-        <div className="mx-auto mt-12 max-w-2xl text-center">
+        <div className="dossier-panel mx-auto mt-12 max-w-2xl rounded-[1.8rem] p-8 text-center">
           <p className="text-sm font-medium text-muted-foreground">
             <span className="text-foreground font-semibold">500+ tài liệu</span>
             {" · "}
@@ -85,7 +83,7 @@ export function DocumentShowcase() {
           <div className="mt-6">
             <Button
               size="lg"
-              className="rounded-xl shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 transition-all gap-2"
+              className="rounded-full shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 transition-all gap-2"
               asChild
             >
               <a href="https://app.edusmart.vn/documents" target="_blank" rel="noopener noreferrer">

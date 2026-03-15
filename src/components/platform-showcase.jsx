@@ -137,9 +137,11 @@ export function PlatformShowcase() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700 mb-4">
-            <Zap className="h-4 w-4" />
-            <span>Nền tảng học tập trực tuyến</span>
+          <div className="mb-4 inline-flex">
+            <span className="tape-label">
+              <Zap className="mr-2 h-4 w-4" />
+              Nền tảng học tập trực tuyến
+            </span>
           </div>
           <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             Nền tảng <span className="gradient-text">EduSmart LMS</span>
@@ -160,10 +162,10 @@ export function PlatformShowcase() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/25 scale-105"
-                      : "bg-muted text-muted-foreground hover:bg-accent hover:text-foreground"
+                      ? "bg-slate-950 text-white shadow-md shadow-slate-950/15 scale-105"
+                      : "dossier-panel text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -181,37 +183,39 @@ export function PlatformShowcase() {
           </div>
 
           {/* Browser chrome wrapper */}
-          <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-slate-900 to-slate-800 p-2 shadow-2xl shadow-blue-900/20">
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/10 mb-2">
-              <div className="flex gap-1.5">
-                <div className="h-3 w-3 rounded-full bg-red-400/80" />
-                <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
-                <div className="h-3 w-3 rounded-full bg-green-400/80" />
-              </div>
-              <div className="flex-1 flex justify-center">
-                <div className="flex items-center gap-2 rounded-md bg-white/10 px-3 py-1 text-xs text-white/50 w-48 justify-center">
-                  lms.daytoanthaylong.com
+          <div className="dossier-panel rounded-[2rem] p-3">
+            <div className="rounded-[1.6rem] bg-gradient-to-br from-slate-900 to-slate-800 p-2 shadow-2xl shadow-slate-950/18">
+              <div className="mb-2 flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+                <div className="flex gap-1.5">
+                  <div className="h-3 w-3 rounded-full bg-red-400/80" />
+                  <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                  <div className="h-3 w-3 rounded-full bg-green-400/80" />
+                </div>
+                <div className="flex flex-1 justify-center">
+                  <div className="flex w-48 items-center justify-center gap-2 rounded-md bg-white/10 px-3 py-1 text-xs text-white/50">
+                    lms.daytoanthaylong.com
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Screenshot images */}
-            <div className="relative overflow-hidden rounded-b-xl rounded-t-sm">
-              {screenshotTabs.map((tab) => (
-                <img
-                  key={tab.id}
-                  src={tab.image}
-                  alt={tab.alt}
-                  width={tab.width}
-                  height={tab.height}
-                  className={`w-full object-cover object-top transition-all duration-500 ${
-                    activeTab === tab.id
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 absolute inset-0 translate-y-2 pointer-events-none"
-                  }`}
-                  style={{ maxHeight: "520px" }}
-                />
-              ))}
+              {/* Screenshot images */}
+              <div className="relative overflow-hidden rounded-b-xl rounded-t-sm">
+                {screenshotTabs.map((tab) => (
+                  <img
+                    key={tab.id}
+                    src={tab.image}
+                    alt={tab.alt}
+                    width={tab.width}
+                    height={tab.height}
+                    className={`w-full object-cover object-top transition-all duration-500 ${
+                      activeTab === tab.id
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 absolute inset-0 translate-y-2 pointer-events-none"
+                    }`}
+                    style={{ maxHeight: "520px" }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
@@ -247,7 +251,7 @@ export function PlatformShowcase() {
             {features.map((feature, index) => {
               const Icon = feature.icon
               return (
-                <Card key={index} className="card-hover group p-6 border-border/50">
+                <Card key={index} className="dossier-panel card-hover group p-6">
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${feature.bgColor} transition-all duration-300 group-hover:scale-110`}>
                     <Icon className={`h-6 w-6 ${feature.iconColor}`} />
                   </div>
@@ -278,13 +282,13 @@ export function PlatformShowcase() {
                 ))}
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Button size="lg" className="rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105" asChild>
+                <Button size="lg" className="rounded-full shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105" asChild>
                   <a href="https://lms.daytoanthaylong.com" target="_blank" rel="noopener noreferrer">
                     Vào nền tảng ngay
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-xl bg-transparent" asChild>
+                <Button size="lg" variant="outline" className="rounded-full bg-transparent" asChild>
                   <a href="#contact">Liên hệ tư vấn</a>
                 </Button>
               </div>
@@ -302,7 +306,7 @@ export function PlatformShowcase() {
                 ].map((stat, i) => {
                   const StatIcon = stat.icon
                   return (
-                    <div key={i} className="card-hover rounded-2xl border border-border/50 bg-card p-6 text-center shadow-sm">
+                    <div key={i} className="dossier-panel card-hover rounded-[1.5rem] p-6 text-center shadow-sm">
                       <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.color} mb-3`}>
                         <StatIcon className="h-5 w-5 text-white" />
                       </div>

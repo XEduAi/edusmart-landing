@@ -43,11 +43,17 @@ export function Hero({ featuredPost }) {
       <div className="absolute left-[6%] top-28 -z-10 h-44 w-44 rounded-full bg-emerald-300/25 blur-3xl" />
       <div className="absolute right-[8%] top-20 -z-10 h-56 w-56 rounded-full bg-amber-300/25 blur-3xl" />
       <div className="absolute bottom-0 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/25 blur-3xl" />
+      <div aria-hidden="true" className="formula-whisper absolute left-[8%] top-40 hidden rotate-[-8deg] text-5xl lg:block">
+        x² + y² = progress
+      </div>
+      <div aria-hidden="true" className="formula-whisper absolute right-[10%] top-56 hidden rotate-[7deg] text-4xl lg:block">
+        d/dx(confidence)
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur">
               <Sparkles className="h-4 w-4" />
               Dạy Toán tại Rạch Giá với mô hình lớp nhỏ và EduSmart LMS
             </div>
@@ -83,9 +89,9 @@ export function Hero({ featuredPost }) {
 
             <dl className="mt-12 grid gap-4 sm:grid-cols-3">
               {heroStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-white/80 bg-white/80 p-5 shadow-sm backdrop-blur">
-                  <dt className="text-sm font-medium text-slate-500">{stat.label}</dt>
-                  <dd className="mt-2 text-3xl font-bold text-slate-950">{stat.value}</dd>
+                <div key={stat.label} className="dossier-panel rounded-[1.6rem] p-5 backdrop-blur">
+                  <dt className="editorial-kicker">{stat.label}</dt>
+                  <dd className="editorial-number mt-3">{stat.value}</dd>
                 </div>
               ))}
             </dl>
@@ -93,14 +99,14 @@ export function Hero({ featuredPost }) {
             {featuredPost && (
               <a
                 href={`/blog/${featuredPost.slug}/`}
-                className="mt-8 flex max-w-2xl flex-col gap-3 rounded-3xl border border-slate-200/80 bg-slate-950 px-6 py-5 text-white shadow-xl shadow-slate-950/10 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-950/15 sm:flex-row sm:items-center sm:justify-between"
+                className="dossier-panel mt-8 flex max-w-2xl flex-col gap-3 rounded-[1.8rem] px-6 py-5 text-slate-950 transition-all hover:-translate-y-1 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">Bài viết nổi bật</p>
+                  <span className="tape-label">Bài viết nổi bật</span>
                   <h2 className="mt-2 text-xl font-semibold">{featuredPost.title}</h2>
-                  <p className="mt-1 text-sm leading-6 text-slate-300">{featuredPost.description}</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">{featuredPost.description}</p>
                 </div>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
                   Đọc ngay
                   <ArrowRight className="h-4 w-4" />
                 </span>
@@ -110,8 +116,11 @@ export function Hero({ featuredPost }) {
 
           <div className="relative">
             <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[2rem] bg-slate-950/8 blur-xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-2xl shadow-slate-950/10 backdrop-blur">
-              <div className="flex items-center justify-between rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3">
+            <div className="dossier-panel relative rounded-[2rem] p-6 backdrop-blur">
+              <div className="absolute -right-3 top-6 rotate-[8deg] rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm">
+                Editorial Study Board
+              </div>
+              <div className="graph-paper rounded-[1.7rem] border border-emerald-100 bg-emerald-50/70 px-4 py-3">
                 <div>
                   <p className="text-sm font-semibold text-emerald-900">Lộ trình ôn luyện</p>
                   <p className="text-sm text-emerald-800/80">Chia theo nền tảng, mục tiêu và giai đoạn thi</p>
@@ -125,7 +134,7 @@ export function Hero({ featuredPost }) {
                   return (
                     <div
                       key={item.title}
-                      className="grid gap-4 rounded-2xl border border-slate-200/80 bg-white px-4 py-4 shadow-sm sm:grid-cols-[auto_1fr]"
+                      className="grid gap-4 rounded-2xl border border-slate-200/80 bg-white/92 px-4 py-4 shadow-sm sm:grid-cols-[auto_1fr]"
                     >
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
                         <Icon className="h-5 w-5" />
@@ -154,7 +163,8 @@ export function Hero({ featuredPost }) {
                     Tổ chức lớp theo khối và mục tiêu thi, thuận tiện cho học sinh THCS lẫn THPT.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+                <div className="relative rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+                  <div className="absolute right-4 top-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">local</div>
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-primary" />
                     <p className="text-sm font-semibold text-slate-950">Rạch Giá, Kiên Giang</p>
@@ -175,6 +185,14 @@ export function Hero({ featuredPost }) {
                       buổi và từng bài kiểm tra.
                     </p>
                   </div>
+                </div>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <div className="rotate-[-3deg] rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">ghi chú</p>
+                  <p className="mt-1 max-w-[13rem] text-sm leading-6 text-slate-600">
+                    Cấu trúc lớp học được thiết kế để phụ huynh thấy tiến độ thật, không chỉ thấy điểm số rời rạc.
+                  </p>
                 </div>
               </div>
             </div>

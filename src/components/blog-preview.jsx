@@ -35,9 +35,9 @@ export function BlogPreview() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {featuredPosts.map((post) => (
-            <article key={post.slug} className="card-hover rounded-3xl border border-slate-200/80 bg-white/90 p-7 shadow-sm">
+            <article key={post.slug} className="dossier-panel card-hover rounded-[1.85rem] p-7">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{post.category}</p>
+                <span className="tape-label">{post.category}</span>
                 <div className="inline-flex items-center gap-1 text-xs font-medium text-slate-500">
                   <Clock3 className="h-3.5 w-3.5" />
                   {post.readingTime}
