@@ -1,28 +1,21 @@
 import { FileText, BookOpen, GraduationCap, Library, ArrowRight } from "lucide-react"
-import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 export function DocumentShowcase() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
-
   const categories = [
     {
       icon: FileText,
       title: "Đề thi",
       description: "Đề thi các cấp, đề kiểm tra thường xuyên",
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-600",
+      bgColor: "bg-sky-50",
+      iconColor: "text-sky-700",
     },
     {
       icon: BookOpen,
       title: "Tài liệu ôn tập",
       description: "Tổng hợp lý thuyết, công thức, phương pháp giải",
-      bgColor: "bg-purple-50",
-      iconColor: "text-purple-600",
+      bgColor: "bg-emerald-50",
+      iconColor: "text-emerald-700",
     },
     {
       icon: GraduationCap,
@@ -46,11 +39,7 @@ export function DocumentShowcase() {
       <div className="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-purple-100/30 blur-3xl" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={`mx-auto max-w-2xl text-center transition-all duration-700 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-4">
             Kho tài liệu
           </div>
@@ -66,13 +55,7 @@ export function DocumentShowcase() {
           {categories.map((category, index) => {
             const Icon = category.icon
             return (
-              <div
-                key={index}
-                className={`card-hover group flex flex-col items-center text-center rounded-2xl border border-border/50 bg-card p-8 cursor-pointer transition-all duration-700 transform ${
-                  isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
+              <div key={index} className="card-hover group flex cursor-pointer flex-col items-center rounded-2xl border border-border/50 bg-card p-8 text-center">
                 <div
                   className={`flex h-16 w-16 items-center justify-center rounded-2xl ${category.bgColor} transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12`}
                 >
@@ -91,12 +74,7 @@ export function DocumentShowcase() {
           })}
         </div>
 
-        <div
-          className={`mx-auto mt-12 max-w-2xl text-center transition-all duration-700 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          style={{ transitionDelay: "400ms" }}
-        >
+        <div className="mx-auto mt-12 max-w-2xl text-center">
           <p className="text-sm font-medium text-muted-foreground">
             <span className="text-foreground font-semibold">500+ tài liệu</span>
             {" · "}

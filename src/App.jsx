@@ -7,16 +7,18 @@ import { PlatformShowcase } from "@/components/platform-showcase"
 import { DocumentShowcase } from "@/components/document-showcase"
 import { TeacherProfile } from "@/components/teacher-profile"
 import { Testimonials } from "@/components/testimonials"
+import { BlogPreview } from "@/components/blog-preview"
 import { FAQ } from "@/components/faq"
 import { ContactForm } from "@/components/contact-form"
 import { Location } from "@/components/location"
 import { Footer } from "@/components/footer"
+import { blogPosts } from "@/content/blog-posts"
 
 function App() {
   return (
     <main className="min-h-screen">
-      <Header />
-      <Hero />
+      <Header currentPath="/" />
+      <Hero featuredPost={blogPosts[0]} />
       <ValueProposition />
       <Results />
       <Curriculum />
@@ -24,6 +26,7 @@ function App() {
       <DocumentShowcase />
       <TeacherProfile />
       <Testimonials />
+      <BlogPreview />
       <FAQ />
       <ContactForm />
       <Location />

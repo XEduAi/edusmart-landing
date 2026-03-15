@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import * as React from 'react'
 import { cva } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
@@ -34,7 +35,6 @@ const Button = React.forwardRef(({ className, variant, size, asChild = false, ..
     const child = React.Children.only(props.children)
     return React.cloneElement(child, {
       className: cn(buttonVariants({ variant, size }), className, child.props.className),
-      ref,
       ...props,
       children: child.props.children,
     })

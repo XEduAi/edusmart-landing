@@ -1,143 +1,181 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles, Calculator, Brain, Target } from "lucide-react"
-import { useEffect, useState } from "react"
+import {
+  ArrowRight,
+  BookOpenText,
+  Clock3,
+  GraduationCap,
+  MapPin,
+  MonitorSmartphone,
+  NotebookTabs,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react"
 
-export function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false)
+const heroStats = [
+  { value: "40+", label: "năm kinh nghiệm giảng dạy môn Toán" },
+  { value: "1000+", label: "học sinh đã theo học tại Rạch Giá" },
+  { value: "5-10", label: "học sinh mỗi lớp để theo sát tiến độ" },
+]
 
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+const practiceFlow = [
+  {
+    icon: BookOpenText,
+    title: "Học hiểu bản chất",
+    description: "Bài mới được chia nhỏ, giải thích rõ ý tưởng thay vì học mẹo.",
+  },
+  {
+    icon: NotebookTabs,
+    title: "Luyện đúng dạng bài",
+    description: "Mỗi nhóm kiến thức có bộ bài và checklist lỗi sai riêng.",
+  },
+  {
+    icon: MonitorSmartphone,
+    title: "Theo dõi trên LMS",
+    description: "Bài tập, nhận xét và tiến độ học được lưu tập trung trên EduSmart.",
+  },
+]
 
+export function Hero({ featuredPost }) {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-32">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-purple-50/30 to-background" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
-
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 left-[10%] -z-10 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl animate-float-slow" />
-      <div className="absolute bottom-20 right-[10%] -z-10 h-96 w-96 rounded-full bg-purple-400/10 blur-3xl animate-float-slow delay-700" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[500px] w-[500px] rounded-full bg-gradient-to-r from-blue-200/20 to-violet-200/20 blur-3xl" />
-
-      {/* Floating icons */}
-      <div className="absolute top-32 left-[8%] hidden lg:block animate-float delay-200">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 shadow-lg shadow-blue-200/50">
-          <Calculator className="h-7 w-7 text-blue-600" />
-        </div>
-      </div>
-      <div className="absolute top-48 right-[12%] hidden lg:block animate-float delay-500">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 shadow-lg shadow-purple-200/50">
-          <Brain className="h-6 w-6 text-purple-600" />
-        </div>
-      </div>
-      <div className="absolute bottom-32 left-[15%] hidden lg:block animate-float delay-300">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 shadow-lg shadow-amber-200/50">
-          <Target className="h-5 w-5 text-amber-600" />
-        </div>
-      </div>
-
-      {/* Animated background elements */}
-      <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl animate-pulse" />
-      <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-primary/5 blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-36 sm:pb-28">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,_rgba(13,148,136,0.18),_transparent_42%),radial-gradient(circle_at_85%_20%,_rgba(245,158,11,0.2),_transparent_28%),linear-gradient(180deg,_#fffdf8_0%,_#f7f4ea_55%,_#ffffff_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(15,23,42,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.04)_1px,transparent_1px)] bg-[size:20px_20px]" />
+      <div className="absolute left-[6%] top-28 -z-10 h-44 w-44 rounded-full bg-emerald-300/25 blur-3xl" />
+      <div className="absolute right-[8%] top-20 -z-10 h-56 w-56 rounded-full bg-amber-300/25 blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/25 blur-3xl" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          {/* Badge */}
-          <div className={`inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-8 transition-all duration-700 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
-          }`}>
-            <Sparkles className="h-4 w-4" />
-            <span>Trung tâm dạy Toán uy tín #1 tại Rạch Giá, Kiên Giang</span>
-          </div>
-
-          <h1 className={`text-balance text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.1] transition-all duration-1000 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}>
-            Dạy Toán Tại Rạch Giá – <br className="hidden sm:block" />
-            <span className="gradient-text">Giỏi Toán</span> Từ Lớp 6 Đến 12
-          </h1>
-          <p className={`mt-6 text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl max-w-2xl mx-auto transition-all duration-1000 delay-200 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}>
-            Dạy thêm Toán, ôn thi THPT Quốc gia, luyện thi vào 10 tại Rạch Giá, Kiên Giang. Bứt phá điểm số chỉ sau 4 buổi với phương pháp hiểu bản chất!
-          </p>
-          <div className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row transition-all duration-1000 delay-300 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}>
-            <Button
-              size="lg"
-              className="w-full sm:w-auto text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105 animate-pulse-glow group"
-              asChild
-            >
-              <a href="#contact" className="flex items-center gap-2">
-                Đăng ký học thử miễn phí ngay!
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full sm:w-auto bg-transparent text-base px-8 py-6 rounded-xl hover:scale-105 transition-all duration-300"
-              asChild
-            >
-              <a href="#curriculum">Xem chương trình học</a>
-            </Button>
-          </div>
-
-          {/* Social proof */}
-          <div className={`mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-muted-foreground transition-all duration-1000 delay-500 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}>
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {['H', 'T', 'M', 'L'].map((letter, i) => (
-                  <div key={i} className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 border-2 border-background flex items-center justify-center text-[10px] text-white font-bold">
-                    {letter}
-                  </div>
-                ))}
-              </div>
-              <span><strong className="text-foreground">1000+</strong> học sinh tin tưởng</span>
+        <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur">
+              <Sparkles className="h-4 w-4" />
+              Dạy Toán tại Rạch Giá với mô hình lớp nhỏ và EduSmart LMS
             </div>
-            <div className="hidden sm:block h-4 w-px bg-border" />
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20" aria-hidden="true">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+
+            <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+              Xây nền tảng vững, tăng điểm thật, học Toán có lộ trình rõ ràng.
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
+              Trung tâm dạy Toán Thầy Long tại Rạch Giá, Kiên Giang dành cho học sinh lớp 6-12, luyện thi vào 10 và ôn thi
+              THPT. Mỗi lớp được theo dõi sát, kết hợp bài giảng trực tiếp với nền tảng LMS để phụ huynh và học sinh nhìn rõ
+              tiến độ từng tuần.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Button
+                size="lg"
+                className="rounded-xl px-7 shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25"
+                asChild
+              >
+                <a href="#contact">
+                  Đăng ký học thử
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" className="rounded-xl border-slate-300 bg-white/75 px-7" asChild>
+                <a href="/chuong-trinh-hoc/">Xem chương trình học</a>
+              </Button>
+              <Button size="lg" variant="ghost" className="rounded-xl px-3 text-slate-700 hover:bg-white/80" asChild>
+                <a href="/blog/">Đọc blog học Toán</a>
+              </Button>
+            </div>
+
+            <dl className="mt-12 grid gap-4 sm:grid-cols-3">
+              {heroStats.map((stat) => (
+                <div key={stat.label} className="rounded-2xl border border-white/80 bg-white/80 p-5 shadow-sm backdrop-blur">
+                  <dt className="text-sm font-medium text-slate-500">{stat.label}</dt>
+                  <dd className="mt-2 text-3xl font-bold text-slate-950">{stat.value}</dd>
+                </div>
               ))}
-              <span className="ml-1"><strong className="text-foreground">4.9/5</strong> đánh giá</span>
-            </div>
+            </dl>
+
+            {featuredPost && (
+              <a
+                href={`/blog/${featuredPost.slug}/`}
+                className="mt-8 flex max-w-2xl flex-col gap-3 rounded-3xl border border-slate-200/80 bg-slate-950 px-6 py-5 text-white shadow-xl shadow-slate-950/10 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-950/15 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">Bài viết nổi bật</p>
+                  <h2 className="mt-2 text-xl font-semibold">{featuredPost.title}</h2>
+                  <p className="mt-1 text-sm leading-6 text-slate-300">{featuredPost.description}</p>
+                </div>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
+                  Đọc ngay
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </a>
+            )}
           </div>
 
-          {/* Classroom showcase */}
-          <div className={`mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto transition-all duration-1000 delay-700 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}>
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
-              <img
-                src="/room1.jpeg"
-                alt="Không gian lớp học dạy toán Thầy Long - phòng học hiện đại tại Rạch Giá, Kiên Giang"
-                className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-                width="963"
-                height="1280"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 text-white">
-                <p className="text-sm font-semibold">Không gian học tập hiện đại</p>
+          <div className="relative">
+            <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[2rem] bg-slate-950/8 blur-xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-2xl shadow-slate-950/10 backdrop-blur">
+              <div className="flex items-center justify-between rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3">
+                <div>
+                  <p className="text-sm font-semibold text-emerald-900">Lộ trình ôn luyện</p>
+                  <p className="text-sm text-emerald-800/80">Chia theo nền tảng, mục tiêu và giai đoạn thi</p>
+                </div>
+                <TrendingUp className="h-6 w-6 text-emerald-700" />
               </div>
-            </div>
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/10 border border-border/30">
-              <img
-                src="/room2.jpeg"
-                alt="Dạy thêm toán Rạch Giá - lớp nhóm nhỏ 5-10 học sinh, giáo viên hướng dẫn tận tình tại Kiên Giang"
-                className="w-full h-56 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-                width="960"
-                height="1280"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              <div className="absolute bottom-3 left-3 text-white">
-                <p className="text-sm font-semibold">Lớp học thân thiện, gần gũi</p>
+
+              <div className="mt-6 space-y-4">
+                {practiceFlow.map((item, index) => {
+                  const Icon = item.icon
+                  return (
+                    <div
+                      key={item.title}
+                      className="grid gap-4 rounded-2xl border border-slate-200/80 bg-white px-4 py-4 shadow-sm sm:grid-cols-[auto_1fr]"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-amber-100 px-2 text-xs font-semibold text-amber-900">
+                            0{index + 1}
+                          </span>
+                          <h3 className="text-base font-semibold text-slate-950">{item.title}</h3>
+                        </div>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl bg-slate-950 px-5 py-5 text-white">
+                  <div className="flex items-center gap-3">
+                    <Clock3 className="h-5 w-5 text-amber-300" />
+                    <p className="text-sm font-semibold">Khung giờ linh hoạt</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">
+                    Tổ chức lớp theo khối và mục tiêu thi, thuận tiện cho học sinh THCS lẫn THPT.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    <p className="text-sm font-semibold text-slate-950">Rạch Giá, Kiên Giang</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    Kết hợp lớp trực tiếp với tài nguyên số để giữ nhịp học đều và giảm phụ thuộc vào học thuộc.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-amber-100 bg-amber-50 px-5 py-4">
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="mt-0.5 h-5 w-5 text-amber-700" />
+                  <div>
+                    <p className="text-sm font-semibold text-amber-950">Tập trung vào tiến bộ thật</p>
+                    <p className="mt-1 text-sm leading-6 text-amber-900/80">
+                      Học sinh được chữa lỗi theo nhóm dạng bài, không học tràn lan. Phụ huynh nhìn thấy tiến độ qua từng
+                      buổi và từng bài kiểm tra.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

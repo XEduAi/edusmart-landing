@@ -1,20 +1,15 @@
 import { Card } from "@/components/ui/card"
 import { GraduationCap, Award, Users } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 export function TeacherProfile() {
-  const [isLoaded, setIsLoaded] = useState(false)
   const [imageHovered, setImageHovered] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
 
   const achievements = [
     {
       icon: GraduationCap,
       text: "Đại học Sư phạm Toán, Vinh",
-      color: "from-blue-500 to-blue-600",
+      color: "from-primary to-emerald-500",
     },
     {
       icon: Award,
@@ -47,9 +42,7 @@ export function TeacherProfile() {
         </div>
 
         <div className="mx-auto mt-16 max-w-4xl">
-          <Card className={`overflow-hidden border-border/50 shadow-xl shadow-blue-900/5 transition-all duration-700 ${
-            isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          }`}>
+          <Card className="overflow-hidden border-border/50 shadow-xl shadow-slate-950/5">
             <div className="grid gap-0 md:grid-cols-5">
               <div className="md:col-span-2 relative overflow-hidden">
                 <div
@@ -71,9 +64,7 @@ export function TeacherProfile() {
                   )}
                 </div>
               </div>
-              <div className={`flex flex-col justify-center p-8 md:col-span-3 lg:p-12 transition-all duration-700 delay-300 ${
-                isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-              }`}>
+              <div className="flex flex-col justify-center p-8 md:col-span-3 lg:p-12">
                 <div>
                   <h3 className="text-2xl font-bold lg:text-3xl">Thầy Nguyễn Hữu Long</h3>
                   <p className="mt-1 text-sm text-primary font-medium">Giáo viên môn Toán</p>
@@ -85,10 +76,7 @@ export function TeacherProfile() {
                     return (
                       <div
                         key={index}
-                        className={`flex gap-4 items-start p-3 rounded-lg transition-all duration-300 group hover:bg-primary/5 cursor-pointer ${
-                          isLoaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-                        }`}
-                        style={{ transitionDelay: `${400 + index * 100}ms` }}
+                        className="group flex cursor-pointer items-start gap-4 rounded-lg p-3 transition-all duration-300 hover:bg-primary/5"
                       >
                         <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${achievement.color} transition-all group-hover:scale-110`}>
                           <Icon className="h-5 w-5 text-white" />

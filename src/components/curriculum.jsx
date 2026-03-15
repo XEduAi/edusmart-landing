@@ -1,15 +1,10 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Target, Trophy, ArrowRight, CheckCircle2 } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 export function Curriculum() {
-  const [expandedIndex, setExpandedIndex] = useState(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+  const [expandedIndex, setExpandedIndex] = useState(1)
 
   const courses = [
     {
@@ -17,9 +12,8 @@ export function Curriculum() {
       level: "Dạy thêm Toán lớp 6-8 tại Rạch Giá",
       description: "Nền tảng vững chắc cho học sinh THCS tại Rạch Giá, Kiên Giang",
       features: ["Số học, Đại số cơ bản", "Hình học phẳng", "Phương trình, Bất phương trình"],
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-50",
-      borderHoverColor: "hover:border-blue-300",
+      color: "from-primary to-emerald-500",
+      borderHoverColor: "hover:border-primary/40",
       expandedInfo: "Học sinh lớp 6, 7, 8 tại Rạch Giá muốn xây dựng nền tảng Toán vững chắc",
     },
     {
@@ -27,9 +21,8 @@ export function Curriculum() {
       level: "Luyện thi vào 10 tại Rạch Giá",
       description: "Luyện thi chuyên và thi vào trường THPT tại Rạch Giá, Kiên Giang",
       features: ["Chuyên đề nâng cao", "Bồi dưỡng học sinh giỏi Rạch Giá", "Luyện đề thi vào 10 THPT Kiên Giang"],
-      color: "from-purple-500 to-violet-500",
-      bgColor: "bg-purple-50",
-      borderHoverColor: "hover:border-purple-300",
+      color: "from-sky-600 to-sky-500",
+      borderHoverColor: "hover:border-sky-300",
       popular: true,
       expandedInfo: "Học sinh lớp 8, 9 tại Rạch Giá chuẩn bị thi vào 10 và trường chuyên Huỳnh Mẫn Đạt",
     },
@@ -44,7 +37,6 @@ export function Curriculum() {
         "Phương pháp giải nhanh",
       ],
       color: "from-amber-500 to-orange-500",
-      bgColor: "bg-amber-50",
       borderHoverColor: "hover:border-amber-300",
       expandedInfo: "Học sinh lớp 10, 11, 12 tại Rạch Giá, Kiên Giang chuẩn bị ôn thi THPT Quốc gia",
     },
@@ -72,13 +64,7 @@ export function Curriculum() {
           {courses.map((course, index) => {
             const Icon = course.icon
             return (
-              <div
-                key={index}
-                className={`transition-all duration-700 transform ${
-                  isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
+              <div key={index}>
                 <Card
                   className={`card-hover relative flex flex-col p-8 h-full cursor-pointer border-border/50 ${course.borderHoverColor} transition-all duration-300 ${
                     expandedIndex === index ? "ring-2 ring-primary" : ""
