@@ -17,6 +17,8 @@ export function Footer() {
               className="h-16 w-auto object-contain"
               width="234"
               height="128"
+              loading="lazy"
+              decoding="async"
             />
             <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">
               Trung tâm dạy Toán tại Rạch Giá, Kiên Giang với mô hình lớp nhỏ, lộ trình rõ ràng và nền tảng EduSmart LMS

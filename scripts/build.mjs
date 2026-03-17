@@ -140,9 +140,6 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
     <meta name="twitter:image" content="${metadata.ogImage}" />
     <meta name="twitter:image:alt" content="${escapeHtml(metadata.ogImageAlt || metadata.title)}" />
     ${articleMeta}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
     ${cssLinks}
     ${preloadLinks}
     ${structuredDataScripts}

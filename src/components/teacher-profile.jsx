@@ -53,6 +53,9 @@ export function TeacherProfile() {
                     alt="Thầy Nguyễn Hữu Long - Giáo viên dạy Toán với 40+ năm kinh nghiệm tại Rạch Giá, Kiên Giang"
                     width="600"
                     height="800"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                     className={`h-full w-full object-cover transition-all duration-500 ${
                       imageHovered ? "scale-110 brightness-110" : "scale-100"
                     }`}

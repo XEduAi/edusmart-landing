@@ -200,21 +200,18 @@ export function PlatformShowcase() {
 
               {/* Screenshot images */}
               <div className="relative overflow-hidden rounded-b-xl rounded-t-sm">
-                {screenshotTabs.map((tab) => (
-                  <img
-                    key={tab.id}
-                    src={tab.image}
-                    alt={tab.alt}
-                    width={tab.width}
-                    height={tab.height}
-                    className={`w-full object-cover object-top transition-all duration-500 ${
-                      activeTab === tab.id
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 absolute inset-0 translate-y-2 pointer-events-none"
-                    }`}
-                    style={{ maxHeight: "520px" }}
-                  />
-                ))}
+                <img
+                  key={active.id}
+                  src={active.image}
+                  alt={active.alt}
+                  width={active.width}
+                  height={active.height}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full object-cover object-top transition-all duration-500"
+                  style={{ maxHeight: "520px" }}
+                />
               </div>
             </div>
           </div>
