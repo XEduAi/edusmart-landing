@@ -1,5 +1,6 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
+import { IntentPathways } from "@/components/intent-pathways"
 import { ValueProposition } from "@/components/value-proposition"
 import { Results } from "@/components/results"
 import { Curriculum } from "@/components/curriculum"
@@ -19,6 +20,7 @@ function App() {
     <main className="min-h-screen">
       <Header currentPath="/" />
       <Hero featuredPost={blogPosts[0]} />
+      <IntentPathways />
       <ValueProposition />
       <Results />
       <Curriculum />

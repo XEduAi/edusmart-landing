@@ -3,6 +3,7 @@ import { ArrowRight, Clock3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const featuredPosts = blogPosts.slice(0, 3)
+const topicChips = ["Luyện thi vào 10", "Ôn THPT môn Toán", "Phụ huynh đồng hành", "Thi chuyên", "Phương pháp học"]
 
 export function BlogPreview() {
   return (
@@ -17,12 +18,22 @@ export function BlogPreview() {
               Blog học Toán
             </div>
             <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-              Thêm nhiều trang nội dung để <span className="gradient-text">mở rộng SEO tự nhiên</span>
+              Thư viện bài viết <span className="gradient-text">chỉ xoay quanh Toán học</span>
             </h2>
             <p className="mt-4 text-pretty text-lg text-muted-foreground">
-              Blog tập trung vào nhu cầu tìm kiếm thật của phụ huynh và học sinh tại Rạch Giá: ôn thi vào 10, THPT, phương
-              pháp học và kinh nghiệm đồng hành cùng con.
+              Blog tập trung hoàn toàn vào việc học Toán: lộ trình ôn thi, cách chữa lỗi sai, phương pháp học hiểu bản chất
+              và kinh nghiệm đồng hành cùng học sinh theo từng giai đoạn.
             </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {topicChips.map((topic) => (
+                <span
+                  key={topic}
+                  className="rounded-full border border-slate-200 bg-white/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-600"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
           </div>
 
           <Button size="lg" variant="outline" className="rounded-full bg-white/80" asChild>

@@ -2,11 +2,15 @@ export const siteConfig = {
   name: "Dạy Toán Thầy Long",
   legalName: "Trung tâm Dạy Toán Thầy Long",
   baseUrl: "https://daytoanthaylong.com",
-  defaultOgImage: "/logo.png",
+  description:
+    "Trung tâm Dạy Toán Thầy Long tại Rạch Giá, Kiên Giang. Lớp Toán 6-12, luyện thi vào 10, ôn THPT và theo dõi tiến độ học tập bằng EduSmart LMS.",
+  defaultOgImage: "/room1.jpeg",
+  defaultOgImageAlt: "Lớp học Toán Thầy Long tại Rạch Giá, Kiên Giang",
   phones: ["0919 414 006", "0918 877 407"],
   zaloHref: "https://zalo.me/0918877407",
   lmsHref: "https://lms.daytoanthaylong.com",
   documentsHref: "https://app.edusmart.vn/documents",
+  facebookHref: "https://www.facebook.com/daytoanthaylong",
   address: {
     streetAddress: "Hẻm 1, Đường Nguyễn Tuân",
     locality: "Rạch Giá",

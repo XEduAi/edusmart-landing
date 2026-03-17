@@ -3,18 +3,21 @@ import {
   ArrowRight,
   BookOpenText,
   Clock3,
+  FileText,
   GraduationCap,
   MapPin,
   MonitorSmartphone,
   NotebookTabs,
+  Phone,
   Sparkles,
   TrendingUp,
 } from "lucide-react"
+import { siteConfig } from "@/site/site-config"
 
 const heroStats = [
-  { value: "40+", label: "năm kinh nghiệm giảng dạy môn Toán" },
-  { value: "1000+", label: "học sinh đã theo học tại Rạch Giá" },
-  { value: "5-10", label: "học sinh mỗi lớp để theo sát tiến độ" },
+  { value: "40+", label: "năm kinh nghiệm giảng dạy và phân nhóm học sinh môn Toán" },
+  { value: "1000+", label: "học sinh tại Rạch Giá từng theo học và được xây nền theo lộ trình riêng" },
+  { value: "5-10", label: "học sinh mỗi lớp để chữa bài kỹ và theo sát nhịp tiến bộ" },
 ]
 
 const practiceFlow = [
@@ -32,6 +35,24 @@ const practiceFlow = [
     icon: MonitorSmartphone,
     title: "Theo dõi trên LMS",
     description: "Bài tập, nhận xét và tiến độ học được lưu tập trung trên EduSmart.",
+  },
+]
+
+const heroActions = [
+  {
+    icon: GraduationCap,
+    href: "/chuong-trinh-hoc/",
+    label: "Chương trình lớp 6-12",
+  },
+  {
+    icon: MonitorSmartphone,
+    href: "/nen-tang-lms/",
+    label: "Cách theo dõi trên LMS",
+  },
+  {
+    icon: FileText,
+    href: "/blog/de-thi-vao-10-toan-kien-giang/",
+    label: "Đọc lộ trình luyện thi",
   },
 ]
 
@@ -59,13 +80,13 @@ export function Hero({ featuredPost }) {
             </div>
 
             <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
-              Xây nền tảng vững, tăng điểm thật, học Toán có lộ trình rõ ràng.
+              Dạy Toán tại Rạch Giá cho học sinh lớp 6-12 với lớp nhỏ, lộ trình rõ và theo dõi tiến độ thật.
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
               Trung tâm dạy Toán Thầy Long tại Rạch Giá, Kiên Giang dành cho học sinh lớp 6-12, luyện thi vào 10 và ôn thi
-              THPT. Mỗi lớp được theo dõi sát, kết hợp bài giảng trực tiếp với nền tảng LMS để phụ huynh và học sinh nhìn rõ
-              tiến độ từng tuần.
+              THPT. Mỗi lớp được giữ sĩ số nhỏ, chữa bài theo lỗi sai thực tế và kết hợp EduSmart LMS để phụ huynh nhìn thấy
+              bài tập, nhận xét và tiến độ từng tuần thay vì chỉ chờ điểm số cuối kỳ.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -85,6 +106,43 @@ export function Hero({ featuredPost }) {
               <Button size="lg" variant="ghost" className="rounded-xl px-3 text-slate-700 hover:bg-white/80" asChild>
                 <a href="/blog/">Đọc blog học Toán</a>
               </Button>
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
+              <a
+                href={`tel:${siteConfig.phones[0].replace(/\s/g, "")}`}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 font-semibold text-slate-700 transition-colors hover:border-primary hover:text-primary"
+              >
+                <Phone className="h-4 w-4" />
+                Gọi tư vấn nhanh
+              </a>
+              <a
+                href="#results"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-transparent px-4 py-2 font-semibold text-slate-700 transition-colors hover:border-slate-500 hover:text-slate-950"
+              >
+                <TrendingUp className="h-4 w-4" />
+                Xem quy trình tăng tiến bộ
+              </a>
+              <span className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 font-semibold text-white">
+                <MapPin className="h-4 w-4 text-amber-300" />
+                {siteConfig.address.locality}, {siteConfig.address.region}
+              </span>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {heroActions.map((action) => {
+                const Icon = action.icon
+                return (
+                  <a
+                    key={action.label}
+                    href={action.href}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/82 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:text-slate-950"
+                  >
+                    <Icon className="h-4 w-4 text-primary" />
+                    {action.label}
+                  </a>
+                )
+              })}
             </div>
 
             <dl className="mt-12 grid gap-4 sm:grid-cols-3">
@@ -120,7 +178,23 @@ export function Hero({ featuredPost }) {
               <div className="absolute -right-3 top-6 rotate-[8deg] rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm">
                 Editorial Study Board
               </div>
-              <div className="graph-paper rounded-[1.7rem] border border-emerald-100 bg-emerald-50/70 px-4 py-3">
+              <div className="relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-slate-950">
+                <img
+                  src="/room1.jpeg"
+                  alt="Không gian lớp học Toán Thầy Long tại Rạch Giá"
+                  className="h-56 w-full object-cover opacity-90"
+                  width="1600"
+                  height="900"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-transparent px-5 py-5 text-white">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-300">Không gian học thật</p>
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-slate-200">
+                    Lớp học trực tiếp tại Rạch Giá kết hợp nhịp ôn tập số hóa để phụ huynh không bị mất dấu tiến độ của con.
+                  </p>
+                </div>
+              </div>
+
+              <div className="graph-paper mt-6 rounded-[1.7rem] border border-emerald-100 bg-emerald-50/70 px-4 py-3">
                 <div>
                   <p className="text-sm font-semibold text-emerald-900">Lộ trình ôn luyện</p>
                   <p className="text-sm text-emerald-800/80">Chia theo nền tảng, mục tiêu và giai đoạn thi</p>
@@ -186,6 +260,18 @@ export function Hero({ featuredPost }) {
                     </p>
                   </div>
                 </div>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {[
+                  "Theo dõi tiến độ theo tuần",
+                  "Chữa lỗi sai theo dạng bài",
+                  "Kết hợp lớp trực tiếp và LMS",
+                ].map((item) => (
+                  <div key={item} className="rounded-2xl border border-slate-200 bg-white/92 px-4 py-3 text-sm font-medium text-slate-700">
+                    {item}
+                  </div>
+                ))}
               </div>
               <div className="mt-4 flex justify-end">
                 <div className="rotate-[-3deg] rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">

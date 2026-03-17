@@ -144,7 +144,98 @@ function organizationSchema() {
       contactType: "customer support",
       availableLanguage: "Vietnamese",
     },
-    sameAs: [siteConfig.zaloHref],
+    areaServed: {
+      "@type": "City",
+      name: `${siteConfig.address.locality}, ${siteConfig.address.region}`,
+    },
+    knowsAbout: ["Toán lớp 6-12", "Luyện thi vào 10", "Ôn thi THPT môn Toán", "Theo dõi tiến độ học tập bằng LMS"],
+    sameAs: [siteConfig.zaloHref, siteConfig.facebookHref],
+  }
+}
+
+function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    alternateName: siteConfig.legalName,
+    url: siteConfig.baseUrl,
+    inLanguage: "vi-VN",
+  }
+}
+
+function studyProgramsSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Chương trình dạy Toán tại Rạch Giá",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@type": "Course",
+          name: "Dạy Toán lớp 6-9 tại Rạch Giá",
+          description: "Chương trình xây nền, lấp lỗ hổng kiến thức và rèn tư duy giải bài theo từng nhóm năng lực.",
+          provider: {
+            "@type": "EducationalOrganization",
+            name: siteConfig.name,
+            url: siteConfig.baseUrl,
+          },
+          url: absoluteUrl("/chuong-trinh-hoc/"),
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@type": "Course",
+          name: "Luyện thi vào 10 môn Toán tại Rạch Giá",
+          description: "Lộ trình luyện đề, tăng tốc giai đoạn cuối và củng cố dạng bài thường xuất hiện trong kỳ thi.",
+          provider: {
+            "@type": "EducationalOrganization",
+            name: siteConfig.name,
+            url: siteConfig.baseUrl,
+          },
+          url: absoluteUrl("/blog/de-thi-vao-10-toan-kien-giang/"),
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@type": "Course",
+          name: "Ôn thi THPT môn Toán kết hợp EduSmart LMS",
+          description: "Ôn tập có lộ trình, theo dõi bài tập và kết quả bằng nền tảng LMS sau giờ học trực tiếp.",
+          provider: {
+            "@type": "EducationalOrganization",
+            name: siteConfig.name,
+            url: siteConfig.baseUrl,
+          },
+          url: absoluteUrl("/nen-tang-lms/"),
+        },
+      },
+    ],
+  }
+}
+
+function lmsApplicationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "EduSmart LMS",
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Web",
+    url: absoluteUrl("/nen-tang-lms/"),
+    description:
+      "Nền tảng LMS hỗ trợ học sinh làm quiz, xem tài liệu, theo dõi tiến độ học tập và nhận phản hồi sau giờ học Toán trực tiếp.",
+    screenshot: [absoluteUrl("/screenshots/ss-dashboard.webp"), absoluteUrl("/screenshots/ss-quiz.webp")],
+    provider: {
+      "@type": "EducationalOrganization",
+      name: siteConfig.name,
+      url: siteConfig.baseUrl,
+    },
+    inLanguage: "vi-VN",
   }
 }
 
@@ -214,15 +305,27 @@ function blogPostSchema(post) {
   }
 }
 
-function createMetadata({ title, description, path, keywords = [], type = "website", structuredData = [] }) {
+function createMetadata({
+  title,
+  description,
+  path,
+  keywords = [],
+  type = "website",
+  structuredData = [],
+  ogImage = absoluteUrl(siteConfig.defaultOgImage),
+  ogImageAlt = siteConfig.defaultOgImageAlt,
+  article = null,
+}) {
   return {
     title,
     description,
     canonical: absoluteUrl(path),
     keywords: keywords.join(", "),
     ogType: type,
-    ogImage: absoluteUrl(siteConfig.defaultOgImage),
+    ogImage,
+    ogImageAlt,
     structuredData,
+    article,
   }
 }
 
@@ -399,21 +502,21 @@ function BlogIndexPage() {
       <PageHero
         eyebrow="Blog học Toán"
         title="Các bài viết hỗ trợ phụ huynh và học sinh học Toán có định hướng rõ hơn."
-        description="Blog được xây để mở rộng bộ từ khóa SEO tự nhiên quanh nhu cầu thật: luyện thi vào 10, ôn THPT, phương pháp học, kinh nghiệm đồng hành cùng con và học tập bằng LMS."
+        description="Blog chỉ tập trung vào nội dung Toán học và việc học Toán: luyện thi vào 10, ôn THPT, thi chuyên, phương pháp học và cách phụ huynh đồng hành đúng cách."
         primaryAction={{ href: "/#contact", label: "Nhận tư vấn học thử" }}
         secondaryAction={{ href: "/chuong-trinh-hoc/", label: "Xem chương trình học" }}
         highlights={[
-          { label: "Số bài viết khởi tạo", value: `${blogPosts.length} bài viết evergreen` },
-          { label: "Trọng tâm", value: "Từ khóa local SEO và nhu cầu thật" },
+          { label: "Số bài viết hiện có", value: `${blogPosts.length} bài viết Toán học` },
+          { label: "Trọng tâm", value: "Lộ trình học, luyện thi và sửa lỗi sai môn Toán" },
           { label: "Đối tượng", value: "Phụ huynh, học sinh THCS và THPT" },
         ]}
       />
       <BlogGrid />
       <CtaBanner
-        title="Muốn biến lượt truy cập blog thành đăng ký học thử?"
-        description="Trang đích và blog giờ đã được nối với nhau bằng cấu trúc internal link, CTA và metadata riêng cho từng chủ đề."
-        primaryAction={{ href: "/#contact", label: "Đăng ký học thử" }}
-        secondaryAction={{ href: siteConfig.lmsHref, label: "Xem nền tảng LMS" }}
+        title="Muốn tìm đúng bài viết Toán phù hợp với giai đoạn học hiện tại?"
+        description="Từ blog, phụ huynh và học sinh có thể đi tiếp sang chương trình học, học thử hoặc xem cách EduSmart LMS hỗ trợ việc ôn tập ngoài giờ lên lớp."
+        primaryAction={{ href: "/chuong-trinh-hoc/", label: "Xem chương trình học" }}
+        secondaryAction={{ href: "/#contact", label: "Đăng ký học thử" }}
       />
       <Footer />
     </main>
@@ -560,11 +663,15 @@ export function getPageMetadata(pageId, pageProps = {}) {
         keywords: [
           "dạy toán rạch giá",
           "dạy thêm toán ở rạch giá",
+          "dạy thêm toán cấp 2 rạch giá",
+          "dạy thêm toán cấp 3 rạch giá",
           "luyện thi vào 10 rạch giá",
           "ôn thi thpt toán rạch giá",
           "gia sư toán kiên giang",
         ],
-        structuredData: [organizationSchema(), personSchema(), faqSchema()],
+        ogImage: absoluteUrl("/room1.jpeg"),
+        ogImageAlt: "Lớp học Toán Thầy Long tại Rạch Giá, Kiên Giang",
+        structuredData: [organizationSchema(), websiteSchema(), personSchema(), studyProgramsSchema(), faqSchema()],
       })
     case "programs":
       return createMetadata({
@@ -574,11 +681,17 @@ export function getPageMetadata(pageId, pageProps = {}) {
         path: "/chuong-trinh-hoc/",
         keywords: [
           "chương trình học toán rạch giá",
+          "dạy toán lớp 6 rạch giá",
+          "dạy toán lớp 9 rạch giá",
+          "dạy toán lớp 12 rạch giá",
           "luyện thi vào 10 kiên giang",
           "ôn thi toán thpt rạch giá",
         ],
+        ogImage: absoluteUrl("/room2.jpeg"),
+        ogImageAlt: "Không gian học tập tại trung tâm Dạy Toán Thầy Long",
         structuredData: [
           organizationSchema(),
+          studyProgramsSchema(),
           faqSchema(),
           breadcrumbSchema([
             { name: "Trang chủ", path: "/" },
@@ -597,8 +710,11 @@ export function getPageMetadata(pageId, pageProps = {}) {
           "nền tảng học toán online rạch giá",
           "edusmart lms",
         ],
+        ogImage: absoluteUrl("/screenshots/ss-dashboard.webp"),
+        ogImageAlt: "Dashboard EduSmart LMS theo dõi bài tập và tiến độ học Toán",
         structuredData: [
           organizationSchema(),
+          lmsApplicationSchema(),
           breadcrumbSchema([
             { name: "Trang chủ", path: "/" },
             { name: "EduSmart LMS", path: "/nen-tang-lms/" },
@@ -616,6 +732,8 @@ export function getPageMetadata(pageId, pageProps = {}) {
           "giáo viên dạy toán kiên giang",
           "trung tâm toán rạch giá",
         ],
+        ogImage: absoluteUrl("/potrait.jpeg"),
+        ogImageAlt: "Chân dung Thầy Long, giáo viên dạy Toán tại Rạch Giá",
         structuredData: [
           organizationSchema(),
           personSchema(),
@@ -637,8 +755,11 @@ export function getPageMetadata(pageId, pageProps = {}) {
           "đề thi vào 10 toán kiên giang",
           "phương pháp học toán hiệu quả",
         ],
+        ogImage: absoluteUrl("/room1.jpeg"),
+        ogImageAlt: "Không gian học Toán và tư vấn tại Dạy Toán Thầy Long",
         structuredData: [
           organizationSchema(),
+          websiteSchema(),
           {
             "@context": "https://schema.org",
             "@type": "Blog",
@@ -664,6 +785,8 @@ export function getPageMetadata(pageId, pageProps = {}) {
         path: `/blog/${post.slug}/`,
         keywords: post.keywords,
         type: "article",
+        ogImage: absoluteUrl("/room1.jpeg"),
+        ogImageAlt: post.title,
         structuredData: [
           organizationSchema(),
           blogPostSchema(post),
@@ -673,6 +796,12 @@ export function getPageMetadata(pageId, pageProps = {}) {
             { name: post.title, path: `/blog/${post.slug}/` },
           ]),
         ],
+        article: {
+          publishedTime: post.publishedAt,
+          modifiedTime: post.updatedAt,
+          section: post.category,
+          tags: post.keywords,
+        },
       })
     }
     default:

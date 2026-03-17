@@ -21,6 +21,20 @@ function serializeForScript(value) {
   return JSON.stringify(value).replace(/</g, "\\u003c").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029")
 }
 
+function inferImageMimeType(url) {
+  if (url.endsWith(".png")) {
+    return "image/png"
+  }
+  if (url.endsWith(".webp")) {
+    return "image/webp"
+  }
+  if (url.endsWith(".jpg") || url.endsWith(".jpeg")) {
+    return "image/jpeg"
+  }
+
+  return ""
+}
+
 function getOutputPath(route) {
   if (route === "/") {
     return path.join(distDir, "index.html")
@@ -77,6 +91,16 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
   const structuredDataScripts = (metadata.structuredData || [])
     .map((item) => `<script type="application/ld+json">${serializeForScript(item)}</script>`)
     .join("")
+  const ogImageType = metadata.ogImage ? inferImageMimeType(metadata.ogImage) : ""
+  const articleMeta = metadata.article
+    ? `
+    <meta property="article:published_time" content="${escapeHtml(metadata.article.publishedTime || "")}" />
+    <meta property="article:modified_time" content="${escapeHtml(metadata.article.modifiedTime || "")}" />
+    <meta property="article:section" content="${escapeHtml(metadata.article.section || "")}" />
+    ${(metadata.article.tags || [])
+      .map((tag) => `<meta property="article:tag" content="${escapeHtml(tag)}" />`)
+      .join("\n    ")}`
+    : ""
 
   return `<!doctype html>
 <html lang="vi">
@@ -88,12 +112,15 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
     <meta name="author" content="Dạy Toán Thầy Long" />
     <meta name="description" content="${escapeHtml(metadata.description)}" />
     <meta name="keywords" content="${escapeHtml(metadata.keywords || "")}" />
+    <meta name="language" content="vi-VN" />
     <meta name="geo.region" content="VN-47" />
     <meta name="geo.placename" content="Rạch Giá, Kiên Giang" />
     <meta name="geo.position" content="10.02217;105.08156" />
     <meta name="ICBM" content="10.02217, 105.08156" />
     <title>${escapeHtml(metadata.title)}</title>
     <link rel="canonical" href="${metadata.canonical}" />
+    <link rel="alternate" hreflang="vi-VN" href="${metadata.canonical}" />
+    <link rel="alternate" hreflang="x-default" href="${metadata.canonical}" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -105,11 +132,14 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
     <meta property="og:title" content="${escapeHtml(metadata.title)}" />
     <meta property="og:description" content="${escapeHtml(metadata.description)}" />
     <meta property="og:image" content="${metadata.ogImage}" />
-    <meta property="og:image:alt" content="Dạy Toán Thầy Long tại Rạch Giá, Kiên Giang" />
+    <meta property="og:image:alt" content="${escapeHtml(metadata.ogImageAlt || metadata.title)}" />
+    ${ogImageType ? `<meta property="og:image:type" content="${ogImageType}" />` : ""}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(metadata.title)}" />
     <meta name="twitter:description" content="${escapeHtml(metadata.description)}" />
     <meta name="twitter:image" content="${metadata.ogImage}" />
+    <meta name="twitter:image:alt" content="${escapeHtml(metadata.ogImageAlt || metadata.title)}" />
+    ${articleMeta}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
