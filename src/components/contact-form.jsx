@@ -6,6 +6,72 @@ import { Textarea } from "@/components/ui/textarea"
 import { Phone, MapPin, MessageCircle, Send, Sparkles, Check, AlertCircle } from "lucide-react"
 import { useState } from "react"
 
+const ATTRIBUTION_STORAGE_KEY = "edusmart:first-touch-attribution"
+
+const getLeadAttribution = () => {
+  if (typeof window === "undefined") {
+    return {
+      source: "direct",
+      sourceDetail: "",
+      referrer: "",
+      landingPagePath: "/",
+      utm: {},
+    }
+  }
+
+  const cachedAttribution = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY)
+  if (cachedAttribution) {
+    try {
+      return JSON.parse(cachedAttribution)
+    } catch {
+      window.sessionStorage.removeItem(ATTRIBUTION_STORAGE_KEY)
+    }
+  }
+
+  const currentUrl = new URL(window.location.href)
+  const params = currentUrl.searchParams
+  const referrer = document.referrer || ""
+  let referrerHost = ""
+  if (referrer) {
+    try {
+      referrerHost = new URL(referrer).hostname.replace(/^www\./, "")
+    } catch {
+      referrerHost = ""
+    }
+  }
+  const pathname = currentUrl.pathname || "/"
+  const utm = {
+    source: params.get("utm_source") || "",
+    medium: params.get("utm_medium") || "",
+    campaign: params.get("utm_campaign") || "",
+    term: params.get("utm_term") || "",
+    content: params.get("utm_content") || "",
+  }
+
+  const medium = utm.medium.toLowerCase()
+  const sourceToken = utm.source.toLowerCase()
+
+  let source = "direct"
+  if (/(cpc|ppc|paid|ads|adset|remarketing|social-paid)/.test(medium) || /(facebook|meta|tiktok|googleads|zalo-ads)/.test(sourceToken)) {
+    source = "paid-ads"
+  } else if (pathname.startsWith("/blog") || pathname.startsWith("/tai-lieu")) {
+    source = "organic-blog"
+  } else if (params.get("ref") || (referrerHost && !referrerHost.includes(currentUrl.hostname.replace(/^www\./, "")))) {
+    source = "referral"
+  }
+
+  const attribution = {
+    source,
+    sourceDetail: utm.source || referrerHost || pathname,
+    referrer,
+    landingPagePath: `${pathname}${currentUrl.search}`,
+    utm,
+  }
+
+  window.sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(attribution))
+  return attribution
+}
+
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -55,10 +121,11 @@ export function ContactForm() {
 
     try {
       const API_URL = import.meta.env.VITE_API_URL || "https://smartedu-backend.io.vn/api"
+      const attribution = getLeadAttribution()
       const response = await fetch(`${API_URL}/leads/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, ...attribution }),
       })
 
       const result = await response.json()
