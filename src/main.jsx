@@ -1,5 +1,6 @@
 import { StrictMode } from "react"
 import { hydrateRoot, createRoot } from "react-dom/client"
+import { Analytics } from "@vercel/analytics/react"
 import "./index.css"
 import { getPageComponent } from "@/site/page-registry"
 
@@ -10,6 +11,7 @@ const Page = getPageComponent(pageId, pageProps)
 const app = (
   <StrictMode>
     <Page />
+    <Analytics />
   </StrictMode>
 )
 
