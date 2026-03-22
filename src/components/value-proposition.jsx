@@ -52,12 +52,19 @@ export function ValueProposition() {
           {values.map((value, index) => {
             const Icon = value.icon
             return (
-              <div key={index} className="dossier-panel card-hover group flex flex-col items-center rounded-[1.7rem] p-8 text-center">
-                <div className={`flex h-16 w-16 items-center justify-center rounded-2xl ${value.bgColor} transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12`}>
-                  <Icon className={`h-8 w-8 ${value.iconColor} transition-transform group-hover:rotate-12`} />
+              <div
+                key={index}
+                className="dossier-panel card-hover group relative flex flex-col items-center rounded-[1.7rem] p-8 text-center overflow-hidden"
+              >
+                {/* MagicUI shimmer on hover */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 [background:radial-gradient(circle_at_50%_0%,rgba(15,118,110,0.08),transparent_60%)]" />
+                <div
+                  className={`relative flex h-16 w-16 items-center justify-center rounded-2xl ${value.bgColor} transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-lg`}
+                >
+                  <Icon className={`h-8 w-8 ${value.iconColor} transition-transform duration-500 group-hover:rotate-6`} />
                 </div>
-                <h3 className="mt-6 text-lg font-semibold group-hover:text-primary transition-colors">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors">{value.description}</p>
+                <h3 className="mt-6 text-lg font-semibold group-hover:text-primary transition-colors duration-300">{value.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors duration-300">{value.description}</p>
               </div>
             )
           })}

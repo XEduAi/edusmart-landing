@@ -74,22 +74,28 @@ export function Hero({ featuredPost }) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm backdrop-blur"
+              style={{ animation: "reveal-up 0.6s ease both 0.1s" }}
+            >
               <Sparkles className="h-4 w-4" />
               Dạy Toán tại Rạch Giá với mô hình lớp nhỏ và EduSmart LMS
             </div>
 
-            <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
+            <h1
+              className="mt-6 max-w-4xl font-display text-5xl leading-[1.02] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl"
+              style={{ animation: "reveal-up 0.7s ease both 0.2s" }}
+            >
               Dạy Toán tại Rạch Giá cho học sinh lớp 6-12 với lớp nhỏ, lộ trình rõ và theo dõi tiến độ thật.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl" style={{ animation: "reveal-up 0.7s ease both 0.35s" }}>
               Trung tâm dạy Toán Thầy Long tại Rạch Giá, Kiên Giang dành cho học sinh lớp 6-12, luyện thi vào 10 và ôn thi
               THPT. Mỗi lớp được giữ sĩ số nhỏ, chữa bài theo lỗi sai thực tế và kết hợp EduSmart LMS để phụ huynh nhìn thấy
               bài tập, nhận xét và tiến độ từng tuần thay vì chỉ chờ điểm số cuối kỳ.
             </p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row" style={{ animation: "reveal-up 0.7s ease both 0.5s" }}>
               <Button
                 size="lg"
                 className="rounded-xl px-7 shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25"
@@ -174,6 +180,10 @@ export function Hero({ featuredPost }) {
 
           <div className="relative">
             <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-[2rem] bg-slate-950/8 blur-xl" />
+            {/* MagicUI BorderBeam: animated glowing border */}
+            <div className="pointer-events-none absolute inset-0 rounded-[2rem] overflow-hidden">
+              <div className="absolute inset-[-2px] rounded-[2rem] [background:conic-gradient(from_var(--beam-angle,0deg),transparent_20%,rgba(15,118,110,0.6)_40%,rgba(245,158,11,0.5)_60%,transparent_80%)] [animation:spin-around_4s_linear_infinite] opacity-70" />
+            </div>
             <div className="dossier-panel relative rounded-[2rem] p-6 backdrop-blur">
               <div className="absolute -right-3 top-6 rotate-[8deg] rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 shadow-sm">
                 Editorial Study Board

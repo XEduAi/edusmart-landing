@@ -73,6 +73,69 @@
   }
 }
 
+/* === MagicUI-inspired CSS animations === */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--marquee-gap, 1rem))); }
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(calc(-100% - var(--marquee-gap, 1rem))); }
+  to { transform: translateX(0); }
+}
+
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
+}
+
+@keyframes border-beam {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+@keyframes shimmer-slide {
+  to { transform: translateX(calc(100cqw - 100%)); }
+}
+
+@keyframes spin-around {
+  0% { transform: translateZ(0) rotate(0); }
+  15%, 35% { transform: translateZ(0) rotate(90deg); }
+  65%, 85% { transform: translateZ(0) rotate(270deg); }
+  100% { transform: translateZ(0) rotate(360deg); }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes number-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* Section scroll-reveal using CSS animation-timeline */
+.reveal-on-scroll {
+  animation: reveal-up 0.7s ease both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 30%;
+}
+
+/* Marquee utilities */
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse var(--duration, 40s) linear infinite;
+}
+
 @keyframes fade-in-up {
   from {
     opacity: 0;
