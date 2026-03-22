@@ -100,7 +100,10 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-slate-200/80 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-slate-500">© {new Date().getFullYear()} Dạy Toán Thầy Long. Trung tâm dạy Toán tại Rạch Giá, Kiên Giang.</p>
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+            <p className="text-sm text-slate-500">© {new Date().getFullYear()} Dạy Toán Thầy Long. Trung tâm dạy Toán tại Rạch Giá, Kiên Giang.</p>
+            <a href="/chinh-sach-bao-mat/" className="text-sm text-slate-400 hover:text-slate-600 transition-colors">Chính sách bảo mật</a>
+          </div>
           <div className="flex items-center gap-3">
             {[
               { href: "https://www.facebook.com/daytoanthaylong", icon: Facebook, label: "Facebook Dạy Toán Thầy Long Rạch Giá" },

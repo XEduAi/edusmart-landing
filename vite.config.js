@@ -16,6 +16,7 @@ function devRouterPlugin() {
     '/nen-tang-lms': 'platform',
     '/ve-thay-long': 'about',
     '/blog': 'blog-index',
+    '/chinh-sach-bao-mat': 'privacy',
   }
 
   return {

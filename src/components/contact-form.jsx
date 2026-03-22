@@ -338,7 +338,10 @@ export function ContactForm() {
                 )}
 
                 <p className="text-center text-xs text-muted-foreground">
-                  Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ
+                  Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ.{" "}
+                  <a href="/chinh-sach-bao-mat/" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                    Chính sách bảo mật
+                  </a>
                 </p>
               </form>
             )}

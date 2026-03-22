@@ -121,6 +121,10 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
     <link rel="canonical" href="${metadata.canonical}" />
     <link rel="alternate" hreflang="vi-VN" href="${metadata.canonical}" />
     <link rel="alternate" hreflang="x-default" href="${metadata.canonical}" />
+    <link rel="preconnect" href="https://maps.googleapis.com" />
+    <link rel="preconnect" href="https://zalo.me" crossorigin />
+    <link rel="preload" as="image" href="/room1.jpeg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo.webp" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -157,9 +161,7 @@ function generateSitemap(pages) {
     .map(
       (page) => `  <url>
     <loc>https://daytoanthaylong.com${page.route === "/" ? "/" : page.route}</loc>
-    <lastmod>${buildDate}</lastmod>
-    <changefreq>${page.route === "/" ? "weekly" : "monthly"}</changefreq>
-    <priority>${page.route === "/" ? "1.0" : page.route === "/blog/" ? "0.8" : "0.7"}</priority>
+    <lastmod>${page.lastmod || buildDate}</lastmod>
   </url>`,
     )
     .join("\n")

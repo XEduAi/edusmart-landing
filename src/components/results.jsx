@@ -38,20 +38,20 @@ const commitments = [
 ]
 
 function useCountUp(target, isInView, duration = 1800) {
-  const [value, setValue] = useState(0)
+  // Initialize with target so SSR HTML shows the real number (Googlebot sees correct value)
+  const [value, setValue] = useState(target)
 
   useEffect(() => {
     if (!isInView) return
 
     const startTime = performance.now()
-    const startValue = 0
 
     function tick(now) {
       const elapsed = now - startTime
       const progress = Math.min(elapsed / duration, 1)
-      // ease-out quad
+      // ease-out quad — first tick (elapsed~0) naturally yields 0
       const eased = 1 - (1 - progress) * (1 - progress)
-      setValue(Math.round(startValue + (target - startValue) * eased))
+      setValue(Math.round(target * eased))
       if (progress < 1) requestAnimationFrame(tick)
     }
 

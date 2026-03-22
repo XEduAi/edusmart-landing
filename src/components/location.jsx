@@ -76,12 +76,12 @@ export function Location() {
             </div>
 
             {/* Map */}
-            <div className="lg:col-span-2 overflow-hidden rounded-2xl border border-border/50 shadow-xl shadow-blue-900/10">
+            <div className="lg:col-span-2 overflow-hidden rounded-2xl border border-border/50 shadow-xl shadow-blue-900/10" style={{ height: "400px" }}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1964.467892518674!2d105.081728!3d10.022158!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0b33cc27fdf5f%3A0xf099ba93decf08e!2zROG6oXkgdG_DoW4gdGjhuqd5IExvbmc!5e0!3m2!1svi!2s!4v1773394513618!5m2!1svi!2s"
                 width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: "400px" }}
+                height="400"
+                style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

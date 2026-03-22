@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import App from "@/App"
 import { blogPosts, getBlogPostBySlug } from "@/content/blog-posts"
-import { faqData } from "@/content/faqs"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Curriculum } from "@/components/curriculum"
@@ -33,15 +32,17 @@ import {
 const DATE_MODIFIED = "2026-03-15"
 
 const staticPages = [
-  { id: "home", route: "/" },
-  { id: "programs", route: "/chuong-trinh-hoc/" },
-  { id: "platform", route: "/nen-tang-lms/" },
-  { id: "about", route: "/ve-thay-long/" },
-  { id: "blog-index", route: "/blog/" },
+  { id: "home", route: "/", lastmod: "2026-03-22" },
+  { id: "programs", route: "/chuong-trinh-hoc/", lastmod: "2026-03-15" },
+  { id: "platform", route: "/nen-tang-lms/", lastmod: "2026-03-15" },
+  { id: "about", route: "/ve-thay-long/", lastmod: "2026-03-22" },
+  { id: "blog-index", route: "/blog/", lastmod: "2026-03-20" },
+  { id: "privacy", route: "/chinh-sach-bao-mat/", lastmod: "2026-03-22" },
   ...blogPosts.map((post) => ({
     id: "blog-post",
     route: `/blog/${post.slug}/`,
     props: { slug: post.slug },
+    lastmod: post.updatedAt,
   })),
 ]
 
@@ -120,12 +121,13 @@ function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["EducationalOrganization", "LocalBusiness"],
+    "@id": `${siteConfig.baseUrl}/#organization`,
     name: siteConfig.name,
     alternateName: siteConfig.legalName,
     url: siteConfig.baseUrl,
     image: absoluteUrl("/room1.jpeg"),
     logo: absoluteUrl("/logo.png"),
-    telephone: siteConfig.phones,
+    telephone: ["+84919414006", "+84918877407"],
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.streetAddress,
@@ -140,10 +142,24 @@ function organizationSchema() {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: siteConfig.phones[0].replace(/\s/g, ""),
+      telephone: "+84919414006",
       contactType: "customer support",
       availableLanguage: "Vietnamese",
     },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "13:00",
+        closes: "21:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Sunday"],
+        opens: "08:00",
+        closes: "21:00",
+      },
+    ],
     areaServed: {
       "@type": "City",
       name: `${siteConfig.address.locality}, ${siteConfig.address.region}`,
@@ -161,6 +177,14 @@ function websiteSchema() {
     alternateName: siteConfig.legalName,
     url: siteConfig.baseUrl,
     inLanguage: "vi-VN",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.baseUrl}/blog/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   }
 }
 
@@ -177,12 +201,24 @@ function studyProgramsSchema() {
           "@type": "Course",
           name: "Dạy Toán lớp 6-9 tại Rạch Giá",
           description: "Chương trình xây nền, lấp lỗ hổng kiến thức và rèn tư duy giải bài theo từng nhóm năng lực.",
-          provider: {
-            "@type": "EducationalOrganization",
-            name: siteConfig.name,
-            url: siteConfig.baseUrl,
-          },
+          provider: { "@id": `${siteConfig.baseUrl}/#organization` },
           url: absoluteUrl("/chuong-trinh-hoc/"),
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "onsite",
+            location: {
+              "@type": "Place",
+              name: siteConfig.name,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: siteConfig.address.streetAddress,
+                addressLocality: siteConfig.address.locality,
+                addressRegion: siteConfig.address.region,
+                addressCountry: siteConfig.address.country,
+              },
+            },
+            inLanguage: "vi-VN",
+          },
         },
       },
       {
@@ -192,12 +228,24 @@ function studyProgramsSchema() {
           "@type": "Course",
           name: "Luyện thi vào 10 môn Toán tại Rạch Giá",
           description: "Lộ trình luyện đề, tăng tốc giai đoạn cuối và củng cố dạng bài thường xuất hiện trong kỳ thi.",
-          provider: {
-            "@type": "EducationalOrganization",
-            name: siteConfig.name,
-            url: siteConfig.baseUrl,
-          },
+          provider: { "@id": `${siteConfig.baseUrl}/#organization` },
           url: absoluteUrl("/blog/de-thi-vao-10-toan-kien-giang/"),
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "onsite",
+            location: {
+              "@type": "Place",
+              name: siteConfig.name,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: siteConfig.address.streetAddress,
+                addressLocality: siteConfig.address.locality,
+                addressRegion: siteConfig.address.region,
+                addressCountry: siteConfig.address.country,
+              },
+            },
+            inLanguage: "vi-VN",
+          },
         },
       },
       {
@@ -207,12 +255,24 @@ function studyProgramsSchema() {
           "@type": "Course",
           name: "Ôn thi THPT môn Toán kết hợp EduSmart LMS",
           description: "Ôn tập có lộ trình, theo dõi bài tập và kết quả bằng nền tảng LMS sau giờ học trực tiếp.",
-          provider: {
-            "@type": "EducationalOrganization",
-            name: siteConfig.name,
-            url: siteConfig.baseUrl,
-          },
+          provider: { "@id": `${siteConfig.baseUrl}/#organization` },
           url: absoluteUrl("/nen-tang-lms/"),
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "blended",
+            location: {
+              "@type": "Place",
+              name: siteConfig.name,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: siteConfig.address.streetAddress,
+                addressLocality: siteConfig.address.locality,
+                addressRegion: siteConfig.address.region,
+                addressCountry: siteConfig.address.country,
+              },
+            },
+            inLanguage: "vi-VN",
+          },
         },
       },
     ],
@@ -262,20 +322,6 @@ function personSchema() {
   }
 }
 
-function faqSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqData.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  }
-}
 
 function blogPostSchema(post) {
   return {
@@ -285,18 +331,8 @@ function blogPostSchema(post) {
     description: post.description,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
-    author: {
-      "@type": "Person",
-      name: "Nguyễn Hữu Long",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      logo: {
-        "@type": "ImageObject",
-        url: absoluteUrl("/logo.png"),
-      },
-    },
+    author: { "@id": `${siteConfig.baseUrl}/#teacher` },
+    publisher: { "@id": `${siteConfig.baseUrl}/#organization` },
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}/`),
     image: absoluteUrl("/room1.jpeg"),
     keywords: post.keywords.join(", "),
@@ -549,7 +585,13 @@ function BlogPostPage({ slug }) {
             </h1>
             <p className="mt-6 text-lg leading-8 text-slate-700">{post.description}</p>
 
-            <div className="mt-8 grid gap-4 rounded-[1.75rem] border border-slate-200/80 bg-white p-6 shadow-sm sm:grid-cols-3">
+            <div className="mt-8 grid gap-4 rounded-[1.75rem] border border-slate-200/80 bg-white p-6 shadow-sm sm:grid-cols-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Tác giả</p>
+                <p className="mt-2 text-sm font-medium text-slate-900">
+                  <a href="/ve-thay-long/" className="hover:text-primary transition-colors">Thầy Nguyễn Hữu Long</a>
+                </p>
+              </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đối tượng</p>
                 <p className="mt-2 text-sm font-medium text-slate-900">{post.audience}</p>
@@ -559,8 +601,8 @@ function BlogPostPage({ slug }) {
                 <p className="mt-2 text-sm font-medium text-slate-900">{post.readingTime}</p>
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Cập nhật</p>
-                <p className="mt-2 text-sm font-medium text-slate-900">{post.updatedAt}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đăng ngày</p>
+                <p className="mt-2 text-sm font-medium text-slate-900"><time dateTime={post.publishedAt}>{post.publishedAt}</time></p>
               </div>
             </div>
 
@@ -627,6 +669,56 @@ function BlogPostPage({ slug }) {
   )
 }
 
+function PrivacyPage() {
+  return (
+    <main className="min-h-screen">
+      <Header currentPath="/chinh-sach-bao-mat/" />
+      <section className="pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <nav aria-label="Breadcrumb" className="mb-8 text-sm text-slate-500">
+              <ol className="flex flex-wrap items-center gap-2">
+                <li><a href="/" className="hover:text-slate-950">Trang chủ</a></li>
+                <li className="flex items-center gap-2"><ChevronRight className="h-4 w-4 text-slate-300" /><span className="font-medium text-slate-700">Chính sách bảo mật</span></li>
+              </ol>
+            </nav>
+            <h1 className="font-display text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">Chính sách bảo mật</h1>
+            <p className="mt-4 text-sm text-slate-500">Cập nhật lần cuối: 22 tháng 3, 2026</p>
+
+            <div className="article-content mt-10">
+              <h2>1. Thu thập thông tin cá nhân</h2>
+              <p>Khi quý phụ huynh hoặc học sinh điền vào biểu mẫu liên hệ trên trang web này, chúng tôi thu thập các thông tin sau: họ tên, số điện thoại và khối lớp học. Thông tin này chỉ được sử dụng để liên hệ tư vấn và sắp xếp lịch học.</p>
+              <p>Chúng tôi không yêu cầu địa chỉ email hoặc thông tin tài chính qua biểu mẫu này.</p>
+
+              <h2>2. Mục đích sử dụng thông tin</h2>
+              <p>Thông tin thu thập được sử dụng với mục đích duy nhất là liên hệ lại để tư vấn chương trình học phù hợp và thông báo lịch học thử. Chúng tôi không sử dụng thông tin này cho mục đích tiếp thị bên thứ ba.</p>
+
+              <h2>3. Bảo vệ thông tin cá nhân</h2>
+              <p>Chúng tôi cam kết không chia sẻ, bán hoặc trao đổi thông tin cá nhân của quý phụ huynh và học sinh với bất kỳ bên thứ ba nào, trừ khi có yêu cầu của cơ quan pháp luật có thẩm quyền.</p>
+              <p>Thông tin cá nhân được lưu giữ an toàn và chỉ những người có thẩm quyền trong trung tâm mới có quyền truy cập.</p>
+
+              <h2>4. Quyền của chủ thể dữ liệu</h2>
+              <p>Theo Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân, quý phụ huynh và học sinh có quyền:</p>
+              <ul>
+                <li>Yêu cầu xem lại thông tin cá nhân mà chúng tôi đang lưu giữ</li>
+                <li>Yêu cầu chỉnh sửa thông tin không chính xác</li>
+                <li>Yêu cầu xóa thông tin cá nhân bất kỳ lúc nào</li>
+              </ul>
+
+              <h2>5. Cookie và công nghệ theo dõi</h2>
+              <p>Trang web này có thể sử dụng Google Analytics để phân tích lượng truy cập nhằm cải thiện nội dung và trải nghiệm người dùng. Dữ liệu phân tích được thu thập ở dạng tổng hợp và ẩn danh, không gắn với thông tin cá nhân cụ thể.</p>
+
+              <h2>6. Liên hệ về bảo mật dữ liệu</h2>
+              <p>Nếu có bất kỳ câu hỏi hoặc yêu cầu nào liên quan đến chính sách bảo mật này, vui lòng liên hệ trực tiếp qua số điện thoại <strong>0919 414 006</strong> hoặc địa chỉ lớp học tại Hẻm 1, Đường Nguyễn Tuân, TP. Rạch Giá, Tỉnh Kiên Giang.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </main>
+  )
+}
+
 export function getStaticPages() {
   return staticPages
 }
@@ -647,6 +739,8 @@ export function getPageComponent(pageId, pageProps = {}) {
       return function BlogPostRoute() {
         return <BlogPostPage slug={pageProps.slug} />
       }
+    case "privacy":
+      return PrivacyPage
     default:
       return App
   }
@@ -671,7 +765,7 @@ export function getPageMetadata(pageId, pageProps = {}) {
         ],
         ogImage: absoluteUrl("/room1.jpeg"),
         ogImageAlt: "Lớp học Toán Thầy Long tại Rạch Giá, Kiên Giang",
-        structuredData: [organizationSchema(), websiteSchema(), personSchema(), studyProgramsSchema(), faqSchema()],
+        structuredData: [organizationSchema(), websiteSchema(), personSchema(), studyProgramsSchema()],
       })
     case "programs":
       return createMetadata({
@@ -692,7 +786,6 @@ export function getPageMetadata(pageId, pageProps = {}) {
         structuredData: [
           organizationSchema(),
           studyProgramsSchema(),
-          faqSchema(),
           breadcrumbSchema([
             { name: "Trang chủ", path: "/" },
             { name: "Chương trình học", path: "/chuong-trinh-hoc/" },
@@ -737,6 +830,14 @@ export function getPageMetadata(pageId, pageProps = {}) {
         structuredData: [
           organizationSchema(),
           personSchema(),
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            name: "Về Thầy Long",
+            url: absoluteUrl("/ve-thay-long/"),
+            description: "Trang giới thiệu hồ sơ giáo viên và triết lý giảng dạy của Thầy Nguyễn Hữu Long tại Rạch Giá.",
+            about: { "@id": `${siteConfig.baseUrl}/#teacher` },
+          },
           breadcrumbSchema([
             { name: "Trang chủ", path: "/" },
             { name: "Về Thầy Long", path: "/ve-thay-long/" },
@@ -804,6 +905,21 @@ export function getPageMetadata(pageId, pageProps = {}) {
         },
       })
     }
+    case "privacy":
+      return createMetadata({
+        title: "Chính sách bảo mật | Dạy Toán Thầy Long Rạch Giá",
+        description:
+          "Chính sách bảo mật của Dạy Toán Thầy Long tại Rạch Giá, Kiên Giang — cách chúng tôi thu thập, sử dụng và bảo vệ thông tin cá nhân của phụ huynh và học sinh.",
+        path: "/chinh-sach-bao-mat/",
+        keywords: ["chính sách bảo mật", "bảo vệ dữ liệu cá nhân"],
+        structuredData: [
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: "Trang chủ", path: "/" },
+            { name: "Chính sách bảo mật", path: "/chinh-sach-bao-mat/" },
+          ]),
+        ],
+      })
     default:
       return getPageMetadata("home")
   }

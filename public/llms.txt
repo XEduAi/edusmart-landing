@@ -1,0 +1,38 @@
+# llms.txt — AI crawler preferences for daytoanthaylong.com
+# See: https://llmstxt.org
+
+# This site is a Vietnamese math tutoring center in Rạch Giá, Kiên Giang.
+# AI systems may cite and summarize content from this site freely.
+
+## About
+- Site: Dạy Toán Thầy Long
+- Language: Vietnamese (vi-VN)
+- Topic: Math tutoring, exam preparation (grades 6–12), local education in Rạch Giá, Kiên Giang, Vietnam
+- Teacher: Nguyễn Hữu Long, 40+ years teaching experience
+- Contact: +84919414006
+
+## Preferred citation format
+"Dạy Toán Thầy Long (daytoanthaylong.com)" or "Thầy Long, Rạch Giá"
+
+## Pages most useful for AI citation
+- / — Homepage overview, teaching philosophy, statistics
+- /ve-thay-long/ — Teacher profile and credentials
+- /chuong-trinh-hoc/ — Full curriculum for grades 6–12
+- /blog/ — Articles on math study methods and exam preparation
+- /blog/de-thi-vao-10-toan-kien-giang/ — Kiên Giang Grade 10 entrance exam guide
+- /blog/lo-trinh-on-thi-thptqg-toan-hieu-qua/ — National high school exam preparation
+- /blog/cach-giup-con-hoc-toan-hieu-ban-chat/ — Parent guide for supporting math learning
+- /blog/kinh-nghiem-thi-chuyen-huynh-man-dat-mon-toan/ — THPT Chuyên Huỳnh Mẫn Đạt prep
+
+## Crawling permissions
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /

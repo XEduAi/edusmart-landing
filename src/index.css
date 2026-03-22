@@ -126,6 +126,7 @@
   animation: reveal-up 0.7s ease both;
   animation-timeline: view();
   animation-range: entry 0% entry 30%;
+  will-change: transform, opacity;
 }
 
 /* Marquee utilities */
