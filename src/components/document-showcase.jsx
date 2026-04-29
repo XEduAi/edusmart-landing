@@ -1,97 +1,114 @@
-import { FileText, BookOpen, GraduationCap, Library, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
+
+const docs = [
+  {
+    tag: "Đề thi",
+    title: "Bộ đề thi vào 10 — Kiên Giang 2015–2025",
+    note: "42 đề · có lời giải",
+  },
+  {
+    tag: "Chuyên đề",
+    title: "Phương trình bậc hai & ứng dụng",
+    note: "120 trang · lớp 9",
+  },
+  {
+    tag: "Flashcard",
+    title: "Công thức lượng giác lớp 11",
+    note: "180 thẻ · ôn nhanh",
+  },
+  {
+    tag: "Đề thi",
+    title: "Đề thi tốt nghiệp THPT 2020–2025",
+    note: "35 đề · cấu trúc mới",
+  },
+]
 
 export function DocumentShowcase() {
-  const categories = [
-    {
-      icon: FileText,
-      title: "Đề thi",
-      description: "Đề thi các cấp, đề kiểm tra thường xuyên",
-      bgColor: "bg-sky-50",
-      iconColor: "text-sky-700",
-    },
-    {
-      icon: BookOpen,
-      title: "Tài liệu ôn tập",
-      description: "Tổng hợp lý thuyết, công thức, phương pháp giải",
-      bgColor: "bg-emerald-50",
-      iconColor: "text-emerald-700",
-    },
-    {
-      icon: GraduationCap,
-      title: "Bài giảng",
-      description: "Video bài giảng, slide thuyết trình chi tiết",
-      bgColor: "bg-emerald-50",
-      iconColor: "text-emerald-600",
-    },
-    {
-      icon: Library,
-      title: "Sách tham khảo",
-      description: "Sách chuyên đề, sách nâng cao",
-      bgColor: "bg-amber-50",
-      iconColor: "text-amber-600",
-    },
-  ]
-
   return (
-    <section id="documents" className="relative py-20 sm:py-32 overflow-hidden">
-      <div className="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-blue-100/30 blur-3xl" />
-      <div className="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-purple-100/30 blur-3xl" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="tape-label mb-4">Kho tài liệu</span>
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Kho Tài Liệu <span className="gradient-text">Toán Học</span>
-          </h2>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Hàng trăm tài liệu chất lượng cao phục vụ học sinh tại Rạch Giá, Kiên Giang — biên soạn bởi giáo viên 40+ năm kinh nghiệm
-          </p>
+    <section id="documents" className="bg-base" style={{ padding: "96px 0" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-8">
+          <div className="max-w-[640px]">
+            <div className="eyebrow mb-4">Tài liệu & đề thi</div>
+            <h2 className="h-section m-0">
+              Kho tài liệu được biên soạn riêng cho học sinh Rạch Giá.
+            </h2>
+          </div>
+          <a
+            href="https://app.edusmart.vn/documents"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-[46px] items-center gap-2 rounded-full border px-5 text-[14.5px] font-semibold no-underline transition-opacity hover:opacity-80"
+            style={{ borderColor: "var(--color-rule)", color: "var(--color-ink)" }}
+          >
+            Xem toàn bộ kho tài liệu
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category, index) => {
-            const Icon = category.icon
-            return (
-              <div key={index} className="dossier-panel card-hover group flex cursor-pointer flex-col items-center rounded-[1.7rem] p-8 text-center">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {docs.map((d) => (
+            <div
+              key={d.title}
+              className="overflow-hidden rounded"
+              style={{
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-line)",
+              }}
+            >
+              {/* Faux PDF cover */}
+              <div
+                className="relative flex items-end p-4"
+                style={{
+                  aspectRatio: "3 / 4",
+                  background: `repeating-linear-gradient(180deg, var(--color-accent-tint) 0 24px, var(--color-accent-soft) 24px 48px)`,
+                }}
+              >
                 <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl ${category.bgColor} transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12`}
+                  className="rounded-full px-2.5 py-1 text-[10.5px] font-semibold tracking-wider"
+                  style={{
+                    background: "var(--color-accent-deep)",
+                    color: "var(--color-on-accent)",
+                  }}
                 >
-                  <Icon
-                    className={`h-8 w-8 ${category.iconColor} transition-transform group-hover:rotate-12`}
-                  />
+                  {d.tag}
                 </div>
-                <h3 className="mt-6 text-lg font-semibold group-hover:text-primary transition-colors">
-                  {category.title}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `linear-gradient(to bottom, transparent 50%, var(--color-surface) 100%)`,
+                  }}
+                />
+                <div
+                  className="absolute right-4 top-4 font-mono"
+                  style={{ fontSize: 11, color: "var(--color-accent-mid)", letterSpacing: "0.06em" }}
+                >
+                  PDF
+                </div>
+              </div>
+              <div className="px-4 pb-5 pt-4">
+                <h3
+                  className="font-head"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: 16,
+                    lineHeight: 1.3,
+                    margin: "0 0 8px",
+                    color: "var(--color-ink)",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {d.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors">
-                  {category.description}
+                <p
+                  className="m-0 font-mono"
+                  style={{ fontSize: 12.5, color: "var(--color-muted)" }}
+                >
+                  {d.note}
                 </p>
               </div>
-            )
-          })}
-        </div>
-
-        <div className="dossier-panel mx-auto mt-12 max-w-2xl rounded-[1.8rem] p-8 text-center">
-          <p className="text-sm font-medium text-muted-foreground">
-            <span className="text-foreground font-semibold">500+ tài liệu</span>
-            {" · "}
-            Cập nhật liên tục
-            {" · "}
-            <span className="text-primary font-semibold">Từ 0đ</span>
-          </p>
-          <div className="mt-6">
-            <Button
-              size="lg"
-              className="rounded-full shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/30 transition-all gap-2"
-              asChild
-            >
-              <a href="https://app.edusmart.vn/documents" target="_blank" rel="noopener noreferrer">
-                Khám phá kho tài liệu
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

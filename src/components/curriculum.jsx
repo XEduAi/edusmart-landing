@@ -1,121 +1,122 @@
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { BookOpen, Target, Trophy, ArrowRight, CheckCircle2 } from "lucide-react"
-import { useState } from "react"
+const grades = [
+  { l: "Lớp 6", topics: ["Số tự nhiên & phân số", "Hình học trực quan", "Tỉ lệ thức"] },
+  { l: "Lớp 7", topics: ["Số hữu tỉ", "Tam giác bằng nhau", "Đại lượng tỉ lệ"] },
+  { l: "Lớp 8", topics: ["Hằng đẳng thức", "Tứ giác", "Phương trình bậc nhất"] },
+  { l: "Lớp 9", topics: ["Phương trình bậc hai", "Đường tròn", "Ôn thi vào 10"] },
+  { l: "Lớp 10", topics: ["Mệnh đề & tập hợp", "Hàm số bậc hai", "Vectơ"] },
+  { l: "Lớp 11", topics: ["Lượng giác", "Tổ hợp – xác suất", "Cấp số"] },
+  { l: "Lớp 12", topics: ["Khảo sát hàm số", "Tích phân", "Hình giải tích"] },
+]
+
+const exams = [
+  {
+    label: "Ôn thi vào 10",
+    body: "Lớp tăng cường tháng 3–6, đề thi các năm Kiên Giang & toàn quốc.",
+  },
+  {
+    label: "Ôn thi tốt nghiệp THPT",
+    body: "Cấu trúc đề mới, luyện đề có chấm – sửa hằng tuần.",
+  },
+  {
+    label: "Bồi dưỡng HSG",
+    body: "Dành cho học sinh khá giỏi, bài toán nâng cao theo chuyên đề.",
+  },
+]
 
 export function Curriculum() {
-  const [expandedIndex, setExpandedIndex] = useState(1)
-
-  const courses = [
-    {
-      icon: BookOpen,
-      level: "Dạy thêm Toán lớp 6-8 tại Rạch Giá",
-      description: "Nền tảng vững chắc cho học sinh THCS tại Rạch Giá, Kiên Giang",
-      features: ["Số học, Đại số cơ bản", "Hình học phẳng", "Phương trình, Bất phương trình"],
-      color: "from-primary to-emerald-500",
-      borderHoverColor: "hover:border-primary/40",
-      expandedInfo: "Học sinh lớp 6, 7, 8 tại Rạch Giá muốn xây dựng nền tảng Toán vững chắc",
-    },
-    {
-      icon: Target,
-      level: "Luyện thi vào 10 tại Rạch Giá",
-      description: "Luyện thi chuyên và thi vào trường THPT tại Rạch Giá, Kiên Giang",
-      features: ["Chuyên đề nâng cao", "Bồi dưỡng học sinh giỏi Rạch Giá", "Luyện đề thi vào 10 THPT Kiên Giang"],
-      color: "from-sky-600 to-sky-500",
-      borderHoverColor: "hover:border-sky-300",
-      popular: true,
-      expandedInfo: "Học sinh lớp 8, 9 tại Rạch Giá chuẩn bị thi vào 10 và trường chuyên Huỳnh Mẫn Đạt",
-    },
-    {
-      icon: Trophy,
-      level: "Ôn thi THPTQG tại Rạch Giá",
-      description: "Ôn thi THPT Quốc gia và chinh phục đại học tại Rạch Giá",
-      features: [
-        "Giải tích, Hình học không gian",
-        "Đại số và Giải tích",
-        "Luyện đề THPT Quốc gia",
-        "Phương pháp giải nhanh",
-      ],
-      color: "from-amber-500 to-orange-500",
-      borderHoverColor: "hover:border-amber-300",
-      expandedInfo: "Học sinh lớp 10, 11, 12 tại Rạch Giá, Kiên Giang chuẩn bị ôn thi THPT Quốc gia",
-    },
-  ]
-
   return (
-    <section id="curriculum" className="relative bg-gradient-to-b from-muted/30 to-background py-20 sm:py-32 overflow-hidden">
-      <div className="absolute top-20 right-0 -z-10 h-80 w-80 rounded-full bg-blue-100/20 blur-3xl" />
-      <div className="absolute bottom-20 left-0 -z-10 h-80 w-80 rounded-full bg-purple-100/20 blur-3xl" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="tape-label mb-4">Lộ trình học tập</span>
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            <span className="gradient-text">Chương trình học</span>
+    <section id="curriculum" className="bg-base" style={{ padding: "96px 0" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="mb-12 max-w-[720px]">
+          <div className="eyebrow mb-4">Chương trình</div>
+          <h2 className="h-section m-0">
+            Lộ trình theo đúng từng lớp 6–12, kèm chương trình ôn thi.
           </h2>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Lộ trình dạy thêm toán tại Rạch Giá rõ ràng, phù hợp với từng cấp học
-          </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-6xl gap-8 lg:grid-cols-3">
-          {courses.map((course, index) => {
-            const Icon = course.icon
+        {/* Grades grid: 7 columns desktop, fewer on smaller screens */}
+        <div
+          className="mb-12 grid grid-cols-2 overflow-hidden rounded sm:grid-cols-4 lg:grid-cols-7"
+          style={{ border: "1px solid var(--color-rule)" }}
+        >
+          {grades.map((g, i) => {
+            const isHighlight = i === 3 // Lớp 9 — entry point for thi vào 10
             return (
-              <div key={index}>
-                <Card
-                  className={`dossier-panel card-hover relative flex h-full cursor-pointer flex-col p-8 ${course.borderHoverColor} transition-all duration-300 ${
-                    expandedIndex === index ? "ring-2 ring-primary" : ""
-                  }`}
-                  onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+              <div
+                key={g.l}
+                style={{
+                  padding: "24px 18px",
+                  borderRight:
+                    i < grades.length - 1 ? "1px solid var(--color-rule)" : "none",
+                  borderBottom: "1px solid var(--color-rule)",
+                  background: isHighlight ? "var(--color-accent-tint)" : "transparent",
+                }}
+              >
+                <div
+                  className="mb-3.5 font-head"
+                  style={{
+                    fontWeight: 600,
+                    fontSize: 20,
+                    color: "var(--color-ink)",
+                    letterSpacing: "-0.01em",
+                  }}
                 >
-                  {course.popular && (
-                    <div className="absolute -top-3 right-6 tape-label">
-                      Phổ biến nhất
-                    </div>
-                  )}
-                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${course.color} transition-transform duration-300 ${
-                    expandedIndex === index ? "scale-110 rotate-12" : ""
-                  }`}>
-                    <Icon className="h-7 w-7 text-white" />
-                  </div>
-                  <h3 className="mt-6 text-xl font-bold">{course.level}</h3>
-                  <p className="mt-2 text-sm text-foreground/75">{course.description}</p>
-
-                  <div className={`mt-6 space-y-3 overflow-hidden transition-all duration-300 ${
-                    expandedIndex === index ? "max-h-96 opacity-100" : "max-h-32 opacity-75"
-                  }`}>
-                    {course.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" />
-                        <p className="text-sm text-foreground/75">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {expandedIndex === index && (
-                    <div className="mt-4 pt-4 border-t border-border animate-in">
-                      <p className="text-sm font-medium text-primary mb-2">Thích hợp cho:</p>
-                      <p className="text-sm text-foreground/75">{course.expandedInfo}</p>
-                    </div>
-                  )}
-
-                  <div className="mt-auto pt-8">
-                    <Button
-                      className={`w-full rounded-full ${course.popular ? 'bg-slate-950 text-white shadow-lg shadow-slate-950/15 hover:bg-slate-900' : 'bg-transparent'}`}
-                      variant={course.popular ? "default" : "outline"}
-                      asChild
+                  {g.l}
+                </div>
+                <ul className="m-0 flex flex-col gap-2 p-0" style={{ listStyle: "none" }}>
+                  {g.topics.map((t) => (
+                    <li
+                      key={t}
+                      className="relative pl-3"
+                      style={{ fontSize: 12.5, lineHeight: 1.4, color: "var(--color-body)" }}
                     >
-                      <a href="#contact">
-                        Đăng ký ngay
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-                </Card>
+                      <span
+                        className="absolute left-0 h-1 w-1 rounded-full"
+                        style={{ top: 6, background: "var(--color-accent-deep)" }}
+                      />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )
           })}
+        </div>
+
+        {/* Exam prep cards — deep band moment */}
+        <div className="grid gap-4 sm:grid-cols-3">
+          {exams.map((e) => (
+            <div
+              key={e.label}
+              className="rounded p-7"
+              style={{ background: "var(--color-accent-deep)", color: "var(--color-on-accent)" }}
+            >
+              <div
+                className="eyebrow mb-2.5"
+                style={{ color: "var(--color-accent-soft)" }}
+              >
+                Ôn thi
+              </div>
+              <h3
+                className="font-head"
+                style={{
+                  fontWeight: 500,
+                  fontSize: 22,
+                  margin: "0 0 10px",
+                  color: "var(--color-on-accent)",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {e.label}
+              </h3>
+              <p
+                className="m-0"
+                style={{ fontSize: 14, lineHeight: 1.55, color: "var(--color-on-accent-soft)" }}
+              >
+                {e.body}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

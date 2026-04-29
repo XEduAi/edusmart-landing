@@ -1,28 +1,18 @@
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Phone, MapPin, MessageCircle, Send, Sparkles, Check, AlertCircle } from "lucide-react"
 import { useState } from "react"
+import { ArrowRight, MessageCircle, Phone, MapPin, Mail, Check, AlertCircle } from "lucide-react"
+import { siteConfig } from "@/site/site-config"
 
 const ATTRIBUTION_STORAGE_KEY = "edusmart:first-touch-attribution"
 
 const getLeadAttribution = () => {
   if (typeof window === "undefined") {
-    return {
-      source: "direct",
-      sourceDetail: "",
-      referrer: "",
-      landingPagePath: "/",
-      utm: {},
-    }
+    return { source: "direct", sourceDetail: "", referrer: "", landingPagePath: "/", utm: {} }
   }
 
-  const cachedAttribution = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY)
-  if (cachedAttribution) {
+  const cached = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY)
+  if (cached) {
     try {
-      return JSON.parse(cachedAttribution)
+      return JSON.parse(cached)
     } catch {
       window.sessionStorage.removeItem(ATTRIBUTION_STORAGE_KEY)
     }
@@ -73,74 +63,51 @@ const getLeadAttribution = () => {
 }
 
 export function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    grade: "",
-    phone: "",
-    goal: "",
-  })
-
+  const [formData, setFormData] = useState({ name: "", studentName: "", grade: "", phone: "", goal: "" })
   const [errors, setErrors] = useState({})
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-
-  const validateForm = () => {
-    const newErrors = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Vui lòng nhập họ và tên"
-    } else if (formData.name.trim().length < 3) {
-      newErrors.name = "Họ tên phải dài ít nhất 3 ký tự"
-    }
-
-    if (!formData.grade.trim()) {
-      newErrors.grade = "Vui lòng nhập lớp học"
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Vui lòng nhập số điện thoại"
-    } else if (!/^[0-9\s\-+()]{10,}$/.test(formData.phone.replace(/\s/g, ""))) {
-      newErrors.phone = "Số điện thoại không hợp lệ"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
   const [submitError, setSubmitError] = useState("")
+
+  const validate = () => {
+    const next = {}
+    if (!formData.name.trim()) next.name = "Vui lòng nhập họ tên phụ huynh"
+    if (!formData.phone.trim()) next.phone = "Vui lòng nhập số điện thoại"
+    else if (!/^[0-9\s\-+()]{10,}$/.test(formData.phone.replace(/\s/g, ""))) next.phone = "Số điện thoại không hợp lệ"
+    setErrors(next)
+    return Object.keys(next).length === 0
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitError("")
-
-    if (!validateForm()) {
-      return
-    }
+    if (!validate()) return
 
     setIsLoading(true)
-
     try {
       const API_URL = import.meta.env.VITE_API_URL || "https://smartedu-backend.io.vn/api"
       const attribution = getLeadAttribution()
+      const payload = {
+        name: formData.name,
+        grade: formData.grade,
+        phone: formData.phone,
+        goal: [formData.studentName && `Học sinh: ${formData.studentName}`, formData.goal].filter(Boolean).join(" — "),
+        ...attribution,
+      }
       const response = await fetch(`${API_URL}/leads/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, ...attribution }),
+        body: JSON.stringify(payload),
       })
-
       const result = await response.json()
-
       if (!response.ok || !result.success) {
         throw new Error(result.message || "Có lỗi xảy ra, vui lòng thử lại")
       }
-
       setIsSubmitted(true)
-
-      // Reset form after showing success
       setTimeout(() => {
-        setFormData({ name: "", grade: "", phone: "", goal: "" })
+        setFormData({ name: "", studentName: "", grade: "", phone: "", goal: "" })
         setIsSubmitted(false)
-      }, 3000)
+      }, 4000)
     } catch (error) {
       setSubmitError(error.message || "Không thể kết nối đến server. Vui lòng thử lại sau.")
     } finally {
@@ -148,243 +115,231 @@ export function ContactForm() {
     }
   }
 
-  const contactInfo = [
-    {
-      icon: Phone,
-      label: "Điện thoại",
-      value: "0919 414 006",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: Phone,
-      label: "Điện thoại",
-      value: "0918 877 407",
-      color: "from-emerald-500 to-emerald-600",
-    },
-    {
-      icon: MessageCircle,
-      label: "Zalo / Messenger",
-      value: "0918 877 407",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: MapPin,
-      label: "Địa chỉ",
-      value: "Hẻm 1, Đường Nguyễn Tuân, TP. Rạch Giá, Tỉnh Kiên Giang",
-      color: "from-amber-500 to-amber-600",
-    },
-  ]
+  const fieldStyle = {
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.18)",
+    borderRadius: 4,
+    padding: "14px 16px",
+    color: "var(--color-on-accent)",
+    fontFamily: "var(--font-body)",
+    fontSize: 14.5,
+    outline: "none",
+    width: "100%",
+  }
 
   return (
-    <section id="contact" className="relative py-20 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-blue-50/20 to-background" />
-      <div className="absolute top-0 left-0 -z-10 h-96 w-96 rounded-full bg-blue-200/20 blur-3xl" />
-      <div className="absolute bottom-0 right-0 -z-10 h-96 w-96 rounded-full bg-purple-200/20 blur-3xl" />
+    <section id="contact" className="bg-deep" style={{ padding: "96px 0" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="grid items-start gap-16 lg:grid-cols-2">
+          {/* Form */}
+          <div>
+            <div className="eyebrow mb-4" style={{ color: "var(--color-accent-soft)" }}>
+              Đăng ký học thử
+            </div>
+            <h2 className="h-section mb-5" style={{ color: "var(--color-on-accent)" }}>
+              Để lại thông tin — Thầy sẽ gọi lại trong vòng 24 giờ.
+            </h2>
+            <p className="lead mb-9" style={{ color: "var(--color-on-accent-soft)" }}>
+              Buổi học thử miễn phí. Phụ huynh có thể ngồi quan sát hoặc theo dõi qua EduSmart.
+            </p>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-4 inline-flex">
-            <span className="tape-label">
-              <Sparkles className="mr-2 h-4 w-4" />
-              Đăng ký miễn phí
-            </span>
-          </div>
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Đăng ký <span className="gradient-text">học thử</span> tại Rạch Giá
-          </h2>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Điền thông tin để nhận tư vấn và đăng ký học thử miễn phí lớp dạy toán tại Rạch Giá, Kiên Giang
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-2">
-          <Card className={`dossier-panel p-8 transition-all duration-300 ${isSubmitted ? "ring-2 ring-green-500" : ""}`}>
             {isSubmitted ? (
-              <div className="flex flex-col items-center justify-center py-12 space-y-4 animate-in">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-                  <Check className="h-8 w-8 text-green-600" />
+              <div
+                className="animate-in flex items-center gap-3 rounded p-5"
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.18)",
+                  color: "var(--color-on-accent)",
+                }}
+              >
+                <Check className="h-6 w-6 shrink-0" />
+                <div>
+                  <div className="text-base font-semibold">Đăng ký thành công.</div>
+                  <div className="text-sm opacity-80">Cảm ơn bạn — chúng tôi sẽ liên hệ trong 24 giờ.</div>
                 </div>
-                <h3 className="text-lg font-bold text-center">Đăng ký thành công!</h3>
-                <p className="text-sm text-muted-foreground text-center">
-                  Cảm ơn bạn đã quan tâm. Chúng tôi sẽ liên hệ với bạn sớm nhất.
-                </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-semibold flex items-center gap-2">
-                    Họ và tên học sinh <span className="text-red-500">*</span>
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      id="name"
-                      placeholder="Nguyễn Văn A"
-                      value={formData.name}
-                      onChange={(e) => {
-                        setFormData({ ...formData, name: e.target.value })
-                        if (errors.name) setErrors({ ...errors, name: undefined })
-                      }}
-                      className={`rounded-xl h-11 transition-all duration-200 ${
-                        errors.name ? "border-red-500 focus:ring-red-200" : "focus:ring-primary"
-                      }`}
-                    />
-                    {formData.name && !errors.name && (
-                      <Check className="absolute right-3 top-3 h-5 w-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.name && (
-                    <div className="flex items-center gap-2 text-sm text-red-500 mt-1 animate-in">
-                      <AlertCircle className="h-4 w-4" />
-                      {errors.name}
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="grade" className="text-sm font-semibold flex items-center gap-2">
-                    Lớp học hiện tại <span className="text-red-500">*</span>
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      id="grade"
-                      placeholder="Lớp 9"
-                      value={formData.grade}
-                      onChange={(e) => {
-                        setFormData({ ...formData, grade: e.target.value })
-                        if (errors.grade) setErrors({ ...errors, grade: undefined })
-                      }}
-                      className={`rounded-xl h-11 transition-all duration-200 ${
-                        errors.grade ? "border-red-500 focus:ring-red-200" : "focus:ring-primary"
-                      }`}
-                    />
-                    {formData.grade && !errors.grade && (
-                      <Check className="absolute right-3 top-3 h-5 w-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.grade && (
-                    <div className="flex items-center gap-2 text-sm text-red-500 mt-1 animate-in">
-                      <AlertCircle className="h-4 w-4" />
-                      {errors.grade}
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-sm font-semibold flex items-center gap-2">
-                    Số điện thoại phụ huynh <span className="text-red-500">*</span>
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="0123 456 789"
-                      value={formData.phone}
-                      onChange={(e) => {
-                        setFormData({ ...formData, phone: e.target.value })
-                        if (errors.phone) setErrors({ ...errors, phone: undefined })
-                      }}
-                      className={`rounded-xl h-11 transition-all duration-200 ${
-                        errors.phone ? "border-red-500 focus:ring-red-200" : "focus:ring-primary"
-                      }`}
-                    />
-                    {formData.phone && !errors.phone && (
-                      <Check className="absolute right-3 top-3 h-5 w-5 text-green-500" />
-                    )}
-                  </div>
-                  {errors.phone && (
-                    <div className="flex items-center gap-2 text-sm text-red-500 mt-1 animate-in">
-                      <AlertCircle className="h-4 w-4" />
-                      {errors.phone}
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="goal" className="text-sm font-semibold">Mục tiêu học tập</Label>
-                  <Textarea
-                    id="goal"
-                    placeholder="Ví dụ: Nâng cao điểm số, thi vào 10, học sinh giỏi..."
-                    value={formData.goal}
-                    onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
-                    rows={4}
-                    className="rounded-xl transition-all duration-200 focus:ring-primary"
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                <div>
+                  <input
+                    placeholder="Họ tên phụ huynh *"
+                    value={formData.name}
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value })
+                      if (errors.name) setErrors({ ...errors, name: undefined })
+                    }}
+                    style={fieldStyle}
+                    className="placeholder:text-white/40"
                   />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full rounded-xl py-6 text-base shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-[1.02]"
-                  size="lg"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <div className="flex items-center gap-2">
-                      <div className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                      Đang gửi...
+                  {errors.name && (
+                    <div className="mt-1.5 flex items-center gap-1.5 text-xs" style={{ color: "#FBBF24" }}>
+                      <AlertCircle className="h-3.5 w-3.5" /> {errors.name}
                     </div>
-                  ) : (
-                    <>
-                      <Send className="mr-2 h-4 w-4" />
-                      Đăng ký ngay
-                    </>
                   )}
-                </Button>
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Số điện thoại *"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      setFormData({ ...formData, phone: e.target.value })
+                      if (errors.phone) setErrors({ ...errors, phone: undefined })
+                    }}
+                    style={fieldStyle}
+                    className="placeholder:text-white/40"
+                  />
+                  {errors.phone && (
+                    <div className="mt-1.5 flex items-center gap-1.5 text-xs" style={{ color: "#FBBF24" }}>
+                      <AlertCircle className="h-3.5 w-3.5" /> {errors.phone}
+                    </div>
+                  )}
+                </div>
+                <input
+                  placeholder="Tên học sinh"
+                  value={formData.studentName}
+                  onChange={(e) => setFormData({ ...formData, studentName: e.target.value })}
+                  style={fieldStyle}
+                  className="placeholder:text-white/40"
+                />
+                <input
+                  placeholder="Lớp (6–12)"
+                  value={formData.grade}
+                  onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                  style={fieldStyle}
+                  className="placeholder:text-white/40"
+                />
+                <textarea
+                  placeholder="Bạn cần tư vấn gì?"
+                  rows={3}
+                  value={formData.goal}
+                  onChange={(e) => setFormData({ ...formData, goal: e.target.value })}
+                  style={{ ...fieldStyle, gridColumn: "1 / -1", resize: "none" }}
+                  className="placeholder:text-white/40"
+                />
+
+                <div className="col-span-full mt-1 flex flex-wrap gap-3">
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="inline-flex h-[54px] flex-1 items-center justify-center gap-2 rounded-full px-7 text-[15.5px] font-semibold transition-opacity hover:opacity-90 disabled:opacity-60"
+                    style={{
+                      background: "var(--color-on-accent)",
+                      color: "var(--color-accent-deep)",
+                      border: "none",
+                      cursor: isLoading ? "wait" : "pointer",
+                      minWidth: 200,
+                    }}
+                  >
+                    {isLoading ? (
+                      <>
+                        <span
+                          className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                          aria-hidden
+                        />
+                        Đang gửi…
+                      </>
+                    ) : (
+                      <>
+                        Gửi đăng ký
+                        <ArrowRight className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
+                  <a
+                    href={siteConfig.zaloHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-[54px] items-center gap-2 rounded-full border px-7 text-[15.5px] font-semibold no-underline transition-opacity hover:opacity-90"
+                    style={{
+                      borderColor: "rgba(255,255,255,0.35)",
+                      color: "var(--color-on-accent)",
+                    }}
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Zalo
+                  </a>
+                </div>
 
                 {submitError && (
-                  <div className="flex items-center gap-2 text-sm text-red-500 p-3 rounded-lg bg-red-50 border border-red-200 animate-in">
+                  <div
+                    className="animate-in col-span-full flex items-center gap-2 rounded p-3 text-sm"
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(251,191,36,0.4)",
+                      color: "#FBBF24",
+                    }}
+                  >
                     <AlertCircle className="h-4 w-4 shrink-0" />
                     {submitError}
                   </div>
                 )}
-
-                <p className="text-center text-xs text-muted-foreground">
-                  Chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ.{" "}
-                  <a href="/chinh-sach-bao-mat/" className="underline underline-offset-2 hover:text-foreground transition-colors">
-                    Chính sách bảo mật
-                  </a>
-                </p>
               </form>
             )}
-          </Card>
+          </div>
 
-          <div className="space-y-6">
-            <Card className="dossier-panel p-8">
-              <span className="tape-label mb-4">Thông tin liên hệ</span>
-              <h3 className="text-xl font-bold">Thông tin liên hệ</h3>
-              <div className="mt-6 space-y-4">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon
-                  return (
-                    <div
-                      key={index}
-                      className="group flex cursor-pointer gap-4 rounded-[1.2rem] p-3 transition-all duration-300 hover:bg-muted"
-                    >
-                      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${info.color} transition-all group-hover:scale-110`}>
-                        <Icon className="h-5 w-5 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold">{info.label}</p>
-                        <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{info.value}</p>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-            </Card>
+          {/* Map + contact info */}
+          <div>
+            <div
+              className="relative mb-6 overflow-hidden rounded-md"
+              style={{
+                aspectRatio: "5 / 4",
+                border: "1px solid rgba(255,255,255,0.14)",
+              }}
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1964.467892518674!2d105.081728!3d10.022158!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a0b33cc27fdf5f%3A0xf099ba93decf08e!2zROG6oXkgdG_DoW4gdGjhuqd5IExvbmc!5e0!3m2!1svi!2s!4v1773394513618!5m2!1svi!2s"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "saturate(0.85)" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Vị trí lớp học Toán Thầy Long tại Rạch Giá, Kiên Giang"
+              />
+            </div>
 
-            {/* Special offer card */}
-            <Card className="dossier-panel p-6">
-              <div className="text-center">
-                <span className="tape-label mb-3">Ưu đãi đặc biệt</span>
-                <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-emerald-500">
-                  <Sparkles className="h-6 w-6 text-white" />
+            <div className="flex flex-col gap-5 text-[14.5px]">
+              <div className="grid grid-cols-[auto_1fr] items-start gap-3.5">
+                <span className="mt-0.5" style={{ color: "var(--color-accent-soft)" }}>
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <div>
+                  <div className="font-semibold" style={{ color: "var(--color-on-accent)" }}>
+                    Địa chỉ
+                  </div>
+                  <div style={{ color: "var(--color-on-accent-soft)", lineHeight: 1.5 }}>
+                    {siteConfig.address.display}
+                  </div>
                 </div>
-                <h4 className="font-bold text-lg">Ưu đãi đặc biệt</h4>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Đăng ký ngay để nhận <span className="font-semibold text-primary">1 buổi học thử miễn phí</span> và tư vấn lộ trình học tập cá nhân hóa!
-                </p>
               </div>
-            </Card>
+              <div className="grid grid-cols-[auto_1fr] items-start gap-3.5">
+                <span className="mt-0.5" style={{ color: "var(--color-accent-soft)" }}>
+                  <Phone className="h-4 w-4" />
+                </span>
+                <div>
+                  <div className="font-semibold" style={{ color: "var(--color-on-accent)" }}>
+                    Điện thoại / Zalo
+                  </div>
+                  <div style={{ color: "var(--color-on-accent-soft)" }}>
+                    {siteConfig.phones.join(" · ")}
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-[auto_1fr] items-start gap-3.5">
+                <span className="mt-0.5" style={{ color: "var(--color-accent-soft)" }}>
+                  <Mail className="h-4 w-4" />
+                </span>
+                <div>
+                  <div className="font-semibold" style={{ color: "var(--color-on-accent)" }}>
+                    Giờ học
+                  </div>
+                  <div style={{ color: "var(--color-on-accent-soft)" }}>
+                    Thứ 2 – Thứ 7: 13:00 – 21:00 · CN: 8:00 – 21:00
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

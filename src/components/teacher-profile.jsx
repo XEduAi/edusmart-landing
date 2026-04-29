@@ -1,101 +1,116 @@
-import { Card } from "@/components/ui/card"
-import { GraduationCap, Award, Users } from "lucide-react"
-import { useState } from "react"
+import { Check, Quote } from "lucide-react"
+
+const credentials = [
+  "Tốt nghiệp Đại học Sư phạm Vinh",
+  "Hơn 40 năm trực tiếp giảng dạy Toán THCS & THPT",
+  "Đã đào tạo trên 1.000 học sinh tại Rạch Giá và Kiên Giang",
+  "Tác giả nhiều bộ tài liệu ôn thi vào 10 và tốt nghiệp",
+]
 
 export function TeacherProfile() {
-  const [imageHovered, setImageHovered] = useState(false)
-
-  const achievements = [
-    {
-      icon: GraduationCap,
-      text: "Đại học Sư phạm Toán, Vinh",
-      color: "from-primary to-emerald-500",
-    },
-    {
-      icon: Award,
-      text: "40+ năm kinh nghiệm dạy Toán THCS & THPT",
-      color: "from-amber-500 to-amber-600",
-    },
-    {
-      icon: Users,
-      text: "Đào tạo hơn +1000 học sinh đạt học sinh giỏi",
-      color: "from-emerald-500 to-emerald-600",
-    },
-  ]
-
   return (
-    <section id="teacher" className="relative py-20 sm:py-32 overflow-hidden">
-      <div className="absolute top-0 left-0 -z-10 h-96 w-96 rounded-full bg-blue-100/20 blur-3xl" />
-      <div className="absolute bottom-0 right-0 -z-10 h-96 w-96 rounded-full bg-purple-100/20 blur-3xl" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="tape-label mb-4">Đội ngũ giáo viên</span>
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Giới thiệu <span className="gradient-text">giáo viên</span>
-          </h2>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Giáo viên dạy toán giàu kinh nghiệm và tâm huyết tại Rạch Giá, Kiên Giang
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 max-w-4xl">
-          <Card className="dossier-panel overflow-hidden shadow-xl shadow-slate-950/5">
-            <div className="grid gap-0 md:grid-cols-5">
-              <div className="md:col-span-2 relative overflow-hidden">
-                <div
-                  className="aspect-[3/4] bg-gradient-to-br from-blue-100 to-purple-100 transition-all duration-500 cursor-pointer"
-                  onMouseEnter={() => setImageHovered(true)}
-                  onMouseLeave={() => setImageHovered(false)}
-                >
-                  <img
-                    src="/potrait.jpeg"
-                    alt="Thầy Nguyễn Hữu Long - Giáo viên dạy Toán với 40+ năm kinh nghiệm tại Rạch Giá, Kiên Giang"
-                    width="600"
-                    height="800"
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority="low"
-                    className={`h-full w-full object-cover transition-all duration-500 ${
-                      imageHovered ? "scale-110 brightness-110" : "scale-100"
-                    }`}
-                  />
-                  {imageHovered && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent animate-in" />
-                  )}
-                </div>
+    <section id="teacher" className="bg-tint" style={{ padding: "120px 0" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="grid items-center gap-20 lg:grid-cols-[0.85fr_1fr]">
+          {/* Portrait + name plate */}
+          <div className="relative">
+            <div
+              className="relative w-full overflow-hidden rounded"
+              style={{ aspectRatio: "4 / 5" }}
+            >
+              <img
+                src="/potrait.jpeg"
+                alt="Thầy Nguyễn Hữu Long — chân dung"
+                className="h-full w-full object-cover"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div
+              className="absolute -right-7 bottom-8 max-w-[220px] rounded p-5"
+              style={{
+                background: "var(--color-accent-deep)",
+                color: "var(--color-on-accent)",
+                boxShadow: "var(--shadow-card)",
+              }}
+            >
+              <div
+                className="font-head"
+                style={{
+                  fontSize: 28,
+                  fontWeight: 500,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.1,
+                }}
+              >
+                Thầy Long
               </div>
-              <div className="flex flex-col justify-center p-8 md:col-span-3 lg:p-12">
-                <div>
-                  <h3 className="text-2xl font-bold lg:text-3xl">Thầy Nguyễn Hữu Long</h3>
-                  <p className="mt-1 text-sm text-primary font-medium">Giáo viên môn Toán</p>
-                </div>
-
-                <div className="mt-8 space-y-4">
-                  {achievements.map((achievement, index) => {
-                    const Icon = achievement.icon
-                    return (
-                      <div
-                        key={index}
-                        className="group flex cursor-pointer items-start gap-4 rounded-lg p-3 transition-all duration-300 hover:bg-primary/5"
-                      >
-                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${achievement.color} transition-all group-hover:scale-110`}>
-                          <Icon className="h-5 w-5 text-white" />
-                        </div>
-                        <p className="flex items-center text-sm leading-relaxed font-medium group-hover:text-foreground transition-colors">{achievement.text}</p>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                <div className="mt-8 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 p-4 border border-blue-100/50">
-                  <p className="text-sm text-muted-foreground italic leading-relaxed">
-                    &ldquo;Mỗi học sinh đều có tiềm năng riêng. Nhiệm vụ của giáo viên là khơi dậy đam mê và dẫn dắt các em đến thành công.&rdquo;
-                  </p>
-                </div>
+              <div
+                className="mt-1 text-xs"
+                style={{
+                  color: "var(--color-on-accent-soft)",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Sáng lập · Chủ nhiệm
               </div>
             </div>
-          </Card>
+          </div>
+
+          {/* Bio + quote + credentials */}
+          <div>
+            <div className="eyebrow mb-4">Người đứng lớp</div>
+            <h2 className="h-section">
+              Thầy Nguyễn Hữu Long — 40+ năm dạy Toán, một quan điểm không đổi.
+            </h2>
+
+            <div
+              className="relative my-6 max-w-[560px]"
+              style={{
+                paddingLeft: 36,
+                borderLeft: "2px solid var(--color-accent-deep)",
+                paddingTop: 28,
+                paddingBottom: 28,
+              }}
+            >
+              <Quote
+                className="absolute h-7 w-7"
+                style={{ left: 12, top: 14, color: "var(--color-accent-mid)", opacity: 0.4 }}
+              />
+              <p
+                className="m-0 font-head italic"
+                style={{
+                  fontSize: 22,
+                  lineHeight: 1.45,
+                  color: "var(--color-ink)",
+                  letterSpacing: "-0.005em",
+                }}
+              >
+                “Toán không khó. Cái khó là thầy có chịu giảng từ gốc, và học sinh có chịu hỏi đến nơi đến chốn hay không.”
+              </p>
+            </div>
+
+            <ul className="m-0 flex flex-col gap-3 p-0" style={{ listStyle: "none" }}>
+              {credentials.map((c) => (
+                <li key={c} className="grid grid-cols-[auto_1fr] items-start gap-3.5">
+                  <span
+                    className="mt-0.5 grid h-[22px] w-[22px] place-items-center rounded-full"
+                    style={{
+                      background: "var(--color-accent-soft)",
+                      color: "var(--color-accent-deep)",
+                    }}
+                  >
+                    <Check className="h-3.5 w-3.5" />
+                  </span>
+                  <span style={{ fontSize: 15, lineHeight: 1.55, color: "var(--color-body)" }}>
+                    {c}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

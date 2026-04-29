@@ -1,127 +1,137 @@
-import { Facebook, MessageCircle, Phone, ArrowUpRight } from "lucide-react"
-import { blogPosts } from "@/content/blog-posts"
 import { primaryNav, siteConfig } from "@/site/site-config"
 
-const featuredPosts = blogPosts.slice(0, 3)
+const columns = [
+  {
+    title: "Chương trình",
+    links: [
+      { label: "Lớp 6–9", href: "/chuong-trinh-hoc/" },
+      { label: "Lớp 10–12", href: "/chuong-trinh-hoc/" },
+      { label: "Ôn thi vào 10", href: "/blog/de-thi-vao-10-toan-kien-giang/" },
+      { label: "Ôn thi tốt nghiệp", href: "/chuong-trinh-hoc/" },
+      { label: "Bồi dưỡng HSG", href: "/chuong-trinh-hoc/" },
+    ],
+  },
+  {
+    title: "EduSmart",
+    links: [
+      { label: "Bảng phụ huynh", href: "/nen-tang-lms/" },
+      { label: "Quiz & bài tập", href: "/nen-tang-lms/" },
+      { label: "Kho tài liệu", href: "https://app.edusmart.vn/documents" },
+      { label: "Flashcard", href: "/nen-tang-lms/" },
+    ],
+  },
+  {
+    title: "Trung tâm",
+    links: [
+      { label: "Về Thầy Long", href: "/ve-thay-long/" },
+      { label: "Blog", href: "/blog/" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Liên hệ", href: "/#contact" },
+    ],
+  },
+]
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-slate-200/80 bg-[linear-gradient(180deg,#f7f4ea_0%,#fffdf8_100%)]">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr_0.85fr_1fr]">
+    <footer
+      className="bg-base"
+      style={{
+        borderTop: "1px solid var(--color-line)",
+        padding: "72px 0 32px",
+      }}
+    >
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="mb-14 grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+          {/* Brand */}
           <div>
-            <img
-              src="/logo.webp"
-              alt="Dạy Toán Thầy Long - Logo trung tâm dạy Toán tại Rạch Giá"
-              className="h-16 w-auto object-contain"
-              width="234"
-              height="128"
-              loading="lazy"
-              decoding="async"
-            />
-            <p className="mt-4 max-w-sm text-sm leading-7 text-slate-600">
-              Trung tâm dạy Toán tại Rạch Giá, Kiên Giang với mô hình lớp nhỏ, lộ trình rõ ràng và nền tảng EduSmart LMS
-              để phụ huynh theo dõi tiến độ học tập.
+            <div className="mb-5 flex items-center gap-3">
+              <div
+                className="grid h-9 w-9 place-items-center rounded-md font-head text-[17px] font-semibold"
+                style={{ background: "var(--color-accent-deep)", color: "var(--color-on-accent)" }}
+              >
+                L
+              </div>
+              <div
+                className="font-head"
+                style={{
+                  fontWeight: 600,
+                  fontSize: 18,
+                  color: "var(--color-ink)",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                Dạy Toán Thầy Long
+              </div>
+            </div>
+            <p
+              className="m-0 mb-5 max-w-[320px]"
+              style={{ fontSize: 14, lineHeight: 1.6, color: "var(--color-body)" }}
+            >
+              Trung tâm Toán cho học sinh THCS &amp; THPT tại Rạch Giá, Kiên Giang. Học bài bản, lộ trình rõ ràng, theo dõi tiến độ thật qua EduSmart LMS.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm">
-              <a
-                href={siteConfig.lmsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 font-semibold text-slate-700 transition-colors hover:text-slate-950"
-              >
-                Vào LMS
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 font-semibold text-white transition-colors hover:bg-slate-800"
-              >
-                Đăng ký học thử
-              </a>
+            <div
+              className="font-mono"
+              style={{ fontSize: 13, color: "var(--color-muted)", letterSpacing: "0.04em" }}
+            >
+              © {new Date().getFullYear()} Dạy Toán Thầy Long
             </div>
           </div>
 
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Điều hướng</h3>
-            <ul className="mt-5 space-y-3">
-              {primaryNav.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="text-sm text-slate-600 transition-colors hover:text-primary">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href="/#faq" className="text-sm text-slate-600 transition-colors hover:text-primary">
-                  Câu hỏi thường gặp
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Bài viết mới</h3>
-            <ul className="mt-5 space-y-4">
-              {featuredPosts.map((post) => (
-                <li key={post.slug}>
-                  <a href={`/blog/${post.slug}/`} className="group block">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/80">{post.category}</p>
-                    <p className="mt-1 text-sm font-medium text-slate-800 transition-colors group-hover:text-primary">
-                      {post.title}
-                    </p>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Liên hệ</h3>
-            <ul className="mt-5 space-y-3">
-              {siteConfig.phones.map((phone) => (
-                <li key={phone} className="flex items-center gap-2 text-sm text-slate-600">
-                  <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
-                  <a href={`tel:${phone.replace(/\s/g, "")}`} className="transition-colors hover:text-primary">
-                    {phone}
-                  </a>
-                </li>
-              ))}
-              <li className="flex items-start gap-2 text-sm text-slate-600">
-                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                <a href={siteConfig.zaloHref} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-primary">
-                  Zalo hỗ trợ phụ huynh và học sinh
-                </a>
-              </li>
-              <li className="text-sm leading-7 text-slate-600">{siteConfig.address.display}</li>
-            </ul>
-          </div>
+          {columns.map((col) => (
+            <div key={col.title}>
+              <div
+                className="mb-5 text-xs font-semibold uppercase"
+                style={{
+                  letterSpacing: "0.14em",
+                  color: "var(--color-ink)",
+                }}
+              >
+                {col.title}
+              </div>
+              <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-sm no-underline transition-opacity hover:opacity-70"
+                      style={{ color: "var(--color-body)" }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-slate-200/80 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
-            <p className="text-sm text-slate-500">© {new Date().getFullYear()} Dạy Toán Thầy Long. Trung tâm dạy Toán tại Rạch Giá, Kiên Giang.</p>
-            <a href="/chinh-sach-bao-mat/" className="text-sm text-slate-400 hover:text-slate-600 transition-colors">Chính sách bảo mật</a>
-          </div>
-          <div className="flex items-center gap-3">
-            {[
-              { href: "https://www.facebook.com/daytoanthaylong", icon: Facebook, label: "Facebook Dạy Toán Thầy Long Rạch Giá" },
-              { href: siteConfig.zaloHref, icon: MessageCircle, label: "Zalo Dạy Toán Thầy Long" },
-              { href: `tel:${siteConfig.phones[1].replace(/\s/g, "")}`, icon: Phone, label: "Gọi điện Dạy Toán Thầy Long Rạch Giá" },
-            ].map((social) => {
-              const Icon = social.icon
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 transition-all hover:border-primary hover:text-primary"
-                  aria-label={social.label}
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              )
-            })}
+        <div
+          className="flex flex-wrap items-center justify-between gap-4 pt-6"
+          style={{
+            borderTop: "1px solid var(--color-line)",
+            fontSize: 12.5,
+            color: "var(--color-muted)",
+          }}
+        >
+          <div>{siteConfig.address.display}</div>
+          <div className="flex gap-5">
+            {primaryNav.slice(1).map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="no-underline transition-opacity hover:opacity-70"
+                style={{ color: "var(--color-muted)" }}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="/chinh-sach-bao-mat/"
+              className="no-underline transition-opacity hover:opacity-70"
+              style={{ color: "var(--color-muted)" }}
+            >
+              Chính sách
+            </a>
           </div>
         </div>
       </div>

@@ -388,39 +388,170 @@ function SurfaceCards({ items }) {
   )
 }
 
-function BlogGrid({ currentSlug }) {
+function BlogGrid({ currentSlug, excludeFeatured = false }) {
+  const posts = blogPosts
+    .filter((post) => post.slug !== currentSlug)
+    .filter((_, idx) => (excludeFeatured ? idx > 0 : true))
+
   return (
-    <section className="pb-16 sm:pb-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-6 lg:grid-cols-2">
-          {blogPosts
-            .filter((post) => post.slug !== currentSlug)
-            .map((post) => (
-              <article key={post.slug} className="dossier-panel card-hover rounded-[1.85rem] p-7">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="tape-label">{post.category}</span>
-                  <div className="inline-flex items-center gap-1 text-xs text-slate-500">
-                    <Clock3 className="h-3.5 w-3.5" />
-                    {post.readingTime}
+    <section className="bg-base" style={{ padding: "0 0 96px" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div
+          className="grid gap-x-10 gap-y-14 md:grid-cols-2"
+          style={{ borderTop: "1px solid var(--color-rule)", paddingTop: 48 }}
+        >
+          {posts.map((post) => (
+            <article key={post.slug} className="flex flex-col">
+              <a
+                href={`/blog/${post.slug}/`}
+                className="group block no-underline"
+                style={{ color: "inherit" }}
+              >
+                <div
+                  className="relative mb-5 w-full overflow-hidden rounded"
+                  style={{
+                    aspectRatio: "16 / 9",
+                    background: "var(--color-accent-tint)",
+                  }}
+                >
+                  <div
+                    className="absolute left-3 top-3 rounded-full px-2.5 py-1 text-[10.5px] font-semibold tracking-wider"
+                    style={{
+                      background: "var(--color-on-accent)",
+                      color: "var(--color-accent-deep)",
+                      letterSpacing: "0.12em",
+                    }}
+                  >
+                    {post.category}
                   </div>
                 </div>
-                <h2 className="mt-5 text-2xl font-semibold text-slate-950">{post.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{post.description}</p>
-                <div className="mt-6 flex items-center gap-3 text-sm text-slate-500">
+                <div
+                  className="font-mono mb-3 flex items-center gap-2.5 text-[11px] uppercase"
+                  style={{ color: "var(--color-muted)", letterSpacing: "0.14em" }}
+                >
                   <span>{post.audience}</span>
-                  <span className="h-1 w-1 rounded-full bg-slate-300" />
-                  <span>{post.updatedAt}</span>
+                  <span style={{ color: "var(--color-rule)" }}>·</span>
+                  <time dateTime={post.publishedAt}>{post.readingTime}</time>
                 </div>
-                <a
-                  href={`/blog/${post.slug}/`}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-950 transition-colors hover:text-primary"
+                <h2
+                  className="font-head transition-colors group-hover:opacity-70"
+                  style={{
+                    fontSize: 26,
+                    fontWeight: 500,
+                    lineHeight: 1.2,
+                    letterSpacing: "-0.018em",
+                    margin: "0 0 12px",
+                    color: "var(--color-ink)",
+                    textWrap: "balance",
+                  }}
+                >
+                  {post.title}
+                </h2>
+                <p
+                  className="m-0 mb-5 max-w-[520px]"
+                  style={{
+                    fontSize: 15,
+                    lineHeight: 1.6,
+                    color: "var(--color-body)",
+                  }}
+                >
+                  {post.description}
+                </p>
+                <span
+                  className="inline-flex items-center gap-2 text-[13.5px] font-semibold"
+                  style={{ color: "var(--color-ink)" }}
                 >
                   Đọc bài viết
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </article>
-            ))}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </a>
+            </article>
+          ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+function FeaturedPost() {
+  const post = blogPosts[0]
+  if (!post) return null
+  return (
+    <section className="bg-tint" style={{ padding: "64px 0 96px" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div
+          className="font-mono mb-8 text-[11px] font-semibold uppercase"
+          style={{ color: "var(--color-accent-mid)", letterSpacing: "0.18em" }}
+        >
+          Bài viết nổi bật
+        </div>
+        <a
+          href={`/blog/${post.slug}/`}
+          className="group grid gap-10 no-underline lg:grid-cols-[1.05fr_1fr] lg:items-center"
+          style={{ color: "inherit" }}
+        >
+          <div
+            className="relative w-full overflow-hidden rounded"
+            style={{
+              aspectRatio: "5 / 4",
+              background: "var(--color-accent-deep)",
+            }}
+          >
+            <div
+              className="absolute left-4 top-4 rounded-full px-3 py-1.5 text-[11px] font-semibold tracking-wider"
+              style={{
+                background: "var(--color-on-accent)",
+                color: "var(--color-accent-deep)",
+                letterSpacing: "0.14em",
+              }}
+            >
+              {post.category}
+            </div>
+          </div>
+          <div>
+            <div
+              className="font-mono mb-4 flex items-center gap-3 text-[11px] uppercase"
+              style={{ color: "var(--color-muted)", letterSpacing: "0.14em" }}
+            >
+              <span>{post.audience}</span>
+              <span style={{ color: "var(--color-rule)" }}>·</span>
+              <time dateTime={post.publishedAt}>{post.readingTime}</time>
+              <span style={{ color: "var(--color-rule)" }}>·</span>
+              <time dateTime={post.publishedAt}>{post.publishedAt}</time>
+            </div>
+            <h2
+              className="font-head transition-opacity group-hover:opacity-80"
+              style={{
+                fontSize: "clamp(30px, 3.4vw, 44px)",
+                fontWeight: 500,
+                lineHeight: 1.1,
+                letterSpacing: "-0.022em",
+                margin: "0 0 16px",
+                color: "var(--color-ink)",
+                textWrap: "balance",
+              }}
+            >
+              {post.title}
+            </h2>
+            <p
+              className="m-0 max-w-[560px]"
+              style={{
+                fontSize: 17,
+                lineHeight: 1.6,
+                color: "var(--color-body)",
+              }}
+            >
+              {post.description}
+            </p>
+            <div
+              className="mt-7 inline-flex items-center gap-2 text-[14px] font-semibold"
+              style={{ color: "var(--color-accent-deep)" }}
+            >
+              Đọc bài viết
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </div>
+          </div>
+        </a>
       </div>
     </section>
   )
@@ -428,17 +559,29 @@ function BlogGrid({ currentSlug }) {
 
 function Breadcrumbs({ items }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+    <nav
+      aria-label="Breadcrumb"
+      className="font-mono text-[11px] uppercase"
+      style={{ color: "var(--color-muted)", letterSpacing: "0.14em" }}
+    >
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, index) => (
           <li key={`${item.name}-${index}`} className="flex items-center gap-2">
-            {index > 0 && <ChevronRight className="h-4 w-4 text-slate-300" />}
+            {index > 0 && (
+              <span aria-hidden="true" style={{ color: "var(--color-rule)" }}>
+                /
+              </span>
+            )}
             {item.path ? (
-              <a href={item.path} className="transition-colors hover:text-slate-950">
+              <a
+                href={item.path}
+                className="no-underline transition-opacity hover:opacity-70"
+                style={{ color: "var(--color-muted)" }}
+              >
                 {item.name}
               </a>
             ) : (
-              <span className="font-medium text-slate-700">{item.name}</span>
+              <span style={{ color: "var(--color-ink)" }}>{item.name}</span>
             )}
           </li>
         ))}
@@ -533,21 +676,22 @@ function AboutPage() {
 
 function BlogIndexPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-base">
       <Header currentPath="/blog/" />
       <PageHero
         eyebrow="Blog học Toán"
-        title="Các bài viết hỗ trợ phụ huynh và học sinh học Toán có định hướng rõ hơn."
-        description="Blog chỉ tập trung vào nội dung Toán học và việc học Toán: luyện thi vào 10, ôn THPT, thi chuyên, phương pháp học và cách phụ huynh đồng hành đúng cách."
+        title="Bài viết về cách học Toán đúng cách, theo lộ trình và có hệ thống."
+        description="Blog tập trung vào nội dung Toán học và việc học Toán — luyện thi vào 10, ôn THPT, thi chuyên, phương pháp học và cách phụ huynh đồng hành đúng cách."
         primaryAction={{ href: "/#contact", label: "Nhận tư vấn học thử" }}
         secondaryAction={{ href: "/chuong-trinh-hoc/", label: "Xem chương trình học" }}
         highlights={[
-          { label: "Số bài viết hiện có", value: `${blogPosts.length} bài viết Toán học` },
-          { label: "Trọng tâm", value: "Lộ trình học, luyện thi và sửa lỗi sai môn Toán" },
-          { label: "Đối tượng", value: "Phụ huynh, học sinh THCS và THPT" },
+          { label: "Bài viết", value: `${blogPosts.length} bài về Toán & việc học Toán` },
+          { label: "Trọng tâm", value: "Lộ trình, luyện thi, sửa lỗi sai" },
+          { label: "Đối tượng", value: "Phụ huynh, học sinh THCS & THPT" },
         ]}
       />
-      <BlogGrid />
+      <FeaturedPost />
+      <BlogGrid excludeFeatured />
       <CtaBanner
         title="Muốn tìm đúng bài viết Toán phù hợp với giai đoạn học hiện tại?"
         description="Từ blog, phụ huynh và học sinh có thể đi tiếp sang chương trình học, học thử hoặc xem cách EduSmart LMS hỗ trợ việc ôn tập ngoài giờ lên lớp."
@@ -567,79 +711,211 @@ function BlogPostPage({ slug }) {
   }
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#fffdf8_0%,#ffffff_100%)]">
+    <main className="min-h-screen bg-base">
       <Header currentPath={`/blog/${slug}/`} />
-      <section className="pt-32 pb-14 sm:pt-40 sm:pb-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl">
-            <Breadcrumbs
-              items={[
-                { name: "Trang chủ", path: "/" },
-                { name: "Blog", path: "/blog/" },
-                { name: post.title },
-              ]}
-            />
-            <p className="mt-8 text-xs font-semibold uppercase tracking-[0.22em] text-primary">{post.category}</p>
-            <h1 className="mt-4 font-display text-4xl leading-tight tracking-tight text-slate-950 sm:text-5xl">
-              {post.title}
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-700">{post.description}</p>
 
-            <div className="mt-8 grid gap-4 rounded-[1.75rem] border border-slate-200/80 bg-white p-6 shadow-sm sm:grid-cols-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Tác giả</p>
-                <p className="mt-2 text-sm font-medium text-slate-900">
-                  <a href="/ve-thay-long/" className="hover:text-primary transition-colors">Thầy Nguyễn Hữu Long</a>
-                </p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đối tượng</p>
-                <p className="mt-2 text-sm font-medium text-slate-900">{post.audience}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Thời lượng đọc</p>
-                <p className="mt-2 text-sm font-medium text-slate-900">{post.readingTime}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Đăng ngày</p>
-                <p className="mt-2 text-sm font-medium text-slate-900"><time dateTime={post.publishedAt}>{post.publishedAt}</time></p>
-              </div>
-            </div>
+      {/* Article header */}
+      <section className="bg-base" style={{ padding: "64px 0 48px" }}>
+        <div className="mx-auto max-w-[860px] px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { name: "Trang chủ", path: "/" },
+              { name: "Blog", path: "/blog/" },
+              { name: post.title },
+            ]}
+          />
+          <div
+            className="eyebrow mt-9"
+            style={{ color: "var(--color-accent-mid)" }}
+          >
+            {post.category}
+          </div>
+          <h1
+            className="font-head"
+            style={{
+              fontSize: "clamp(36px, 4.6vw, 60px)",
+              fontWeight: 500,
+              lineHeight: 1.05,
+              letterSpacing: "-0.025em",
+              color: "var(--color-ink)",
+              margin: "16px 0 24px",
+              textWrap: "balance",
+            }}
+          >
+            {post.title}
+          </h1>
+          <p
+            style={{
+              fontSize: 19,
+              lineHeight: 1.6,
+              color: "var(--color-body)",
+              margin: 0,
+              textWrap: "pretty",
+            }}
+          >
+            {post.description}
+          </p>
 
-            <div className="mt-8 rounded-[1.75rem] border border-emerald-100 bg-emerald-50 px-6 py-6">
-              <p className="text-sm leading-7 text-emerald-950">{post.heroNote}</p>
-              <ul className="mt-4 space-y-2">
-                {post.summaryPoints.map((point) => (
-                  <li key={point} className="flex items-start gap-3 text-sm leading-7 text-emerald-900">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Meta strip */}
+          <div
+            className="mt-10 grid gap-x-10 gap-y-5 sm:grid-cols-4"
+            style={{
+              borderTop: "1px solid var(--color-rule)",
+              borderBottom: "1px solid var(--color-rule)",
+              padding: "20px 0",
+            }}
+          >
+            {[
+              {
+                label: "Tác giả",
+                value: (
+                  <a
+                    href="/ve-thay-long/"
+                    className="no-underline transition-opacity hover:opacity-70"
+                    style={{ color: "var(--color-ink)" }}
+                  >
+                    Thầy Nguyễn Hữu Long
+                  </a>
+                ),
+              },
+              { label: "Đối tượng", value: post.audience },
+              { label: "Thời lượng", value: post.readingTime },
+              {
+                label: "Cập nhật",
+                value: <time dateTime={post.updatedAt}>{post.updatedAt}</time>,
+              },
+            ].map((item) => (
+              <div key={item.label}>
+                <div
+                  className="font-mono mb-1.5 text-[11px] uppercase"
+                  style={{ color: "var(--color-muted)", letterSpacing: "0.16em" }}
+                >
+                  {item.label}
+                </div>
+                <div
+                  className="font-head"
+                  style={{
+                    fontSize: 15,
+                    fontWeight: 500,
+                    color: "var(--color-ink)",
+                  }}
+                >
+                  {item.value}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="pb-12 sm:pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="article-content mx-auto max-w-3xl">
-            {post.sections.map((section) => (
-              <section key={section.title} className="mb-12 rounded-[1.75rem] border border-slate-200/70 bg-white p-7 shadow-sm sm:p-10">
-                <h2>{section.title}</h2>
-                {section.paragraphs?.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-                {section.bullets?.length ? (
-                  <ul>
-                    {section.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                ) : null}
-              </section>
+      {/* Pull-out: in-this-article summary */}
+      <section className="bg-tint" style={{ padding: "48px 0" }}>
+        <div className="mx-auto max-w-[860px] px-6 lg:px-8">
+          <div
+            className="eyebrow mb-4"
+            style={{ color: "var(--color-accent-mid)" }}
+          >
+            Trong bài viết
+          </div>
+          <p
+            className="font-head italic"
+            style={{
+              fontSize: 22,
+              lineHeight: 1.5,
+              color: "var(--color-ink)",
+              margin: "0 0 24px",
+              letterSpacing: "-0.005em",
+              maxWidth: 720,
+            }}
+          >
+            “{post.heroNote}”
+          </p>
+          <ul className="m-0 grid gap-3 p-0 sm:grid-cols-2" style={{ listStyle: "none" }}>
+            {post.summaryPoints.map((point) => (
+              <li
+                key={point}
+                className="grid grid-cols-[auto_1fr] items-start gap-3"
+              >
+                <span
+                  className="mt-2 h-1.5 w-1.5 rounded-full"
+                  style={{ background: "var(--color-accent-deep)" }}
+                />
+                <span style={{ fontSize: 15, lineHeight: 1.55, color: "var(--color-body)" }}>
+                  {point}
+                </span>
+              </li>
             ))}
-          </article>
+          </ul>
+        </div>
+      </section>
+
+      {/* Article body */}
+      <section className="bg-base" style={{ padding: "64px 0 80px" }}>
+        <div className="mx-auto max-w-[720px] px-6 lg:px-8">
+          {post.sections.map((section, idx) => (
+            <article
+              key={section.title}
+              style={{
+                paddingTop: idx === 0 ? 0 : 40,
+                marginTop: idx === 0 ? 0 : 40,
+                borderTop: idx === 0 ? "none" : "1px solid var(--color-rule)",
+              }}
+            >
+              <div
+                className="font-mono mb-3 text-[11px] uppercase"
+                style={{ color: "var(--color-muted)", letterSpacing: "0.16em" }}
+              >
+                {String(idx + 1).padStart(2, "0")} · {post.category}
+              </div>
+              <h2
+                className="font-head"
+                style={{
+                  fontSize: "clamp(24px, 2.6vw, 34px)",
+                  fontWeight: 500,
+                  lineHeight: 1.15,
+                  letterSpacing: "-0.018em",
+                  color: "var(--color-ink)",
+                  margin: "0 0 20px",
+                  textWrap: "balance",
+                }}
+              >
+                {section.title}
+              </h2>
+              {section.paragraphs?.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  style={{
+                    fontSize: 17,
+                    lineHeight: 1.75,
+                    color: "var(--color-body)",
+                    margin: "0 0 16px",
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+              {section.bullets?.length ? (
+                <ul
+                  className="m-0 mt-4 list-none p-0"
+                  style={{ borderLeft: "2px solid var(--color-accent-deep)" }}
+                >
+                  {section.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      style={{
+                        padding: "10px 0 10px 18px",
+                        fontSize: 16,
+                        lineHeight: 1.6,
+                        color: "var(--color-body)",
+                      }}
+                    >
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          ))}
         </div>
       </section>
 
@@ -650,15 +926,21 @@ function BlogPostPage({ slug }) {
         secondaryAction={{ href: "/#contact", label: "Đăng ký học thử" }}
       />
 
-      <section className="pb-16 sm:pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-6xl items-end justify-between gap-6">
+      {/* Related posts */}
+      <section className="bg-base" style={{ padding: "80px 0 24px" }}>
+        <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Đọc tiếp</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950">Bài viết liên quan</h2>
+              <div className="eyebrow mb-3">Đọc tiếp</div>
+              <h2 className="h-section m-0">Bài viết liên quan</h2>
             </div>
-            <a href="/blog/" className="hidden text-sm font-semibold text-slate-700 transition-colors hover:text-primary sm:inline-flex">
+            <a
+              href="/blog/"
+              className="inline-flex items-center gap-2 text-[14px] font-semibold no-underline transition-opacity hover:opacity-70"
+              style={{ color: "var(--color-ink)" }}
+            >
               Xem tất cả
+              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>

@@ -1,320 +1,226 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import {
-  Monitor,
-  BarChart3,
-  FileQuestion,
-  Bell,
-  Shield,
-  Zap,
-  ArrowRight,
-  CheckCircle2,
-  BookOpenCheck,
-  ClipboardList,
-  Users,
-  Star,
-  Trophy,
-  Bot,
-} from "lucide-react"
+import { ArrowRight, Zap, Users, BookOpen } from "lucide-react"
 
-const screenshotTabs = [
+const features = [
   {
-    id: "dashboard",
-    label: "Dashboard",
-    icon: Monitor,
-    image: "/screenshots/ss-dashboard.webp",
-    title: "Tổng quan học tập",
-    alt: "Dashboard EduSmart LMS hiển thị lớp học, bài tập và tiến độ học Toán",
-    width: 2172, height: 1181,
-    description: "Xem toàn bộ lớp học, bài tập sắp tới và hoạt động gần đây ngay trên một màn hình.",
+    title: "Bài tập & quiz tự động",
+    body: "Học sinh làm bài trên web/điện thoại. Hệ thống chấm tức thì, gợi ý dạng cần luyện thêm.",
+    icon: Zap,
   },
   {
-    id: "quiz",
-    label: "Làm bài kiểm tra",
-    icon: FileQuestion,
-    image: "/screenshots/ss-quiz.webp",
-    title: "Bài kiểm tra trực tuyến",
-    alt: "Giao diện làm bài kiểm tra Toán trực tuyến trên EduSmart với hỗ trợ công thức LaTeX",
-    width: 1619, height: 1091,
-    description: "Giao diện làm bài hiện đại với hỗ trợ công thức Toán LaTeX, đếm ngược thời gian và điều hướng câu hỏi nhanh.",
+    title: "Bảng theo dõi cho phụ huynh",
+    body: "Xem điểm, bài đã nộp, phản hồi của thầy theo từng tuần — không phải đợi cuối kỳ.",
+    icon: Users,
   },
   {
-    id: "result",
-    label: "Kết quả",
-    icon: Star,
-    image: "/screenshots/ss-result.webp",
-    title: "Xem kết quả chi tiết",
-    alt: "Màn hình kết quả bài kiểm tra Toán với đáp án và giải thích chi tiết từng câu",
-    width: 1330, height: 1190,
-    description: "Sau khi nộp bài, học sinh thấy ngay tỷ lệ đúng, đáp án và giải thích từng câu hỏi.",
-  },
-  {
-    id: "achievements",
-    label: "Thành tích",
-    icon: Trophy,
-    image: "/screenshots/ss-achievement.webp",
-    title: "Hệ thống huy hiệu & XP",
-    alt: "Trang thành tích học sinh với huy hiệu, điểm XP và bảng xếp hạng trên EduSmart",
-    width: 1357, height: 1046,
-    description: "Gamification giúp học sinh có động lực học tập — tích lũy XP, lên cấp và mở khóa huy hiệu.",
-  },
-  {
-    id: "chatbot",
-    label: "Trợ lý AI",
-    icon: Bot,
-    image: "/screenshots/ss-chatbot.png",
-    title: "EduBot — Trợ lý học tập AI",
-    alt: "Giao diện EduBot trợ lý AI hỗ trợ học sinh giải Toán và ôn tập trực tiếp trên EduSmart",
-    width: 2453, height: 1214,
-    description: "Trợ lý AI 24/7 giải đáp thắc mắc Toán học, giải thích từng bước và gợi ý bài tập phù hợp.",
+    title: "Flashcard & tài liệu ôn thi",
+    body: "Kho công thức, đề thi các năm, flashcard ghi nhớ — học mọi lúc, mọi nơi.",
+    icon: BookOpen,
   },
 ]
 
-export function PlatformShowcase() {
-  const [activeTab, setActiveTab] = useState("dashboard")
-  const active = screenshotTabs.find((t) => t.id === activeTab)
-  const features = [
-    {
-      icon: FileQuestion,
-      title: "Hệ thống Quiz thông minh",
-      description: "Làm bài kiểm tra trực tuyến với đa dạng dạng câu hỏi. Hỗ trợ LaTeX cho công thức Toán học.",
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-600",
-    },
-    {
-      icon: BarChart3,
-      title: "Theo dõi tiến độ",
-      description: "Dashboard trực quan hiển thị kết quả học tập, điểm mạnh/yếu và lộ trình cải thiện.",
-      bgColor: "bg-emerald-50",
-      iconColor: "text-emerald-600",
-    },
-    {
-      icon: BookOpenCheck,
-      title: "Quản lý lớp học",
-      description: "Giáo viên dễ dàng quản lý lớp, giao bài tập và theo dõi từng học sinh.",
-      bgColor: "bg-purple-50",
-      iconColor: "text-purple-600",
-    },
-    {
-      icon: Bell,
-      title: "Thông báo real-time",
-      description: "Nhận thông báo về bài tập mới, kết quả kiểm tra và lịch học ngay lập tức.",
-      bgColor: "bg-amber-50",
-      iconColor: "text-amber-600",
-    },
-    {
-      icon: ClipboardList,
-      title: "Ngân hàng đề thi",
-      description: "Kho đề thi phong phú từ cơ bản đến nâng cao, cập nhật liên tục theo chương trình mới.",
-      bgColor: "bg-rose-50",
-      iconColor: "text-rose-600",
-    },
-    {
-      icon: Shield,
-      title: "Bảo mật & An toàn",
-      description: "Dữ liệu học sinh được bảo mật tuyệt đối với hệ thống xác thực an toàn.",
-      bgColor: "bg-slate-50",
-      iconColor: "text-slate-600",
-    },
-  ]
-
-  const platformBenefits = [
-    "Truy cập mọi lúc, mọi nơi trên mọi thiết bị",
-    "Tự động chấm bài và phân tích kết quả",
-    "Lộ trình học cá nhân hóa dựa trên AI",
-    "Báo cáo tiến độ gửi tự động cho phụ huynh",
-    "Hỗ trợ công thức Toán LaTeX chuyên nghiệp",
-    "Giao diện thân thiện, dễ sử dụng",
-  ]
-
+function PlatformMock() {
   return (
-    <section id="platform" className="relative py-20 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-blue-50/30 to-background" />
-      <div className="absolute top-1/4 left-0 -z-10 h-96 w-96 rounded-full bg-blue-200/20 blur-3xl" />
-      <div className="absolute bottom-1/4 right-0 -z-10 h-96 w-96 rounded-full bg-purple-200/20 blur-3xl" />
+    <div
+      className="overflow-hidden rounded-md"
+      style={{
+        background: "var(--color-base)",
+        color: "var(--color-ink)",
+        border: "1px solid var(--color-line)",
+        boxShadow: "var(--shadow-mock)",
+        transform: "rotate(-1.2deg)",
+      }}
+    >
+      {/* Browser chrome */}
+      <div
+        className="flex items-center gap-2 px-3.5 py-2.5"
+        style={{ borderBottom: "1px solid var(--color-line)" }}
+      >
+        <span className="h-[9px] w-[9px] rounded-full" style={{ background: "#FF6259" }} />
+        <span className="h-[9px] w-[9px] rounded-full" style={{ background: "#FFB927" }} />
+        <span className="h-[9px] w-[9px] rounded-full" style={{ background: "#1FCA50" }} />
+        <span
+          className="ml-3 font-mono text-[11px]"
+          style={{ color: "var(--color-muted)" }}
+        >
+          edusmart.daytoanthaylong.vn / phụ-huynh
+        </span>
+      </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-4 inline-flex">
-            <span className="tape-label">
-              <Zap className="mr-2 h-4 w-4" />
-              Nền tảng học tập trực tuyến
-            </span>
-          </div>
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Nền tảng <span className="gradient-text">EduSmart LMS</span>
-          </h2>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hệ thống quản lý học tập hiện đại hỗ trợ học sinh học toán tại Rạch Giá kết nối hiệu quả mọi lúc, mọi nơi
-          </p>
-        </div>
-
-        {/* Screenshot gallery */}
-        <div className="mx-auto mt-16 max-w-5xl">
-          {/* Tab buttons */}
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {screenshotTabs.map((tab) => {
-              const Icon = tab.icon
-              const isActive = activeTab === tab.id
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? "bg-slate-950 text-white shadow-md shadow-slate-950/15 scale-105"
-                      : "dossier-panel text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  {tab.label}
-                </button>
-              )
-            })}
-          </div>
-
-          {/* Description bar */}
-          <div className="mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 px-1">
-            <h3 className="font-semibold text-foreground">{active.title}</h3>
-            <span className="hidden sm:block text-muted-foreground">—</span>
-            <p className="text-sm text-muted-foreground">{active.description}</p>
-          </div>
-
-          {/* Browser chrome wrapper */}
-          <div className="dossier-panel rounded-[2rem] p-3">
-            <div className="rounded-[1.6rem] bg-gradient-to-br from-slate-900 to-slate-800 p-2 shadow-2xl shadow-slate-950/18">
-              <div className="mb-2 flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
-                <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-red-400/80" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
-                  <div className="h-3 w-3 rounded-full bg-green-400/80" />
-                </div>
-                <div className="flex flex-1 justify-center">
-                  <div className="flex w-48 items-center justify-center gap-2 rounded-md bg-white/10 px-3 py-1 text-xs text-white/50">
-                    lms.daytoanthaylong.com
-                  </div>
-                </div>
-              </div>
-
-              {/* Screenshot images */}
-              <div className="relative overflow-hidden rounded-b-xl rounded-t-sm">
-                <img
-                  key={active.id}
-                  src={active.image}
-                  alt={active.alt}
-                  width={active.width}
-                  height={active.height}
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                  className="w-full object-cover object-top transition-all duration-500"
-                  style={{ maxHeight: "520px" }}
-                />
-              </div>
+      <div className="p-6">
+        <div className="mb-4 flex items-baseline justify-between">
+          <div>
+            <div
+              className="eyebrow"
+              style={{ color: "var(--color-muted)", letterSpacing: "0.06em" }}
+            >
+              Tiến độ tuần 14
+            </div>
+            <div
+              className="mt-0.5 font-head"
+              style={{ fontSize: 22, fontWeight: 600, color: "var(--color-ink)" }}
+            >
+              Nguyễn Minh An · Lớp 9A
             </div>
           </div>
+          <div
+            className="rounded-full px-2.5 py-1 text-[11px] font-semibold"
+            style={{
+              background: "var(--color-accent-soft)",
+              color: "var(--color-accent-deep)",
+            }}
+          >
+            ● Đang theo dõi
+          </div>
+        </div>
 
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-1 mt-5">
-            {screenshotTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className="p-3 group"
-                aria-label={`Xem ${tab.label}`}
+        <div className="mb-4 grid grid-cols-2 gap-3">
+          {[
+            { l: "Bài tập đã nộp", v: "12/14", pct: 86 },
+            { l: "Điểm trung bình", v: "8.7", pct: 87 },
+          ].map((m) => (
+            <div
+              key={m.l}
+              className="rounded-md p-3.5"
+              style={{ background: "var(--color-accent-tint)" }}
+            >
+              <div className="text-[11px]" style={{ color: "var(--color-muted)" }}>
+                {m.l}
+              </div>
+              <div
+                className="my-0.5 mb-2 font-head"
+                style={{ fontSize: 26, fontWeight: 600, color: "var(--color-ink)" }}
               >
-                <span
-                  className={`block rounded-full transition-all duration-300 ${
-                    activeTab === tab.id
-                      ? "w-6 h-2 bg-primary"
-                      : "w-2 h-2 bg-muted-foreground/30 group-hover:bg-muted-foreground/60"
-                  }`}
+                {m.v}
+              </div>
+              <div
+                className="h-1 overflow-hidden rounded-full"
+                style={{ background: "var(--color-line)" }}
+              >
+                <div
+                  className="h-full"
+                  style={{
+                    width: `${m.pct}%`,
+                    background: "var(--color-accent-deep)",
+                  }}
                 />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Features grid */}
-        <div className="mx-auto mt-20 max-w-6xl">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold sm:text-3xl">Tính năng nổi bật</h3>
-            <p className="mt-2 text-muted-foreground">Mọi thứ bạn cần cho việc học tập hiệu quả</p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => {
-              const Icon = feature.icon
-              return (
-                <Card key={index} className="dossier-panel card-hover group p-6">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${feature.bgColor} transition-all duration-300 group-hover:scale-110`}>
-                    <Icon className={`h-6 w-6 ${feature.iconColor}`} />
-                  </div>
-                  <h4 className="mt-4 text-base font-semibold">{feature.title}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">{feature.description}</p>
-                </Card>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* Benefits + CTA */}
-        <div className="mx-auto mt-20 max-w-5xl">
-          <div className="grid gap-8 lg:grid-cols-2 items-center">
-            <div>
-              <h3 className="text-2xl font-bold sm:text-3xl">
-                Tại sao nên sử dụng <span className="gradient-text">EduSmart LMS</span>?
-              </h3>
-              <p className="mt-3 text-muted-foreground">
-                Nền tảng được thiết kế riêng cho học sinh Việt Nam, tối ưu cho việc học Toán từ lớp 6 đến 12.
-              </p>
-              <div className="mt-6 space-y-3">
-                {platformBenefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-500 mt-0.5" />
-                    <p className="text-sm leading-relaxed text-foreground/80">{benefit}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Button size="lg" className="rounded-full shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 hover:scale-105" asChild>
-                  <a href="https://lms.daytoanthaylong.com" target="_blank" rel="noopener noreferrer">
-                    Vào nền tảng ngay
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" className="rounded-full bg-transparent" asChild>
-                  <a href="#contact">Liên hệ tư vấn</a>
-                </Button>
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* Stats card */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 blur-3xl rounded-full" />
-              <div className="relative grid grid-cols-2 gap-4">
-                {[
-                  { number: "1000+", label: "Học sinh đang sử dụng", icon: Users, color: "from-blue-500 to-blue-600" },
-                  { number: "5000+", label: "Bài quiz đã tạo", icon: FileQuestion, color: "from-purple-500 to-purple-600" },
-                  { number: "98%", label: "Hài lòng với nền tảng", icon: CheckCircle2, color: "from-emerald-500 to-emerald-600" },
-                  { number: "24/7", label: "Truy cập mọi lúc", icon: Zap, color: "from-amber-500 to-amber-600" },
-                ].map((stat, i) => {
-                  const StatIcon = stat.icon
-                  return (
-                    <div key={i} className="dossier-panel card-hover rounded-[1.5rem] p-6 text-center shadow-sm">
-                      <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${stat.color} mb-3`}>
-                        <StatIcon className="h-5 w-5 text-white" />
-                      </div>
-                      <div className="text-2xl font-bold">{stat.number}</div>
-                      <div className="mt-1 text-xs text-foreground/60">{stat.label}</div>
+        <div
+          className="mb-2 eyebrow"
+          style={{ color: "var(--color-muted)", letterSpacing: "0.06em" }}
+        >
+          Phản hồi mới nhất
+        </div>
+        <div
+          className="pl-3"
+          style={{
+            borderLeft: "2px solid var(--color-accent-deep)",
+            fontSize: 13,
+            lineHeight: 1.55,
+            color: "var(--color-body)",
+          }}
+        >
+          “An đã nắm chắc dạng phương trình bậc hai. Tuần tới luyện thêm hệ thức Vi-ét.”{" "}
+          <span style={{ color: "var(--color-muted)" }}>— Thầy Long, 23/04</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function PlatformShowcase() {
+  return (
+    <section id="platform" className="bg-surface" style={{ padding: "96px 0" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="grid items-center gap-16 lg:grid-cols-[1fr_1.05fr] lg:gap-[72px]">
+          <div>
+            <div
+              className="mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-semibold tracking-wider"
+              style={{
+                background: "var(--color-accent-deep)",
+                color: "var(--color-on-accent)",
+              }}
+            >
+              <span
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ background: "var(--color-accent-soft)" }}
+              />
+              EDUSMART LMS
+            </div>
+            <h2 className="h-section">
+              Nền tảng học tập riêng — để phụ huynh không còn “đợi đến cuối kỳ”.
+            </h2>
+            <p className="lead mb-9 mt-4">
+              Mỗi học sinh có một tài khoản. Phụ huynh đăng nhập riêng để xem tiến độ thật sự
+              — bài tập đã nộp, điểm, phản hồi của thầy hằng tuần.
+            </p>
+
+            <div
+              className="flex flex-col"
+              style={{ borderTop: "1px solid var(--color-rule)" }}
+            >
+              {features.map((f) => {
+                const Icon = f.icon
+                return (
+                  <div
+                    key={f.title}
+                    className="grid grid-cols-[auto_1fr] items-start gap-5 py-5"
+                    style={{ borderBottom: "1px solid var(--color-rule)" }}
+                  >
+                    <div
+                      className="grid h-9 w-9 place-items-center rounded-md"
+                      style={{
+                        background: "var(--color-accent-soft)",
+                        color: "var(--color-accent-deep)",
+                      }}
+                    >
+                      <Icon className="h-5 w-5" />
                     </div>
-                  )
-                })}
-              </div>
+                    <div>
+                      <h3
+                        className="font-head"
+                        style={{
+                          fontWeight: 600,
+                          fontSize: 17,
+                          margin: "0 0 4px",
+                          color: "var(--color-ink)",
+                        }}
+                      >
+                        {f.title}
+                      </h3>
+                      <p
+                        className="m-0"
+                        style={{ fontSize: 14, lineHeight: 1.55, color: "var(--color-body)" }}
+                      >
+                        {f.body}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="mt-7">
+              <a
+                href="https://lms.daytoanthaylong.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-[46px] items-center gap-2 rounded-full px-5 text-[14.5px] font-semibold no-underline transition-opacity hover:opacity-90"
+                style={{
+                  background: "var(--color-accent-deep)",
+                  color: "var(--color-on-accent)",
+                }}
+              >
+                Xem demo EduSmart
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
+
+          <PlatformMock />
         </div>
       </div>
     </section>

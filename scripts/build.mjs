@@ -107,7 +107,7 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f766e" />
+    <meta name="theme-color" content="#0F4C4C" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Dạy Toán Thầy Long" />
     <meta name="description" content="${escapeHtml(metadata.description)}" />
@@ -123,6 +123,9 @@ function renderHtmlDocument({ appHtml, metadata, entry, importFiles, pageId, pag
     <link rel="alternate" hreflang="x-default" href="${metadata.canonical}" />
     <link rel="preconnect" href="https://maps.googleapis.com" />
     <link rel="preconnect" href="https://zalo.me" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Source+Serif+4:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
     <link rel="preload" as="image" href="/room1.jpeg" fetchpriority="high" />
     <link rel="preload" as="image" href="/logo.webp" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />

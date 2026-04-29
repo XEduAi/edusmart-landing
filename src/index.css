@@ -1,282 +1,266 @@
 @import "tailwindcss";
 
+/* ────────────────────────────────────────────────────────────────────────
+ * Dạy Toán Thầy Long — design tokens (Direction A · Warm Authority default)
+ * Toggle Direction B by adding [data-theme="b"] to <html>.
+ * Toggle accents via [data-accent="teal|navy|gold"].
+ * ──────────────────────────────────────────────────────────────────────── */
+
 :root {
-  --background: #fffdf8;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0f766e;
-  --primary-foreground: #ffffff;
-  --secondary: #f2efe6;
-  --secondary-foreground: #172033;
-  --muted: #f7f4ea;
-  --muted-foreground: #5f6677;
-  --accent: #dff7f2;
-  --accent-foreground: #115e59;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --border: #e6e2d8;
-  --input: #ded8cb;
-  --ring: #0f766e;
-  --radius: 0.9rem;
+  /* Neutral foundation — Warm Authority */
+  --color-base:        #FBF8F1;
+  --color-surface:     #F4EEDF;
+  --color-ink:         #1F1B14;
+  --color-body:        #3D362A;
+  --color-muted:       #7A6F5C;
+  --color-line:        rgba(31, 27, 20, 0.10);
+  --color-rule:        rgba(31, 27, 20, 0.18);
+
+  /* Accent: Teal */
+  --color-accent-deep: #0F4C4C;
+  --color-accent-mid:  #1B6B6B;
+  --color-accent-soft: #E5EFEC;
+  --color-accent-tint: #F2F7F4;
+  --color-on-accent:   #FAF7F1;
+  --color-on-accent-soft: rgba(250, 247, 241, 0.72);
+
+  /* Type */
+  --font-head:  "Lora", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body:  "Be Vietnam Pro", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --fs-display: clamp(40px, 5.4vw, 76px);
+  --fs-h2:      clamp(32px, 4vw, 52px);
+  --fs-h3:      24px;
+  --fs-lead:    19px;
+  --fs-body:    15.5px;
+  --fs-small:   13px;
+  --fs-eyebrow: 11px;
+
+  --tracking-display: -0.025em;
+  --tracking-head:    -0.02em;
+  --tracking-eyebrow: 0.18em;
+
+  /* Rhythm */
+  --space-section-y: 96px;
+  --space-section-y-lg: 120px;
+  --container-max:   1200px;
+  --container-pad:   32px;
+
+  /* Radii — intentionally tight: institutional, not webby */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.18);
+  --shadow-mock: 0 24px 60px rgba(0, 0, 0, 0.22), 0 2px 0 rgba(0, 0, 0, 0.04);
+
+  --ease-out: cubic-bezier(.2, .7, .3, 1);
+  --dur-fast: 180ms;
+  --dur-med:  280ms;
+
+  --radius: var(--radius-sm);
+}
+
+/* Direction B · Modern EdTech Lite */
+[data-theme="b"] {
+  --color-base:    #FFFFFF;
+  --color-surface: #F4F5F8;
+  --color-ink:     #0E1320;
+  --color-body:    #3A4258;
+  --color-muted:   #6B7388;
+  --color-line:    rgba(14, 19, 32, 0.10);
+  --color-rule:    rgba(14, 19, 32, 0.18);
+
+  --color-accent-deep: #15294A;
+  --color-accent-mid:  #2A416A;
+  --color-accent-soft: #E6EAF1;
+  --color-accent-tint: #F1F3F8;
+  --color-on-accent:   #F4F6FB;
+  --color-on-accent-soft: rgba(244, 246, 251, 0.72);
+
+  --font-head: "Source Serif 4", "Lora", Georgia, serif;
+}
+
+[data-accent="navy"] {
+  --color-accent-deep: #15294A;
+  --color-accent-mid:  #2A416A;
+  --color-accent-soft: #E6EAF1;
+  --color-accent-tint: #F1F3F8;
+}
+[data-accent="gold"] {
+  --color-accent-deep: #7A5410;
+  --color-accent-mid:  #A2761B;
+  --color-accent-soft: #F1E9D6;
+  --color-accent-tint: #F7F1E2;
 }
 
 @theme inline {
-  --font-sans: "Aptos", "Segoe UI", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, ui-serif, serif;
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Be Vietnam Pro", "Inter", system-ui, sans-serif;
+  --font-serif: "Lora", "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-background: var(--color-base);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-base);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-base);
+  --color-popover-foreground: var(--color-ink);
+  --color-primary: var(--color-accent-deep);
+  --color-primary-foreground: var(--color-on-accent);
+  --color-secondary: var(--color-surface);
+  --color-secondary-foreground: var(--color-ink);
+  --color-muted: var(--color-surface);
+  --color-muted-foreground: var(--color-muted);
+  --color-accent: var(--color-accent-soft);
+  --color-accent-foreground: var(--color-accent-deep);
+  --color-destructive: #B3261E;
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--color-line);
+  --color-input: var(--color-line);
+  --color-ring: var(--color-accent-deep);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply bg-background font-sans text-foreground antialiased;
     margin: 0;
-    background-image:
-      radial-gradient(circle at top left, rgba(13, 148, 136, 0.08), transparent 26%),
-      radial-gradient(circle at 90% 10%, rgba(245, 158, 11, 0.08), transparent 22%);
+    background: var(--color-base);
+    color: var(--color-body);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-
   ::selection {
-    background: rgba(15, 118, 110, 0.18);
+    background: var(--color-accent-soft);
+    color: var(--color-accent-deep);
   }
 }
 
-/* === MagicUI-inspired CSS animations === */
+/* ────────────────────────────────────────────────────────────────────────
+ * Section rhythm utilities — apply per <section> to drive visual variety.
+ * The page reads: light → DEEP → light light → DEEP → light light tint
+ * light → DEEP. Three deep moments calmly distributed.
+ * ──────────────────────────────────────────────────────────────────────── */
+.bg-base    { background: var(--color-base);        color: var(--color-body); }
+.bg-surface { background: var(--color-surface);     color: var(--color-body); }
+.bg-tint    { background: var(--color-accent-tint); color: var(--color-body); }
+.bg-deep    { background: var(--color-accent-deep); color: var(--color-on-accent); }
 
+/* ────────────────────────────────────────────────────────────────────────
+ * Type primitives
+ * ──────────────────────────────────────────────────────────────────────── */
+.font-head { font-family: var(--font-head); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+.eyebrow {
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-accent-mid);
+}
+
+.h-display {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.h-section {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+  letter-spacing: var(--tracking-head);
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: var(--color-body);
+  text-wrap: pretty;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * Animations (kept minimal — design favors stillness)
+ * ──────────────────────────────────────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(calc(-100% - var(--marquee-gap, 1rem))); }
+  to   { transform: translateX(-50%); }
 }
-
-@keyframes marquee-reverse {
-  from { transform: translateX(calc(-100% - var(--marquee-gap, 1rem))); }
-  to { transform: translateX(0); }
-}
-
-@keyframes marquee-vertical {
-  from { transform: translateY(0); }
-  to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
-}
-
-@keyframes border-beam {
-  from { offset-distance: 0%; }
-  to { offset-distance: 100%; }
-}
-
-@keyframes shimmer-slide {
-  to { transform: translateX(calc(100cqw - 100%)); }
-}
-
-@keyframes spin-around {
-  0% { transform: translateZ(0) rotate(0); }
-  15%, 35% { transform: translateZ(0) rotate(90deg); }
-  65%, 85% { transform: translateZ(0) rotate(270deg); }
-  100% { transform: translateZ(0) rotate(360deg); }
-}
-
 @keyframes reveal-up {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes reveal-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
 }
-
-@keyframes number-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.04); }
+.animate-in {
+  animation: fade-in-up 0.3s ease-out both;
 }
-
-/* Section scroll-reveal using CSS animation-timeline */
 .reveal-on-scroll {
-  animation: reveal-up 0.7s ease both;
+  animation: reveal-up 0.7s var(--ease-out) both;
   animation-timeline: view();
   animation-range: entry 0% entry 30%;
   will-change: transform, opacity;
 }
 
-/* Marquee utilities */
-.animate-marquee {
-  animation: marquee var(--duration, 40s) linear infinite;
-}
-.animate-marquee-reverse {
-  animation: marquee-reverse var(--duration, 40s) linear infinite;
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-in {
-  animation: fade-in-up 0.3s ease-out both;
-}
-
-.gradient-text {
-  background: linear-gradient(120deg, #0f766e 0%, #0f5fd7 45%, #d97706 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-.card-hover {
-  transition:
-    transform 0.24s ease,
-    box-shadow 0.24s ease,
-    border-color 0.24s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 35px -18px rgba(15, 23, 42, 0.28);
-}
-
-.dossier-panel {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(230, 226, 216, 0.92);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 247, 240, 0.96)),
-    repeating-linear-gradient(0deg, rgba(15, 23, 42, 0.035) 0, rgba(15, 23, 42, 0.035) 1px, transparent 1px, transparent 30px);
-  box-shadow:
-    0 24px 60px -34px rgba(15, 23, 42, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-}
-
-.dossier-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(120deg, rgba(15, 118, 110, 0.08), transparent 35%),
-    radial-gradient(circle at top right, rgba(217, 119, 6, 0.12), transparent 24%);
-}
-
-.graph-paper {
-  background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
-
-.tape-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  background: rgba(255, 251, 235, 0.94);
-  padding: 0.45rem 0.9rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #9a3412;
-  box-shadow: 0 10px 22px -18px rgba(154, 52, 18, 0.9);
-}
-
-.editorial-number {
-  font-family: "Merriweather", ui-serif, Georgia, serif;
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  line-height: 1;
-  letter-spacing: -0.05em;
-  color: #0f172a;
-}
-
-.editorial-kicker {
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #475569;
-}
-
-.formula-whisper {
-  font-family: "Merriweather", ui-serif, Georgia, serif;
-  color: rgba(15, 23, 42, 0.16);
-  letter-spacing: 0.08em;
-}
-
+/* ────────────────────────────────────────────────────────────────────────
+ * Article content — used in long-form blog pages
+ * ──────────────────────────────────────────────────────────────────────── */
 .article-content h2 {
   margin: 0;
-  font-family: "Merriweather", ui-serif, Georgia, serif;
+  font-family: var(--font-head);
   font-size: clamp(1.55rem, 2vw, 2rem);
   line-height: 1.25;
-  color: #0f172a;
+  color: var(--color-ink);
 }
-
 .article-content p {
   margin-top: 1rem;
   margin-bottom: 0;
   font-size: 1.05rem;
-  line-height: 1.95;
-  color: #334155;
+  line-height: 1.85;
+  color: var(--color-body);
 }
-
 .article-content ul {
   margin-top: 1.25rem;
-  margin-bottom: 0;
   padding-left: 0;
   list-style: none;
 }
-
 .article-content li {
   position: relative;
   margin-top: 0.9rem;
   padding-left: 1.35rem;
   font-size: 1rem;
-  line-height: 1.85;
-  color: #334155;
+  line-height: 1.75;
+  color: var(--color-body);
 }
-
 .article-content li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.82rem;
+  top: 0.72rem;
   height: 0.42rem;
   width: 0.42rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #0f766e, #0f5fd7);
+  background: var(--color-accent-deep);
 }

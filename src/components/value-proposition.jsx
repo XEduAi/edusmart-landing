@@ -1,91 +1,99 @@
-import { BookOpen, Users, TrendingUp, Award } from "lucide-react"
+import { Brain, Target, Zap, GraduationCap } from "lucide-react"
+
+const pillars = [
+  {
+    n: "01",
+    title: "Hiểu bản chất, không học vẹt",
+    body: "Mỗi khái niệm được giải thích từ gốc, kèm ví dụ thực tế. Học sinh hiểu vì sao công thức đúng — không chỉ nhớ.",
+    icon: Brain,
+  },
+  {
+    n: "02",
+    title: "Lộ trình cá nhân hoá",
+    body: "Bài kiểm tra đầu vào xác định điểm yếu. Mỗi học sinh có lộ trình riêng theo lớp, mục tiêu và tốc độ học.",
+    icon: Target,
+  },
+  {
+    n: "03",
+    title: "Luyện tập thông minh",
+    body: "Hệ thống bài tập tự động đề xuất dạng đúng trình độ. Không làm dư, không bỏ sót dạng nào.",
+    icon: Zap,
+  },
+  {
+    n: "04",
+    title: "Thầy giáo 40 năm kinh nghiệm",
+    body: "Thầy Long trực tiếp đứng lớp và phản hồi từng bài. Tận tâm với từng học sinh, từ căn bản đến nâng cao.",
+    icon: GraduationCap,
+  },
+]
 
 export function ValueProposition() {
-  const values = [
-    {
-      icon: BookOpen,
-      title: "Hiểu sâu bản chất",
-      description: "Không học vẹt, không nhồi nhét. Học sinh hiểu rõ nguyên lý và vận dụng linh hoạt.",
-      bgColor: "bg-emerald-50",
-      iconColor: "text-emerald-700",
-    },
-    {
-      icon: Users,
-      title: "Cá nhân hóa bài giảng",
-      description: "Mỗi học sinh có lộ trình riêng phù hợp với năng lực và mục tiêu cá nhân.",
-      bgColor: "bg-sky-50",
-      iconColor: "text-sky-700",
-    },
-    {
-      icon: TrendingUp,
-      title: "Luyện tập thông minh",
-      description: "Hệ thống bài tập từ cơ bản đến nâng cao, giúp học sinh tiến bộ từng ngày.",
-      bgColor: "bg-amber-50",
-      iconColor: "text-amber-700",
-    },
-    {
-      icon: Award,
-      title: "Đội ngũ giáo viên giỏi",
-      description: "40+ năm kinh nghiệm dạy toán tại Rạch Giá, Kiên Giang. Đào tạo hàng ngàn học sinh đạt giải cấp tỉnh.",
-      bgColor: "bg-slate-100",
-      iconColor: "text-slate-800",
-    },
-  ]
-
   return (
-    <section id="value" className="relative py-20 sm:py-32 overflow-hidden">
-      <div className="absolute top-0 right-0 -z-10 h-96 w-96 rounded-full bg-blue-100/30 blur-3xl" />
-      <div className="absolute bottom-0 left-0 -z-10 h-96 w-96 rounded-full bg-purple-100/30 blur-3xl" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="tape-label mb-4">Tại sao chọn chúng tôi</span>
-          <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            Tại sao chọn <span className="gradient-text">Thầy Long</span>?
+    <section id="value" className="bg-surface" style={{ padding: "96px 0" }}>
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
+        <div className="mb-14 max-w-[720px]">
+          <div className="eyebrow mb-4">Vì sao chọn Thầy Long</div>
+          <h2 className="h-section m-0">
+            Bốn cam kết — không phải khẩu hiệu, mà là cách chúng tôi dạy mỗi ngày.
           </h2>
-          <p className="mt-4 text-pretty text-lg text-muted-foreground">
-            Phương pháp dạy toán khác biệt tại Rạch Giá giúp học sinh yêu thích Toán và đạt kết quả cao
-          </p>
         </div>
 
-        <div className="mx-auto mt-16 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map((value, index) => {
-            const Icon = value.icon
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2"
+          style={{ borderTop: "1px solid var(--color-rule)" }}
+        >
+          {pillars.map((p, i) => {
+            const Icon = p.icon
             return (
               <div
-                key={index}
-                className="dossier-panel card-hover group relative flex flex-col items-center rounded-[1.7rem] p-8 text-center overflow-hidden"
+                key={p.n}
+                className="grid grid-cols-[auto_1fr] gap-6"
+                style={{
+                  padding: "36px 36px 36px 0",
+                  borderBottom: i < 2 ? "1px solid var(--color-rule)" : "none",
+                  borderRight: i % 2 === 0 ? "1px solid var(--color-rule)" : "none",
+                  paddingLeft: i % 2 === 1 ? 36 : 0,
+                }}
               >
-                {/* MagicUI shimmer on hover */}
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 [background:radial-gradient(circle_at_50%_0%,rgba(15,118,110,0.08),transparent_60%)]" />
                 <div
-                  className={`relative flex h-16 w-16 items-center justify-center rounded-2xl ${value.bgColor} transition-all duration-500 group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-lg`}
+                  className="grid h-12 w-12 place-items-center rounded-md"
+                  style={{
+                    background: "var(--color-accent-deep)",
+                    color: "var(--color-on-accent)",
+                  }}
                 >
-                  <Icon className={`h-8 w-8 ${value.iconColor} transition-transform duration-500 group-hover:rotate-6`} />
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-6 text-lg font-semibold group-hover:text-primary transition-colors duration-300">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors duration-300">{value.description}</p>
+                <div>
+                  <div
+                    className="mb-2 font-mono"
+                    style={{ fontSize: 12, color: "var(--color-muted)", letterSpacing: "0.08em" }}
+                  >
+                    — {p.n}
+                  </div>
+                  <h3
+                    className="font-head"
+                    style={{
+                      fontWeight: 500,
+                      fontSize: 24,
+                      lineHeight: 1.2,
+                      margin: "0 0 12px",
+                      color: "var(--color-ink)",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {p.title}
+                  </h3>
+                  <p
+                    className="m-0 max-w-[460px]"
+                    style={{ fontSize: 15, lineHeight: 1.6, color: "var(--color-body)" }}
+                  >
+                    {p.body}
+                  </p>
+                </div>
               </div>
             )
           })}
-        </div>
-
-        <div className="dossier-panel mx-auto mt-20 max-w-3xl rounded-[2rem] p-8 transition-all hover:border-primary/30 hover:shadow-2xl sm:p-12">
-          <div className="text-center">
-            <span className="tape-label mb-4">Phương pháp giảng dạy</span>
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-emerald-500">
-              <BookOpen className="h-6 w-6 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold">Phương pháp giảng dạy</h3>
-            <p className="mt-4 text-pretty leading-relaxed text-muted-foreground max-w-xl mx-auto">
-              Chúng tôi áp dụng phương pháp{" "}
-              <span className="font-semibold text-foreground bg-primary/10 px-2 py-1 rounded transition-colors hover:bg-primary/20">
-                &ldquo;Hiểu sâu bản chất – Luyện tập thông minh – Nhớ lâu dễ dàng&rdquo;
-              </span>
-              . Mỗi bài học được thiết kế để học sinh không chỉ biết làm bài mà còn hiểu tại sao, từ đó tự tin giải
-              quyết mọi dạng toán.
-            </p>
-          </div>
         </div>
       </div>
     </section>
